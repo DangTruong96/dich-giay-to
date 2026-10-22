@@ -162,6 +162,132 @@
       .doc-types.searching .acc-body { display: block; }
       .doc-types.searching .acc-head .chev { visibility: hidden; }
       .no-result { margin: 2px 2px 10px; color: var(--muted); font-size: 13.5px; }
+      #pickerArea { scroll-margin-top: 84px; }
+      .picked-bar {
+        scroll-margin-top: 84px;
+        display: flex; align-items: center; gap: 10px;
+        border: 1.5px solid var(--accent);
+        background: var(--accent-soft);
+        border-radius: 10px;
+        padding: 8px 10px 8px 12px;
+        margin-bottom: 4px;
+      }
+      .picked-bar[hidden] { display: none; }
+      .picked-names { flex: 1 1 auto; min-width: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+      .picked-t { font-weight: 700; font-size: 14px; line-height: 1.35; }
+      .picked-j { color: var(--muted); font-size: 12.5px; }
+      .btn-change {
+        flex: none; font: inherit; font-size: 13px; font-weight: 600;
+        color: var(--accent); background: var(--surface);
+        border: 1px solid var(--accent); border-radius: 8px;
+        padding: 7px 12px; min-height: 38px; cursor: pointer; white-space: nowrap;
+      }
+      .btn-change:hover { background: var(--accent-soft); }
+      .btn-change:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+      /* ---------- UX upgrade pass ---------- */
+      .panel { box-shadow: 0 1px 3px rgba(15, 23, 32, 0.06), 0 10px 30px rgba(15, 23, 32, 0.05); }
+      button, .doc-type, .acc-head, input, select, textarea { transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease; }
+      @keyframes riseIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+      .picked-bar:not([hidden]) { animation: riseIn 0.18s ease; }
+      form[id^="form-"]:not([hidden]) { animation: riseIn 0.18s ease; }
+
+      .recent-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 0 2px 10px; }
+      .recent-row[hidden] { display: none; }
+      .recent-label { color: var(--muted); font-size: 12.5px; font-weight: 600; }
+      .recent-chip {
+        font: inherit; font-size: 12.5px; font-weight: 600;
+        color: var(--accent); background: var(--accent-soft);
+        border: 1px solid var(--accent); border-radius: 999px;
+        padding: 5px 11px; min-height: 32px; cursor: pointer;
+      }
+      .recent-chip:hover { background: var(--surface); }
+      .recent-chip:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+      .form-progress { margin: 2px 2px 6px; }
+      .form-progress[hidden] { display: none; }
+      .form-progress .fp-text { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+      .form-progress .fp-track { height: 5px; border-radius: 99px; background: var(--border); margin-top: 5px; overflow: hidden; }
+      .form-progress .fp-fill { height: 100%; background: var(--accent); border-radius: 99px; transition: width 0.2s ease; }
+
+      fieldset.sec > legend { cursor: pointer; display: flex; align-items: center; gap: 6px; width: 100%; }
+      fieldset.sec > legend::after {
+        content: ""; width: 8px; height: 8px; flex: none;
+        border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent);
+        transform: rotate(45deg); transition: transform 0.18s ease; margin-left: 2px;
+      }
+      fieldset.sec.collapsed > legend::after { transform: rotate(-45deg); }
+      fieldset.sec.collapsed > :not(legend) { display: none !important; }
+
+      .seg-variant { display: flex; flex-wrap: wrap; gap: 6px; }
+      .seg-variant button {
+        font: inherit; font-size: 13px; font-weight: 600;
+        color: var(--ink); background: var(--surface);
+        border: 1.5px solid var(--border); border-radius: 8px;
+        padding: 8px 12px; min-height: 40px; cursor: pointer; text-align: left;
+      }
+      .seg-variant button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+      .seg-variant button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+      select.seg-hidden { display: none !important; }
+
+      .copy-btn {
+        font: inherit; font-size: 12px; font-weight: 600;
+        color: var(--accent); background: none;
+        border: 1px solid var(--accent); border-radius: 999px;
+        padding: 3px 10px; min-height: 28px; cursor: pointer; margin-top: 6px;
+      }
+      .copy-btn:hover { background: var(--accent-soft); }
+      .copy-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+      .blk-clear { margin-left: 8px; }
+
+      .zoom-ctl { display: none; align-items: center; gap: 6px; margin-left: auto; }
+      @media screen and (max-width: 1024px) { .zoom-ctl { display: flex; } }
+      .zoom-ctl button {
+        font: inherit; font-size: 14px; font-weight: 700;
+        color: var(--ink); background: var(--surface);
+        border: 1px solid var(--border); border-radius: 8px;
+        min-width: 38px; min-height: 38px; padding: 4px 10px; cursor: pointer;
+      }
+      .zoom-ctl button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+      .zoom-ctl .zoom-pct { font-size: 12.5px; color: var(--muted); font-weight: 600; min-width: 42px; text-align: center; }
+      .zoom-ctl .zoom-fit { font-size: 12.5px; }
+
+      .print-check {
+        position: fixed; top: 70px; left: 50%; transform: translateX(-50%);
+        width: min(560px, calc(100vw - 24px)); z-index: 60;
+      }
+      .print-check[hidden] { display: none; }
+      .print-check-card {
+        background: var(--surface); border: 1.5px solid var(--accent); border-radius: 12px;
+        box-shadow: 0 18px 50px rgba(15, 23, 32, 0.28); padding: 16px;
+        animation: riseIn 0.18s ease;
+      }
+      .pc-title { margin: 0 0 2px; font-size: 15px; font-weight: 700; }
+      .pc-sub { margin: 0 0 10px; color: var(--muted); font-size: 13px; }
+      .pc-list { display: flex; flex-wrap: wrap; gap: 6px; max-height: 168px; overflow-y: auto; margin-bottom: 12px; }
+      .pc-chip {
+        font: inherit; font-size: 12.5px; font-weight: 600;
+        color: var(--ink); background: var(--surface-2);
+        border: 1px solid var(--border); border-radius: 999px;
+        padding: 5px 11px; min-height: 32px; cursor: pointer;
+      }
+      .pc-chip:hover { border-color: var(--accent); color: var(--accent); }
+      .pc-chip:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+      .pc-actions { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+      .field-flash { outline: 3px solid var(--focus) !important; outline-offset: 2px; border-radius: 6px; }
+
+      .draft-toggle {
+        display: flex; gap: 9px; align-items: flex-start;
+        margin-top: 14px; padding: 11px 12px;
+        border: 1px solid var(--border); border-radius: 10px; background: var(--surface-2);
+        font-size: 13px; line-height: 1.5; cursor: pointer;
+      }
+      .draft-toggle input { width: 18px; height: 18px; flex: none; margin-top: 1px; accent-color: var(--accent); }
+      .draft-toggle b { font-weight: 700; }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation: none !important; transition: none !important; }
+      }
       form[id^="form-"] { scroll-margin-top: 84px; }
       .search-wrap { margin-bottom: 12px; }
       .search-wrap input {
@@ -586,6 +712,78 @@
         .blank { color: #bbb; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         table.tbl th { background: #f2f2f2 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       }
+
+      .doc-sub { text-align: center; font-size: 13px; font-weight: 600; margin: -6px 0 10px; }
+
+      /* ---------- Smart value fields (job / religion selects) ---------- */
+      .smart-other { margin-top: 6px; }
+      .smart-other[hidden] { display: none; }
+
+      /* ---------- Đặc điểm nhận dạng — phrase builder ---------- */
+      .feat-builder {
+        margin-top: 8px;
+        padding: 10px 12px 12px;
+        border: 1px dashed var(--border);
+        border-radius: 10px;
+        background: var(--surface-2);
+      }
+      .feat-builder .fb-title {
+        margin: 0 0 8px;
+        font-size: 12.5px;
+        font-weight: 700;
+        color: var(--muted);
+      }
+      .feat-builder .fb-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+        gap: 8px;
+      }
+      .feat-builder label {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--muted);
+      }
+      .feat-builder select,
+      .feat-builder input {
+        font: inherit;
+        font-size: 14px;
+        color: var(--ink);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 7px 8px;
+        width: 100%;
+        min-height: 38px;
+      }
+      .feat-builder .fb-other-wrap[hidden] { display: none; }
+      .feat-builder .fb-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+      .feat-builder .fb-make {
+        appearance: none;
+        border: 1px solid var(--accent);
+        background: var(--accent-soft);
+        color: var(--accent-dark);
+        font: inherit;
+        font-size: 13.5px;
+        font-weight: 700;
+        border-radius: 8px;
+        padding: 8px 14px;
+        cursor: pointer;
+        min-height: 40px;
+      }
+      .feat-builder .fb-preview {
+        font-size: 13px;
+        color: var(--ink);
+        overflow-wrap: anywhere;
+      }
     </style>
   </head>
   <body>
@@ -607,11 +805,17 @@
     <main class="layout">
       <!-- ================= FORM ================= -->
       <section class="panel no-print" aria-label="Nhập thông tin">
+        <div id="pickerArea">
         <h2>Chọn loại giấy tờ</h2>
         <p class="lede">29 mẫu dịch tiếng Nhật — đã kiểm chứng lại theo mẫu chính thức hiện hành và các biến thể theo thời kỳ của từng loại giấy. Điền thông tin tiếng Việt, bản dịch sẽ tự hiện ở khung bên cạnh.</p>
 
         <div class="search-wrap">
           <input type="search" id="docSearch" placeholder="Tìm loại giấy… (ví dụ: khai sinh, bảng điểm, cư trú)" aria-label="Tìm loại giấy tờ" />
+        </div>
+
+        <div class="recent-row" id="recentRow" hidden>
+          <span class="recent-label">Gần đây</span>
+          <span id="recentChips"></span>
         </div>
 
         <div class="doc-types" role="group" aria-label="Loại giấy tờ">
@@ -682,6 +886,20 @@
           </div>
         </div>
         <p class="no-result" id="docNoResult" hidden>Không tìm thấy loại giấy phù hợp — thử từ khoá khác.</p>
+        </div>
+
+        <div class="picked-bar" id="pickedBar" hidden>
+          <div class="picked-names">
+            <span class="picked-t" id="pickedName"></span>
+            <span class="picked-j" id="pickedJa"></span>
+          </div>
+          <button type="button" class="btn-change" id="btnChangeDoc">Đổi loại giấy</button>
+        </div>
+
+        <div class="form-progress" id="formProgress" hidden>
+          <span class="fp-text" id="fpText"></span>
+          <div class="fp-track"><div class="fp-fill" id="fpFill" style="width:0%"></div></div>
+        </div>
 
         <!-- ========== FORM: GIẤY KHAI SINH ========== -->
         <form id="form-birth" autocomplete="off">
@@ -1950,7 +2168,7 @@
 <input type="text" id="hk-ward" placeholder="Tên xã / phường" />
 </div>
 <div class="field">
-<label for="hk-district">Huyện / quận / TP （県/タウン/市）</label>
+<label for="hk-district">Huyện / quận / TP （郡/区/市）</label>
 <input type="text" id="hk-district" placeholder="Tên huyện / quận" />
 </div>
 </div>
@@ -2233,7 +2451,7 @@
 </div>
 <div class="field">
 <label for="id-features">Đặc điểm nhận dạng （個人的な特徴）</label>
-<textarea id="id-features" placeholder="Ví dụ: Sẹo chấm cách đuôi mắt phải 1,5 cm… (bản dịch nên ghi tiếng Nhật)"></textarea>
+<textarea id="id-features" placeholder="Dùng bộ tạo câu tiếng Nhật ở dưới, hoặc tự ghi trực tiếp bằng tiếng Nhật"></textarea>
 </div>
 <div class="grid2">
 <div class="field">
@@ -2285,7 +2503,7 @@
 </div>
 <div class="field">
 <label for="io-features">Dấu vết riêng và dị hình （特殊なことおよび異常）</label>
-<textarea id="io-features" placeholder="Đặc điểm nhận dạng ghi trên CMND (bản dịch nên ghi tiếng Nhật)"></textarea>
+<textarea id="io-features" placeholder="Dùng bộ tạo câu tiếng Nhật ở dưới, hoặc tự ghi trực tiếp bằng tiếng Nhật"></textarea>
 </div>
 <div class="field">
 <label for="io-issuedate">Ngày cấp （発行日）</label>
@@ -2332,7 +2550,7 @@
 </div>
 <div class="field">
 <label for="idn-features">Đặc điểm nhận dạng （特殊なこと）</label>
-<textarea id="idn-features" placeholder="Đặc điểm nhận dạng ghi trên thẻ (bản dịch nên ghi tiếng Nhật)"></textarea>
+<textarea id="idn-features" placeholder="Dùng bộ tạo câu tiếng Nhật ở dưới, hoặc tự ghi trực tiếp bằng tiếng Nhật"></textarea>
 </div>
 <div class="grid2">
 <div class="field">
@@ -2969,7 +3187,7 @@
 <input type="text" id="ms-province" placeholder="Tên tỉnh" />
 </div>
 <div class="field">
-<label for="ms-district">Huyện / quận （県）</label>
+<label for="ms-district">Huyện / quận （郡）</label>
 <input type="text" id="ms-district" placeholder="Tên huyện / quận" />
 </div>
 <div class="field">
@@ -3460,8 +3678,8 @@
 <input type="text" id="rs-religion" placeholder="Để trống = なし (không)" />
 </div>
 <div class="field">
-<label for="rs-hometown">8. Quê quán （本籍地）</label>
-<input type="text" id="rs-hometown" placeholder="Quê quán (mục 7 quốc tịch cố định ベトナム)" />
+<label for="rs-hometown">7. Quê quán （本籍地）</label>
+<input type="text" id="rs-hometown" placeholder="Quê quán" />
 </div>
 </div>
 </fieldset>
@@ -4652,8 +4870,8 @@
 <fieldset>
 <legend>Thông tin đăng ký</legend>
 <div class="field">
-<label for="cp-province">Tỉnh / thành phố （県）— Sở Kế hoạch và Đầu tư</label>
-<input type="text" id="cp-province" placeholder="Ví dụ: Hà Nội — ハノイ県" />
+<label for="cp-province">Tỉnh / thành phố （省）— Sở Kế hoạch và Đầu tư</label>
+<input type="text" id="cp-province" placeholder="Ví dụ: Hà Nội — ハノイ" />
 </div>
 <div class="grid2">
 <div class="field">
@@ -5840,6 +6058,39 @@
 <option value="H'Mông"></option>
 <option value="Dao"></option>
 </datalist>
+<datalist id="job-list">
+<option value="Nông dân"></option>
+<option value="Công nhân"></option>
+<option value="Công chức"></option>
+<option value="Viên chức"></option>
+<option value="Giáo viên"></option>
+<option value="Bác sĩ"></option>
+<option value="Y tá"></option>
+<option value="Điều dưỡng"></option>
+<option value="Kỹ sư"></option>
+<option value="Kế toán"></option>
+<option value="Lái xe"></option>
+<option value="Thợ xây"></option>
+<option value="Buôn bán"></option>
+<option value="Kinh doanh"></option>
+<option value="Nhân viên văn phòng"></option>
+<option value="Công an"></option>
+<option value="Bộ đội"></option>
+<option value="Sinh viên"></option>
+<option value="Nội trợ"></option>
+<option value="Hưu trí"></option>
+<option value="Không nghề nghiệp"></option>
+</datalist>
+<datalist id="religion-list">
+<option value="Không"></option>
+<option value="Phật giáo"></option>
+<option value="Công giáo"></option>
+<option value="Tin Lành"></option>
+<option value="Thiên Chúa giáo"></option>
+<option value="Cao Đài"></option>
+<option value="Hoà Hảo"></option>
+<option value="Hồi giáo"></option>
+</datalist>
 
 <div class="form-actions">
 <button type="button" class="btn-print" id="btnPrintBottom">
@@ -5850,9 +6101,14 @@ In / Lưu PDF
 </div>
 <p class="hint" style="margin-top:10px">Khi hộp thoại in hiện ra, chọn máy in hoặc “Lưu dưới dạng PDF” (Save as PDF) để xuất file PDF khổ A4.</p>
 
+<label class="draft-toggle" for="draftToggle">
+<input type="checkbox" id="draftToggle" />
+<span><b>Lưu nháp trên thiết bị này</b> — khi bật, thông tin đang nhập được tự lưu vào trình duyệt của chính máy này để lần sau mở lại không phải nhập lại. Mặc định tắt: đóng trang là mất hết.</span>
+</label>
+
 <div class="privacy-note">
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-<span>Dữ liệu chỉ nằm trên trang này, không lưu trữ, không gửi đi. Đóng trang là mọi thông tin đã nhập sẽ mất.</span>
+<span>Dữ liệu không gửi đi đâu và không lưu trên máy chủ nào. Mặc định thông tin chỉ nằm trong phiên làm việc này; chỉ khi bạn bật “Lưu nháp trên thiết bị này”, bản nháp mới được lưu trong trình duyệt của chính máy này — nút “Xoá toàn bộ thông tin” sẽ xoá hẳn cả bản nháp đó. Riêng tên các loại giấy đã chọn gần đây được lưu trên thiết bị để gợi ý nhanh (không kèm thông tin cá nhân).</span>
 </div>
 </section>
 
@@ -5861,10 +6117,28 @@ In / Lưu PDF
 <div class="preview-head no-print">
 <h2>Bản dịch tiếng Nhật</h2>
 <span>Xem trước trực tiếp — khổ A4, đúng phần sẽ được in ra</span>
+<div class="zoom-ctl" role="group" aria-label="Phóng to / thu nhỏ bản dịch">
+<button type="button" id="zoomOut" aria-label="Thu nhỏ">−</button>
+<span class="zoom-pct" id="zoomPct">100%</span>
+<button type="button" id="zoomIn" aria-label="Phóng to">+</button>
+<button type="button" class="zoom-fit" id="zoomFit">Vừa màn hình</button>
+</div>
 </div>
 <div class="paper-scale" id="paperScale"><div class="paper" id="paper" lang="ja"></div></div>
 </section>
 </main>
+
+<div class="print-check no-print" id="printCheck" hidden>
+  <div class="print-check-card" role="alertdialog" aria-labelledby="pcTitle" aria-describedby="pcSub">
+    <p class="pc-title" id="pcTitle">Còn <span id="pcCount">0</span> mục chưa nhập</p>
+    <p class="pc-sub" id="pcSub">Chạm vào tên mục để tới đúng chỗ nhập — hoặc vẫn in nếu mục đó không cần thiết.</p>
+    <div class="pc-list" id="pcList"></div>
+    <div class="pc-actions">
+      <button type="button" class="btn-ghost" id="pcClose">Để tôi kiểm tra lại</button>
+      <button type="button" class="btn-print" id="pcPrintAnyway">Vẫn in</button>
+    </div>
+  </div>
+</div>
 
 <div class="mobile-bar no-print">
   <div class="seg" role="group" aria-label="Chuyển chế độ xem">
@@ -5880,6 +6154,7 @@ In / Lưu PDF
 <script>
 "use strict";
       var SYL = {
+        ben:"ベン", be:"ベー",
         nguyen:"グエン", dang:"ダン", tran:"チャン", le:"レ", pham:"ファム",
         hoang:"ホアン", huynh:"フィン", vu:"ヴー", vo:"ヴォー", van:"ヴァン",
         thi:" ティ".trim(), minh:"ミン", anh:"アイン", quoc:"クオック", tuan:"トゥアン",
@@ -6241,7 +6516,27 @@ In / Lưu PDF
 
       /* ================= Helpers ================= */
       function $(id) { return document.getElementById(id); }
-      function val(id) { var el = $(id); return el ? el.value.trim() : ""; }
+      function val(id) {
+        var el = $(id);
+        if (!el) return "";
+        var raw = el.value.trim();
+        if (!raw) return raw;
+        if (el.classList && el.classList.contains("smart-sel")) {
+          if (raw === "__other__") {
+            var o = $(id + "-other");
+            var t = o ? o.value.trim() : "";
+            return el.getAttribute("data-kind") === "religion" ? mapReligionText(t) : mapJobText(t);
+          }
+          return raw;
+        }
+        if (typeof PLACE_BARE_IDS !== "undefined" && PLACE_BARE_IDS[id]) return translatePlaceBare(raw);
+        if (typeof PLACE_IDS !== "undefined" && PLACE_IDS[id]) return translatePlace(raw);
+        if (typeof HEALTH_IDS !== "undefined" && HEALTH_IDS[id]) return mapClosed(HEALTH_MAP, raw);
+        if (id === "cv-familycomp") return mapClosed(CV_COMP_MAP, raw);
+        if (id === "ic-source") return mapJobText(raw);
+        if (id === "vr-origin") return mapNation(raw);
+        return raw;
+      }
       function esc(s) {
         return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
       }
@@ -6273,10 +6568,28 @@ In / Lưu PDF
         var key = stripVN(v).toLowerCase();
         return ETHNIC_MAP[key] || v;
       }
+      var COUNTRY_MAP = {
+        "viet nam": "ベトナム", "nhat ban": "日本", "nhat": "日本",
+        "trung quoc": "中国", "han quoc": "韓国", "dai loan": "台湾",
+        "thai lan": "タイ", "lao": "ラオス", "campuchia": "カンボジア",
+        "my": "アメリカ", "duc": "ドイツ", "phap": "フランス", "anh": "イギリス",
+        "nga": "ロシア", "uc": "オーストラリア", "canada": "カナダ",
+        "an do": "インド", "indonesia": "インドネシア", "malaysia": "マレーシア",
+        "singapore": "シンガポール", "philippines": "フィリピン", "y": "イタリア",
+        "tay ban nha": "スペイン", "bo dao nha": "ポルトガル", "ha lan": "オランダ",
+        "thuy si": "スイス", "thuy dien": "スウェーデン", "na uy": "ノルウェー",
+        "dan mach": "デンマーク", "phan lan": "フィンランド", "ao": "オーストリア",
+        "bi": "ベルギー", "ba lan": "ポーランド", "sec": "チェコ", "hungary": "ハンガリー",
+        "ukraina": "ウクライナ", "tho nhi ky": "トルコ", "a rap xe ut": "サウジアラビア",
+        "cac tieu vuong quoc a rap thong nhat": "アラブ首長国連邦", "uae": "アラブ首長国連邦",
+        "an do duong": "インド", "nam phi": "南アフリカ", "ai cap": "エジプト",
+        "mexico": "メキシコ", "brazil": "ブラジル", "argentina": "アルゼンチン",
+        "new zealand": "ニュージーランド", "hong kong": "香港", "trieu tien": "北朝鮮"
+      };
       function mapNation(v) {
         if (!v) return "";
-        var key = stripVN(v).toLowerCase();
-        if (key === "viet nam") return "ベトナム";
+        var key = stripVN(v).toLowerCase().replace(/\s+/g, " ").trim();
+        if (COUNTRY_MAP[key]) return COUNTRY_MAP[key];
         return v;
       }
       var RELATION_MAP = {
@@ -6291,6 +6604,397 @@ In / Lưu PDF
         if (!v) return "";
         var key = stripVN(v).toLowerCase().replace(/\s+/g, " ");
         return RELATION_MAP[key] || v;
+      }
+
+      /* ================= Value translation (offline, deterministic) ================= */
+      /* 63 provinces/cities -> standard Japanese renderings (suffix included) */
+      var PROVINCES = {
+        "an giang": "アンザン省", "ba ria vung tau": "バリア・ブンタウ省",
+        "bac giang": "バクザン省", "bac kan": "バッカン省", "bac lieu": "バクリエウ省",
+        "bac ninh": "バクニン省", "ben tre": "ベンチェ省", "binh dinh": "ビンディン省",
+        "binh duong": "ビンズオン省", "binh phuoc": "ビンフオック省", "binh thuan": "ビントゥアン省",
+        "ca mau": "カマウ省", "can tho": "カントー市", "cao bang": "カオバン省",
+        "da nang": "ダナン市", "dak lak": "ダクラク省", "dak nong": "ダクノン省",
+        "dien bien": "ディエンビエン省", "dong nai": "ドンナイ省", "dong thap": "ドンタップ省",
+        "gia lai": "ザーライ省", "ha giang": "ハザン省", "ha nam": "ハナム省",
+        "ha noi": "ハノイ", "ha tinh": "ハティン省", "hai duong": "ハイズオン省",
+        "hai phong": "ハイフォン市", "hau giang": "ハウザン省", "hoa binh": "ホアビン省",
+        "ho chi minh": "ホーチミン市", "sai gon": "ホーチミン市",
+        "hung yen": "フンイエン省", "khanh hoa": "カインホア省", "kien giang": "キエンザン省",
+        "kon tum": "コントゥム省", "lai chau": "ライチャウ省", "lam dong": "ラムドン省",
+        "lang son": "ランソン省", "lao cai": "ラオカイ省", "long an": "ロンアン省",
+        "nam dinh": "ナムディン省", "nghe an": "ゲアン省", "ninh binh": "ニンビン省",
+        "ninh thuan": "ニントゥアン省", "phu tho": "フートー省", "phu yen": "フーイエン省",
+        "quang binh": "クアンビン省", "quang nam": "クアンナム省", "quang ngai": "クアンガイ省",
+        "quang ninh": "クアンニン省", "quang tri": "クアンチ省", "soc trang": "ソクチャン省",
+        "son la": "ソンラ省", "tay ninh": "タイニン省", "thai binh": "タイビン省",
+        "thai nguyen": "タイグエン省", "thanh hoa": "タインホア省",
+        "thua thien hue": "トゥアティエン・フエ省", "hue": "フエ市",
+        "tien giang": "ティエンザン省", "tra vinh": "チャヴィン省", "tuyen quang": "トゥエンクアン省",
+        "vinh long": "ヴィンロン省", "vinh phuc": "ヴィンフック省", "yen bai": "イエンバイ省"
+      };
+
+      function hasJapanese(s) { return /[\u3040-\u30ff\u4e00-\u9fff\uff66-\uff9f]/.test(s); }
+
+      function placeKana(name) {
+        return name.split(/\s+/).filter(Boolean).map(function (tok) {
+          if (/^[\d][\d\/\-.]*$/.test(tok)) return tok;
+          return syllableKana(tok);
+        }).join("・");
+      }
+      function provOrKana(name, suffix) {
+        name = name.trim();
+        if (PROVINCES[name]) return PROVINCES[name];
+        return placeKana(name) + suffix;
+      }
+      function translatePlaceCore(seg) {
+        if (PROVINCES[seg]) return PROVINCES[seg];
+        var m;
+        if ((m = seg.match(/^tinh\s+(.+)$/))) return provOrKana(m[1], "省");
+        if ((m = seg.match(/^(?:thanh pho|tp\.?)\s+(.+)$/))) return provOrKana(m[1], "市");
+        if ((m = seg.match(/^thi xa\s+(.+)$/))) return placeKana(m[1]) + "市";
+        if ((m = seg.match(/^thi tran\s+(.+)$/))) return placeKana(m[1]) + "町";
+        if ((m = seg.match(/^quan\s+(.+)$/))) return placeKana(m[1]) + "区";
+        if ((m = seg.match(/^huyen\s+(.+)$/))) return placeKana(m[1]) + "郡";
+        if ((m = seg.match(/^phuong\s+(.+)$/))) return placeKana(m[1]) + "町";
+        if ((m = seg.match(/^xa\s+(.+)$/))) return placeKana(m[1]) + "町";
+        if ((m = seg.match(/^(?:thon|ap|ban)\s+(.+)$/))) return placeKana(m[1]) + "村";
+        if ((m = seg.match(/^khu pho\s+(.+)$/))) return placeKana(m[1]) + "町";
+        if ((m = seg.match(/^to dan pho\s+(.+)$/))) return placeKana(m[1]) + "町内";
+        if ((m = seg.match(/^duong\s+(.+)$/))) return placeKana(m[1]) + "通り";
+        if ((m = seg.match(/^pho\s+(.+)$/))) return placeKana(m[1]) + "通り";
+        if ((m = seg.match(/^so\s+(.+)$/))) return placeKana(m[1]) + "番地";
+        return placeKana(seg);
+      }
+      function translatePlaceSegment(seg) {
+        seg = seg.trim().replace(/\.+$/, "");
+        if (!seg) return "";
+        if (/^[\d\s\/\-.]+$/.test(seg)) return seg.replace(/\s+/g, "");
+        var ubnd = false, rest = seg;
+        if (rest === "ubnd") return "人民委員会";
+        if (rest.indexOf("ubnd ") === 0) { ubnd = true; rest = rest.slice(5).trim(); }
+        else if (rest.indexOf("uy ban nhan dan ") === 0) { ubnd = true; rest = rest.slice(16).trim(); }
+        var body = translatePlaceCore(rest);
+        return ubnd ? body + "人民委員会" : body;
+      }
+      function translatePlace(raw) {
+        if (!raw) return raw;
+        var s = String(raw).trim();
+        if (!s) return s;
+        if (hasJapanese(s)) return s;
+        if (!/[a-zA-Z\u00C0-\u024F\u1E00-\u1EFF]/.test(s)) return s;
+        var norm = stripVN(s).toLowerCase().replace(/\s*-\s*/g, " ").replace(/\s+/g, " ").trim();
+        if (norm === "ubnd" || norm === "uy ban nhan dan") return "人民委員会";
+        var ubndPrefix = false;
+        if (norm.indexOf("ubnd ") === 0) { ubndPrefix = true; norm = norm.slice(5).trim(); }
+        else if (norm.indexOf("uy ban nhan dan ") === 0) { ubndPrefix = true; norm = norm.slice(16).trim(); }
+        norm = norm.replace(/[,;]+/g, ",");
+        norm = norm.replace(/\s+(?=(?:tinh|thanh pho|thi xa|thi tran|quan|huyen|phuong|xa|thon|ap|khu pho|to dan pho)\b)/g, ",");
+        norm = norm.replace(/(\d)\s+(?=duong\b)/g, "$1,");
+        var out = norm.split(",").map(translatePlaceSegment).filter(Boolean);
+        if (ubndPrefix && out.length) out[0] = out[0] + "人民委員会";
+        return out.join("、");
+      }
+
+      /* Bare-name mode: for component fields whose renderer appends its own unit suffix
+         (e.g. 町：X, X省, X人民委員会) — translate the name only, no unit suffix. */
+      function translatePlaceCoreBare(seg) {
+        if (PROVINCES[seg]) return PROVINCES[seg].replace(/(省|市|県)$/, "");
+        var m;
+        if ((m = seg.match(/^(?:tinh|thanh pho|tp\.?|thi xa|thi tran|quan|huyen|phuong|xa|thon|ap|ban|khu pho|to dan pho|duong|pho|so)\s+(.+)$/))) {
+          var nm = m[1].trim();
+          if (PROVINCES[nm]) return PROVINCES[nm].replace(/(省|市|県)$/, "");
+          return placeKana(nm);
+        }
+        return placeKana(seg);
+      }
+      function translatePlaceBare(raw) {
+        if (!raw) return raw;
+        var s = String(raw).trim();
+        if (!s) return s;
+        if (hasJapanese(s)) return s;
+        if (!/[a-zA-Z\u00C0-\u024F\u1E00-\u1EFF]/.test(s)) return s;
+        var norm = stripVN(s).toLowerCase().replace(/\s*-\s*/g, " ").replace(/\s+/g, " ").trim();
+        norm = norm.replace(/[,;]+/g, ",");
+        var out = norm.split(",").map(function (seg) {
+          seg = seg.trim().replace(/\.+$/, "");
+          if (!seg) return "";
+          if (/^[\d\s\/\-.]+$/.test(seg)) return seg.replace(/\s+/g, "");
+          return translatePlaceCoreBare(seg);
+        }).filter(Boolean);
+        return out.join("、");
+      }
+      var PLACE_BARE_IDS = {};
+      ("bc-town bc-ward hk-street hk-ward hk-district ms-province ms-district ms-commune cp-province").split(" ").forEach(function (id) { PLACE_BARE_IDS[id] = true; });
+
+      /* Fields whose entered value is a place / address (rendered in Japanese) */
+      var PLACE_IDS = {};
+      ("bc-birthplace bc-f-addr bc-m-addr bc-a-addr br-origin br-f-origin br-f-addr br-m-origin br-m-addr " +
+       "bm-birthplace bm-hometown bm-f-addr bm-m-addr bm-regplace bx-birthplace bx-hometown bx-f-hkaddr bx-m-hkaddr bx-regplace bx-place " +
+       "mc-w-addr mc-h-addr mc-office mp-w-addr mp-h-addr me-w-birthplace me-w-addr me-h-birthplace me-h-addr " +
+       "mx-w-addr mx-h-addr mx-regplace mx-place du-birthplace du-place hs-birthplace hk-resaddr " +
+       "bz-o-perm bz-o-contact bz-addr id-birthplace id-addr io-hometown io-regaddr idn-hometown idn-addr cc24-addr cc24-birthreg " +
+       "pp-birthplace bk-c-addr tp-birthplace sr-birthplace sr-addr ms-addr ms-res-province ms-sp-addr ms-place " +
+       "hb-m-addr hb-birthplace hn-m-addr hn-birthplace rs-hometown rs-permaddr rs-tempaddr rs-hkaddr ic-addr ic-town " +
+       "em-coaddr em-addr em-place sp-addr tx-notify-addr tx-regplace cv-hkreg cv-birthplace cv-hometown cv-s-addr cv-party-place cv-youth-place " +
+       "hl-hometown hl-addr hl-place ld-o1-addr ld-o2-addr ld-addr ln-o-addr ln-addr ln-place cp-addr cp-bizaddr cp-province cp-o-hkaddr cp-o-addr cp-r-hkaddr cp-r-addr " +
+       "dt-regplace dt-deathplace dt-place dl-lastaddr dl-regplace dl-deathplace ll-birthplace ll-addr po-g-addr po-a-addr po-place " +
+       "tc-birthplace tc-place lx-addr vr-addr cd-place dg-place").split(" ").forEach(function (id) { PLACE_IDS[id] = true; });
+
+      /* Occupations: preset options (value = Japanese) + dictionary for typed Vietnamese */
+      var JOB_OPTIONS = [
+        ["", "— Chọn nghề nghiệp —"],
+        ["農業", "Nông dân / làm nông （農業）"],
+        ["工場労働者", "Công nhân （工場労働者）"],
+        ["会社員", "Nhân viên công ty （会社員）"],
+        ["公務員", "Công chức / viên chức （公務員）"],
+        ["教員", "Giáo viên （教員）"],
+        ["医師", "Bác sĩ （医師）"],
+        ["看護師", "Y tá / điều dưỡng （看護師）"],
+        ["薬剤師", "Dược sĩ （薬剤師）"],
+        ["技術者", "Kỹ sư （技術者）"],
+        ["会計士", "Kế toán （会計士）"],
+        ["運転手", "Lái xe / tài xế （運転手）"],
+        ["建設労働者", "Thợ xây dựng （建設労働者）"],
+        ["自営業", "Tự kinh doanh / buôn bán （自営業）"],
+        ["販売員", "Bán hàng （販売員）"],
+        ["調理師", "Đầu bếp （調理師）"],
+        ["警察官", "Công an （警察官）"],
+        ["軍人", "Bộ đội / quân nhân （軍人）"],
+        ["学生", "Học sinh / sinh viên （学生）"],
+        ["主婦", "Nội trợ （主婦）"],
+        ["退職者", "Hưu trí （退職者）"],
+        ["漁師", "Ngư dân （漁師）"],
+        ["警備員", "Bảo vệ （警備員）"],
+        ["無職", "Không nghề nghiệp （無職）"],
+        ["__other__", "Khác — tự nhập （その他）"]
+      ];
+      var JOB_DICT = {
+        "nong dan": "農業", "lam ruong": "農業", "lam nong": "農業", "nong nghiep": "農業", "nong ho": "農業", "lam vuon": "園芸", "chan nuoi": "畜産業",
+        "cong nhan": "工場労働者", "cong chuc": "公務員", "vien chuc": "公務員", "can bo": "公務員",
+        "giao vien": "教員", "giang vien": "教員", "bac si": "医師", "y si": "医師", "y ta": "看護師", "dieu duong": "看護師", "duoc si": "薬剤師",
+        "ky su": "技術者", "ke toan": "会計士", "lai xe": "運転手", "tai xe": "運転手",
+        "tho xay": "建設労働者", "xay dung": "建設労働者", "cong an": "警察官", "bo doi": "軍人", "quan nhan": "軍人",
+        "hoc sinh": "学生", "sinh vien": "学生", "noi tro": "主婦",
+        "buon ban": "自営業", "kinh doanh": "自営業", "tu kinh doanh": "自営業", "ban hang": "販売員",
+        "nhan vien": "会社員", "nhan vien van phong": "会社員", "tho may": "縫製労働者", "tho dien": "電気工", "tho moc": "大工",
+        "dau bep": "調理師", "nau an": "調理師", "bao ve": "警備員", "ngu dan": "漁師", "danh ca": "漁師",
+        "that nghiep": "無職", "khong nghe": "無職", "khong nghe nghiep": "無職", "khong co viec lam": "無職",
+        "huu tri": "退職者", "nghi huu": "退職者", "o nha": "主婦"
+      };
+      var JOB_PREFIX = [
+        ["nong dan", "農業"], ["lam nong", "農業"], ["cong nhan", "工場労働者"], ["giao vien", "教員"],
+        ["bac si", "医師"], ["y ta", "看護師"], ["dieu duong", "看護師"], ["ky su", "技術者"], ["ke toan", "会計士"],
+        ["lai xe", "運転手"], ["tai xe", "運転手"], ["tho xay", "建設労働者"], ["cong an", "警察官"],
+        ["bo doi", "軍人"], ["hoc sinh", "学生"], ["sinh vien", "学生"], ["noi tro", "主婦"],
+        ["buon ban", "自営業"], ["nhan vien", "会社員"], ["that nghiep", "無職"], ["huu tri", "退職者"]
+      ];
+      function mapJobText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var key = stripVN(s).toLowerCase().replace(/\s+/g, " ").trim();
+        if (JOB_DICT[key]) return JOB_DICT[key];
+        for (var i = 0; i < JOB_PREFIX.length; i++) {
+          if (key.indexOf(JOB_PREFIX[i][0]) === 0) return JOB_PREFIX[i][1];
+        }
+        return s;
+      }
+
+      /* Religions: closed set */
+      var RELIGION_OPTIONS = [
+        ["", "— Chọn tôn giáo —"],
+        ["無宗教", "Không tôn giáo （無宗教）"],
+        ["仏教", "Phật giáo （仏教）"],
+        ["カトリック", "Công giáo （カトリック）"],
+        ["プロテスタント", "Tin Lành （プロテスタント）"],
+        ["キリスト教", "Thiên Chúa giáo （キリスト教）"],
+        ["カオダイ教", "Cao Đài （カオダイ教）"],
+        ["ホアハオ教", "Hoà Hảo （ホアハオ教）"],
+        ["イスラム教", "Hồi giáo （イスラム教）"],
+        ["ヒンドゥー教", "Ấn Độ giáo （ヒンドゥー教）"],
+        ["__other__", "Khác — tự nhập （その他）"]
+      ];
+      var RELIGION_MAP = {
+        "khong": "無宗教", "khong co": "無宗教", "khong ton giao": "無宗教", "vo than": "無宗教", "khong theo ton giao nao": "無宗教",
+        "phat giao": "仏教", "dao phat": "仏教", "phat": "仏教",
+        "cong giao": "カトリック", "dao cong giao": "カトリック", "thien chua": "キリスト教", "thien chua giao": "キリスト教", "dao thien chua": "キリスト教",
+        "tin lanh": "プロテスタント", "cao dai": "カオダイ教", "dao cao dai": "カオダイ教",
+        "hoa hao": "ホアハオ教", "phat giao hoa hao": "ホアハオ教",
+        "hoi giao": "イスラム教", "dao hoi": "イスラム教", "hin du": "ヒンドゥー教", "an do giao": "ヒンドゥー教",
+        "tho cung to tien": "祖先崇拝", "tho mau": "母神信仰"
+      };
+      function mapReligionText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var key = stripVN(s).toLowerCase().replace(/\s+/g, " ").trim();
+        return RELIGION_MAP[key] || s;
+      }
+
+      /* Closed-set status words (health form, resume) */
+      var HEALTH_MAP = {
+        "binh thuong": "正常", "khoe": "健康", "khoe manh": "健康", "tot": "良好", "binh thuong tot": "良好",
+        "am tinh": "陰性", "duong tinh": "陽性", "khong": "無", "khong co": "無", "khong benh": "無", "co": "有",
+        "yeu": "弱い", "kem": "不良"
+      };
+      var HEALTH_IDS = {};
+      ("hl-hand-r hl-hand-l hl-foot-r hl-foot-l hl-reflex hl-urine-sugar hl-urine-protein hl-eye-disease " +
+       "hl-surgery hl-ear-disease hl-epilepsy hl-paralysis hl-neuro-disease hl-heart hl-vessel cv-health").split(" ").forEach(function (id) { HEALTH_IDS[id] = true; });
+      var CV_COMP_MAP = {
+        "co nong": "雇農", "ban nong": "貧農", "trung nong": "中農", "phu nong": "富農", "dia chu": "地主",
+        "tu san": "資産階級", "tieu tu san": "小資産階級", "cong nhan": "労働者", "nong dan": "農民",
+        "tri thuc": "知識人", "cong chuc": "公務員", "thuong nhan": "商人", "khac": "その他"
+      };
+      function mapClosed(map, raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var key = stripVN(s).toLowerCase().replace(/\s+/g, " ").trim();
+        return map[key] || s;
+      }
+
+      /* Dynamic member-block classes needing value translation */
+      var CLASS_VALUE_MAPS = {
+        "hk-birthplace": translatePlace, "hk-hometown": translatePlace, "hk-prev": translatePlace, "hk-dest": translatePlace,
+        "hk-religion": mapReligionText, "hk-job": mapJobText,
+        "spj-addr": translatePlace, "cvj-addr": translatePlace, "cvj-job": mapJobText,
+        "txj1-permaddr": translatePlace, "txj1-curaddr": translatePlace,
+        "txj2-bcprovince": translatePlace, "txj2-bcdistrict": translatePlace, "txj2-bccommune": translatePlace,
+        "txj2-bccountry": mapNation
+      };
+
+      /* ===== 特徴 (đặc điểm nhận dạng) phrase builder ===== */
+      function composeFeature(root) {
+        function gv(cls) { var el = root.querySelector("." + cls); return el ? el.value.trim() : ""; }
+        var type = gv("fb-type");
+        if (type === "__other__") type = gv("fb-other");
+        if (!type) type = "ほくろ";
+        var partEl = root.querySelector(".fb-part");
+        var part = partEl ? partEl.value : "目";
+        var from = partEl ? partEl.options[partEl.selectedIndex].getAttribute("data-from") === "1" : false;
+        var side = gv("fb-side"), pos = gv("fb-pos");
+        var dist = gv("fb-dist").replace(",", ".");
+        var loc = side + part;
+        var distClause = dist ? dist + "㎝離れた所" : "";
+        var s;
+        if (pos) {
+          s = loc + "の" + pos + (distClause ? "、" + distClause + "に" : "に") + type + "がある";
+        } else if (distClause) {
+          s = loc + (from ? "から" : "に") + distClause + "に" + type + "がある";
+        } else {
+          s = loc + "に" + type + "がある";
+        }
+        return s;
+      }
+      function buildFeatureBuilder(textarea) {
+        if (!textarea || textarea.getAttribute("data-fb")) return;
+        textarea.setAttribute("data-fb", "1");
+        var wrap = document.createElement("div");
+        wrap.className = "feat-builder";
+        wrap.innerHTML =
+          '<p class="fb-title">Tạo câu tiếng Nhật — chọn các mục rồi bấm nút, câu sẽ tự điền vào ô đặc điểm ở trên</p>' +
+          '<div class="fb-grid">' +
+          '<label>Loại dấu<select class="fb-type">' +
+          '<option value="黒いほくろ">Nốt ruồi （黒子）</option>' +
+          '<option value="傷跡">Vết sẹo （傷跡）</option>' +
+          '<option value="あざ">Vết bớt （あざ）</option>' +
+          '<option value="__other__">Khác （その他）</option></select></label>' +
+          '<label>Bộ phận<select class="fb-part">' +
+          '<option value="目">Mắt （目）</option>' +
+          '<option value="目頭" data-from="1">Đầu mắt （目頭）</option>' +
+          '<option value="目尻" data-from="1">Đuôi mắt （目尻）</option>' +
+          '<option value="口">Miệng （口）</option>' +
+          '<option value="口唇">Môi （口唇）</option>' +
+          '<option value="頬">Má （頬）</option>' +
+          '<option value="額">Trán （額）</option>' +
+          '<option value="鼻">Mũi （鼻）</option>' +
+          '<option value="耳">Tai （耳）</option>' +
+          '<option value="顎">Cằm （顎）</option></select></label>' +
+          '<label>Phía<select class="fb-side">' +
+          '<option value="左">Trái （左）</option>' +
+          '<option value="右">Phải （右）</option></select></label>' +
+          '<label>Vị trí<select class="fb-pos">' +
+          '<option value="">— Không chọn —</option>' +
+          '<option value="上">Trên （上）</option>' +
+          '<option value="下">Dưới （下）</option>' +
+          '<option value="横">Bên cạnh （横）</option></select></label>' +
+          '<label>Cách (cm)<input type="number" class="fb-dist" min="0" step="0.5" placeholder="2" /></label>' +
+          '<label class="fb-other-wrap" hidden>Mô tả khác (ghi tiếng Nhật)<input type="text" class="fb-other" placeholder="例：手術痕" /></label>' +
+          '</div>' +
+          '<div class="fb-row"><button type="button" class="fb-make">Tạo câu tiếng Nhật</button><span class="fb-preview"></span></div>';
+        var field = textarea.closest(".field") || textarea.parentNode;
+        field.parentNode.insertBefore(wrap, field.nextSibling);
+        var typeSel = wrap.querySelector(".fb-type");
+        var otherWrap = wrap.querySelector(".fb-other-wrap");
+        typeSel.addEventListener("change", function () { otherWrap.hidden = typeSel.value !== "__other__"; });
+        wrap.querySelector(".fb-make").addEventListener("click", function () {
+          var sentence = composeFeature(wrap);
+          textarea.value = sentence;
+          wrap.querySelector(".fb-preview").textContent = sentence;
+          textarea.dispatchEvent(new Event("input", { bubbles: true }));
+          textarea.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+      }
+
+      /* ===== Convert job / religion text inputs into smart selects ===== */
+      var JOB_FIELD_IDS = ["bc-f-job", "bc-m-job", "me-w-job", "me-h-job", "sr-f-job", "sr-m-job", "sr-g-job", "cv-job", "cv-f-job", "cv-m-job", "cv-s-job"];
+      var RELIGION_FIELD_IDS = ["id-religion", "io-religion", "rs-religion", "cv-religion"];
+      function convertSmartField(input, kind, options) {
+        if (!input || input.tagName === "SELECT") return;
+        var current = input.value.trim();
+        var sel = document.createElement("select");
+        sel.id = input.id;
+        sel.className = "smart-sel";
+        sel.setAttribute("data-kind", kind);
+        options.forEach(function (o) {
+          var op = document.createElement("option");
+          op.value = o[0]; op.textContent = o[1];
+          sel.appendChild(op);
+        });
+        var other = document.createElement("input");
+        other.type = "text";
+        other.id = input.id + "-other";
+        other.className = "smart-other";
+        other.placeholder = kind === "religion" ? "Nhập tôn giáo khác" : "Nhập nghề nghiệp khác (gõ tiếng Việt — nghề phổ biến sẽ tự dịch)";
+        other.hidden = true;
+        var matched = "";
+        if (current) {
+          var mapped = kind === "religion" ? mapReligionText(current) : mapJobText(current);
+          for (var i = 0; i < options.length; i++) {
+            if (options[i][0] && options[i][0] === mapped) { matched = options[i][0]; break; }
+          }
+          if (hasJapanese(current)) {
+            for (var j = 0; j < options.length; j++) {
+              if (options[j][0] === current) { matched = options[j][0]; break; }
+            }
+          }
+          if (matched) sel.value = matched;
+          else { sel.value = "__other__"; other.value = current; other.hidden = false; }
+        }
+        input.parentNode.replaceChild(sel, input);
+        sel.parentNode.insertBefore(other, sel.nextSibling);
+      }
+      function syncSmartOthers() {
+        document.querySelectorAll("select.smart-sel").forEach(function (sel) {
+          var o = $(sel.id + "-other");
+          if (o) o.hidden = sel.value !== "__other__";
+        });
+      }
+      var i18nWired = false;
+      function initI18nFields() {
+        JOB_FIELD_IDS.forEach(function (id) { convertSmartField($(id), "job", JOB_OPTIONS); });
+        RELIGION_FIELD_IDS.forEach(function (id) { convertSmartField($(id), "religion", RELIGION_OPTIONS); });
+        ["id-features", "io-features", "idn-features"].forEach(function (id) { buildFeatureBuilder($(id)); });
+        syncSmartOthers();
+        if (!i18nWired) {
+          i18nWired = true;
+          document.addEventListener("change", function (e) {
+            if (e.target && e.target.classList && e.target.classList.contains("smart-sel")) syncSmartOthers();
+          });
+          var br = $("btnReset");
+          if (br) br.addEventListener("click", function () { setTimeout(syncSmartOthers, 30); });
+        }
       }
 
 /* ================= Render helpers ================= */
@@ -6423,6 +7127,7 @@ var h = '';
 h += headStd('独立 - 自由 - 幸福');
 h += '<p class="right-line">番号：' + v("mc-no") + '</p>';
 h += '<h1 class="doc-title">結婚証明書</h1>';
+h += '<p class="doc-sub">（原本）</p>';
 h += spouseBlock('妻の情報', 'w');
 h += spouseBlock('夫の情報', 'h');
 h += '<p class="line" style="margin-top:16px"><span class="lb">婚姻登録場所：</span>' +
@@ -6536,12 +7241,12 @@ return {
 relation: q(block, "hk-relation"),
 name: q(block, "hk-name"), kana: q(block, "hk-kana"),
 gender: q(block, "hk-gender"), alias: q(block, "hk-alias"),
-dob: q(block, "hk-dob"), birthplace: q(block, "hk-birthplace"),
-hometown: q(block, "hk-hometown"), ethnic: q(block, "hk-ethnic"),
-religion: q(block, "hk-religion"), job: q(block, "hk-job"),
+dob: q(block, "hk-dob"), birthplace: translatePlace(q(block, "hk-birthplace")),
+hometown: translatePlace(q(block, "hk-hometown")), ethnic: q(block, "hk-ethnic"),
+religion: mapReligionText(q(block, "hk-religion")), job: mapJobText(q(block, "hk-job")),
 idno: q(block, "hk-idno"), iddate: q(block, "hk-iddate"), idplace: q(block, "hk-idplace"),
-movein: q(block, "hk-movein"), prev: q(block, "hk-prev"), regdate1: q(block, "hk-regdate1"),
-moveout: q(block, "hk-moveout"), dest: q(block, "hk-dest"), regdate2: q(block, "hk-regdate2"),
+movein: q(block, "hk-movein"), prev: translatePlace(q(block, "hk-prev")), regdate1: q(block, "hk-regdate1"),
+moveout: q(block, "hk-moveout"), dest: translatePlace(q(block, "hk-dest")), regdate2: q(block, "hk-regdate2"),
 passport: q(block, "hk-passport")
 };
 }
@@ -6594,7 +7299,7 @@ h += line('戸籍筆頭者', members.length? nameVals(members[0].name, members[0
 h += line('番地', v("hk-addr-no"));
 h += line('通り・小さい村落', v("hk-street"));
 h += line('村/区/町', v("hk-ward"));
-h += line('県/タウン/市', v("hk-district"));
+h += line('郡/区/市', v("hk-district"));
 h += '<p class="flex-line"><span class="seg">戸籍謄本記録号：' + v("hk-recno") + '</span>' +
 '<span class="seg">保管号：' + v("hk-keepno") + '</span>' +
 '<span class="seg">台帳号：' + v("hk-ledgerno") + '</span>' +
@@ -6824,6 +7529,7 @@ var o = {};
 classes.forEach(function (c) {
 var el = b.querySelector("." + c);
 o[c] = el? el.value.trim(): "";
+if (o[c] && typeof CLASS_VALUE_MAPS !== "undefined" && CLASS_VALUE_MAPS[c]) o[c] = CLASS_VALUE_MAPS[c](o[c]);
 });
 out.push(o);
 });
@@ -6918,10 +7624,12 @@ function renderBirthExtract() {
 function pblock(title, p) {
 var h = '<p class="sec-h">' + title + '</p>';
 h += line('氏名', renderName("bx-" + p + "-name", "bx-" + p + "-kana"));
-h += '<p class="flex-line"><span class="seg">生年月日：' + dv("bx-" + p + "-dob") + '</span>' +
+var dobRaw = val("bx-" + p + "-dob");
+var yr = dobRaw? esc(dobRaw.split("-")[0]) + "年": BLANK;
+h += '<p class="flex-line"><span class="seg">生年：' + yr + '</span>' +
 '<span class="seg">民族：' + ethOr("bx-" + p + "-ethnic", "キン族") + '</span>' +
 '<span class="seg">国籍：ベトナム</span></p>';
-h += line('戸籍住所', v("bx-" + p + "-hkaddr"));
+h += line('滞在所', v("bx-" + p + "-hkaddr"));
 return h;
 }
 var h = '';
@@ -6931,7 +7639,7 @@ h += '<div class="head-row"><div class="head-left">' +
 '<div class="head-right"><p>号：' + v("bx-no") + '</p></div></div>';
 h += headStd('独立-自由-幸福');
 h += '<p class="right-line">' + (val("bx-place")? esc(val("bx-place")): BLANK) + '、' + jpDate("bx-date") + '</p>';
-h += '<h1 class="doc-title" style="letter-spacing:0.1em;text-indent:0.1em">出生届の摘録（写し）</h1>';
+h += '<h1 class="doc-title" style="letter-spacing:0.1em;text-indent:0.1em">出生届摘録</h1>';
 h += line('氏名', renderName("bx-name", "bx-kana"));
 h += line('生年月日', dv("bx-dob"));
 h += line('生年月日（字で書く）', v("bx-dobwords"));
@@ -6941,8 +7649,8 @@ h += '<p class="flex-line"><span class="seg">性別：' + v("bx-gender") + '</sp
 h += line('出生地', v("bx-birthplace"));
 h += line('本籍', v("bx-hometown"));
 h += line('個人識別番号', v("bx-idno"));
-h += pblock('父', 'f');
 h += pblock('母', 'm');
+h += pblock('父', 'f');
 h += '<p class="flex-line" style="margin-top:14px"><span class="seg">登録地：' + v("bx-regplace") + '</span>' +
 '<span class="seg">号：' + v("bx-regno") + '</span>' +
 '<span class="seg">日：' + dv("bx-regdate") + '</span></p>';
@@ -6975,7 +7683,8 @@ h += '<div class="head-row"><div class="head-left">' +
 '<div class="head-right"><p>摘録番号：' + v("mx-no") + '</p></div></div>';
 h += headStd('独立-自由-幸福');
 h += '<p class="right-line">' + (val("mx-place")? esc(val("mx-place")): BLANK) + '、' + jpDate("mx-date") + '</p>';
-h += '<h1 class="doc-title" style="letter-spacing:0.1em;text-indent:0.1em">結婚の摘録（写し）</h1>';
+h += '<h1 class="doc-title" style="letter-spacing:0.1em;text-indent:0.1em">結婚の摘録</h1>';
+h += '<p class="doc-sub">（複写）</p>';
 h += '<p class="doc-note">本摘録は結婚登録簿から写したものである。</p>';
 h += sblock('妻', 'w');
 h += sblock('夫', 'h');
@@ -7006,6 +7715,7 @@ h += headStd('独立 - 自由 - 幸福');
 h += '<p class="right-line">番号：' + v("mp-no") + '</p>';
 h += '<p class="right-line">巻号：' + v("mp-book") + '</p>';
 h += '<h1 class="doc-title">結婚証明書</h1>';
+h += '<p class="doc-sub">（原本）</p>';
 h += '<div class="cols2"><div>' + col('夫', 'h') + '</div><div>' + col('妻', 'w') + '</div></div>';
 h += '<p class="fixed-line">本証明書は結婚証明登録簿に記録された日から有効とされる。</p>';
 h += '<div class="sign-row">' +
@@ -7042,6 +7752,7 @@ return h;
 var h = '';
 h += headStd('独立 - 自由 - 幸福');
 h += '<h1 class="doc-title">結婚証明書</h1>';
+h += '<p class="doc-sub">（原本）</p>';
 h += '<p class="center-line">（様式 TP/HT6）</p>';
 h += spouse('妻', 'w');
 h += spouse('夫', 'h');
@@ -7249,7 +7960,7 @@ function renderMaritalStatus() {
 var h = '';
 h += '<div class="head-row"><div class="head-left">' +
 '<p>' + v("ms-province") + '省</p>' +
-'<p>' + v("ms-district") + '県</p>' +
+'<p>' + v("ms-district") + '郡</p>' +
 '<p class="org">' + v("ms-commune") + '人民委員会</p>' +
 '</div>' +
 '<div class="head-right" style="text-align:center">' +
@@ -7260,7 +7971,7 @@ h += '<div class="head-row"><div class="head-left">' +
 h += '<p class="right-line">' + (val("ms-place")? esc(val("ms-place")): BLANK) + '、' + jpDate("ms-date") + '</p>';
 h += '<h1 class="doc-title" style="letter-spacing:0.12em;text-indent:0.12em">婚姻状態証明書</h1>';
 h += '<p class="doc-note">' + (val("ms-province")? esc(val("ms-province")): BLANK) + '省、' +
-(val("ms-district")? esc(val("ms-district")): BLANK) + '県、' +
+(val("ms-district")? esc(val("ms-district")): BLANK) + '郡、' +
 (val("ms-commune")? esc(val("ms-commune")): BLANK) + '人民委員会は、' +
 (val("ms-commune")? esc(val("ms-commune")): BLANK) +
 'に婚姻状態証明書の付与について戸籍・司法幹部の' + renderName("ms-officer-name", "ms-officer-kana") + '氏の申請を考慮する。</p>';
@@ -7404,8 +8115,7 @@ h += line('3. 性別', v("rs-gender"));
 h += line('4. ID番号', v("rs-idno"));
 h += line('5. 民族', eth? esc(eth): 'キン');
 h += line('6. 宗教', val("rs-religion")? esc(val("rs-religion")): 'なし');
-h += line('7. 国籍', 'ベトナム');
-h += line('8. 本籍地', v("rs-hometown"));
+h += line('7. 本籍地', v("rs-hometown"));
 h += '<p class="sec-h">II. 証明内容</p>';
 h += '<p class="doc-note">' + (val("rs-districtpolice")? esc(val("rs-districtpolice")): BLANK) + '（2）は以下の内容を証明します。</p>';
 h += line('1. 常住地', v("rs-permaddr"));
@@ -7435,7 +8145,7 @@ h += '<hr class="divider" />';
 h += '<p class="doc-note small">(1) 市公安の名称を記入する。</p>';
 h += '<p class="doc-note small">(2) 証明する区公安の名称を記入する。</p>';
 h += '<p class="doc-note small">(3) その他の証明内容を記入する。ない場合は「なし」と記入する。</p>';
-h += '<p class="doc-note small">(4) この証明書の有効期間は発行日から1年間である（通達66/2023/TT-BCA）。記載内容に変更があった場合は、その時点で失効する。</p>';
+h += '<p class="doc-note small">(4) この証明書の有効期限は本文に記載のとおりである。記載内容に変更があった場合は、その時点で失効する。</p>';
 return h + translatorBlock();
 }
 
@@ -7837,7 +8547,7 @@ return h;
 }
 var h = '';
 h += '<div class="head-row"><div class="head-left">' +
-'<p>' + v("cp-province") + '県</p>' +
+'<p>' + v("cp-province") + '省</p>' +
 '<p class="org">投資と計画省</p>' +
 '<p>経営登録部</p>' +
 '</div>' +
@@ -8196,14 +8906,17 @@ return;
 }
 var avail = scaleEl.clientWidth;
 if (!avail) return;
-var s = avail / 794;
-if (s >= 1) {
+var z = (typeof previewZoom === "number" && previewZoom > 0)? previewZoom: 1;
+var s = (avail / 794) * z;
+if (z === 1 && s >= 1) {
 paper.style.transform = "";
 scaleEl.style.height = "";
+scaleEl.style.overflowX = "";
 return;
 }
 paper.style.transform = "scale(" + s + ")";
 scaleEl.style.height = Math.ceil(paper.offsetHeight * s) + "px";
+scaleEl.style.overflowX = s > 1? "auto": "hidden";
 }
 window.addEventListener("resize", fitPaper);
 
@@ -8216,8 +8929,9 @@ TYPES.forEach(function (t) {
 $("form-" + t).hidden = t!== currentType;
 });
 render();
-var formEl = $("form-" + currentType);
-if (formEl && formEl.scrollIntoView) formEl.scrollIntoView({ behavior: "smooth", block: "start" });
+collapsePickerToBar(btn);
+var scrollTarget = (pickedBarEl && !pickedBarEl.hidden)? pickedBarEl: $("form-" + currentType);
+if (scrollTarget && scrollTarget.scrollIntoView) scrollTarget.scrollIntoView({ behavior: "smooth", block: "start" });
 });
 });
 
@@ -8246,9 +8960,9 @@ relField +
 '<div class="field"><label>Quê quán （本籍）</label><input type="text" class="hk-hometown" placeholder="Quê quán" /></div>' +
 '<div class="grid2">' +
 '<div class="field"><label>Dân tộc （民族）</label><input type="text" class="hk-ethnic" list="ethnic-list" placeholder="Ví dụ: Kinh (để trống = キン族）" /></div>' +
-'<div class="field"><label>Tôn giáo （宗教）</label><input type="text" class="hk-religion" placeholder="Để trống = 無 (không)" /></div>' +
+'<div class="field"><label>Tôn giáo （宗教）</label><input type="text" class="hk-religion" list="religion-list" placeholder="Để trống = 無 (không)" /></div>' +
 '</div>' +
-'<div class="field"><label>Nghề nghiệp / nơi làm việc （職業/職場）</label><input type="text" class="hk-job" placeholder="Nghề nghiệp, nơi làm việc" /></div>' +
+'<div class="field"><label>Nghề nghiệp / nơi làm việc （職業/職場）</label><input type="text" class="hk-job" list="job-list" placeholder="Nghề nghiệp, nơi làm việc" /></div>' +
 '<div class="grid3">' +
 '<div class="field"><label>Số CCCD （ID カード号）</label><input type="text" class="hk-idno" placeholder="Số CCCD" /></div>' +
 '<div class="field"><label>Ngày cấp （発行日）</label><input type="date" class="hk-iddate" /></div>' +
@@ -8409,7 +9123,7 @@ return '<div class="member-block">' +
 '<div class="grid4">' +
 '<div class="field"><label>Nơi đăng ký — quốc gia （国）</label><input type="text" class="txj2-bccountry" placeholder="Việt Nam" /></div>' +
 '<div class="field"><label>Tỉnh / thành phố （省）</label><input type="text" class="txj2-bcprovince" /></div>' +
-'<div class="field"><label>Quận / huyện （県）</label><input type="text" class="txj2-bcdistrict" /></div>' +
+'<div class="field"><label>Quận / huyện （郡）</label><input type="text" class="txj2-bcdistrict" /></div>' +
 '<div class="field"><label>Xã / phường （社）</label><input type="text" class="txj2-bccommune" /></div>' +
 '</div>' +
 '</div>';
@@ -8538,13 +9252,13 @@ var docSearchEl = $("docSearch");
 var noResultEl = $("docNoResult");
 if (docSearchEl && pickerWrap) {
 docSearchEl.addEventListener("input", function () {
-var q = docSearchEl.value.trim().toLowerCase();
+var q = vnNorm(docSearchEl.value.trim());
 var anyVisible = false;
 pickerWrap.classList.toggle("searching", !!q);
 accGroups.forEach(function (g) {
 var groupHit = false;
 g.querySelectorAll(".doc-type").forEach(function (el) {
-var hit = !q || el.textContent.toLowerCase().indexOf(q) >= 0;
+var hit = !q || vnNorm(el.textContent).indexOf(q) >= 0;
 el.style.display = hit? "": "none";
 if (hit) groupHit = true;
 });
@@ -8555,6 +9269,29 @@ if (noResultEl) noResultEl.hidden = !q || anyVisible;
 if (!q) accGroups.forEach(function (g) { setAcc(g, g === openAcc); });
 });
 }
+
+/* After picking a doc type: hide the whole picker, leave one slim bar */
+var pickerAreaEl = $("pickerArea");
+var pickedBarEl = $("pickedBar");
+function collapsePickerToBar(btn) {
+if (!pickerAreaEl || !pickedBarEl || !btn) return;
+var t = btn.querySelector(".t");
+var j = btn.querySelector(".j");
+$("pickedName").textContent = t? t.textContent: "";
+$("pickedJa").textContent = j? j.textContent: "";
+pickerAreaEl.hidden = true;
+pickedBarEl.hidden = false;
+}
+var btnChangeDoc = $("btnChangeDoc");
+if (btnChangeDoc) btnChangeDoc.addEventListener("click", function () {
+if (pickedBarEl) pickedBarEl.hidden = true;
+if (pickerAreaEl) pickerAreaEl.hidden = false;
+if (docSearchEl) {
+docSearchEl.value = "";
+docSearchEl.dispatchEvent(new Event("input", { bubbles: true }));
+}
+if (pickerAreaEl && pickerAreaEl.scrollIntoView) pickerAreaEl.scrollIntoView({ behavior: "smooth", block: "start" });
+});
 
 /* Auto katakana + live render (delegated so dynamic blocks work) */
 document.addEventListener("input", function (e) {
@@ -8580,7 +9317,7 @@ document.querySelectorAll("form").forEach(function (f) {
 f.addEventListener("submit", function (ev) { ev.preventDefault();});
 });
 
-function doPrint() { window.print();}
+function doPrint() { smartPrint(); }
 $("btnPrintTop").addEventListener("click", doPrint);
 $("btnPrintBottom").addEventListener("click", doPrint);
 
@@ -8607,8 +9344,492 @@ applyVariants();
 render();
 });
 
+/* ============ UX upgrade pass ============ */
+function vnNorm(s) {
+return (s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) {} }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) {} }
+
+/* Debounced live render (rAF-coalesced) + post-render hooks */
+var _renderNow = render;
+var _renderQueued = false, _renderRaf = 0;
+function flushRender() {
+if (_renderRaf) { cancelAnimationFrame(_renderRaf); _renderRaf = 0; }
+if (_renderQueued) { _renderQueued = false; _renderNow(); afterRender(); }
+}
+function scheduleRender() {
+if (_renderQueued) return;
+_renderQueued = true;
+_renderRaf = requestAnimationFrame(function () {
+_renderRaf = 0;
+if (!_renderQueued) return;
+_renderQueued = false;
+_renderNow();
+afterRender();
+});
+}
+render = function () { scheduleRender(); };
+function afterRender() {
+updateProgress();
+syncVariantSegments();
+syncSmartOthers();
+}
+
+/* Preview zoom (phone/tablet) */
+var previewZoom = 1;
+function setZoom(z) {
+previewZoom = Math.min(2, Math.max(0.5, Math.round(z * 4) / 4));
+var pct = $("zoomPct");
+if (pct) pct.textContent = Math.round(previewZoom * 100) + "%";
+fitPaper();
+}
+
+/* Variant selectors with <=4 options become segmented tap buttons */
+function buildVariantSegments() {
+document.querySelectorAll("select.variant-sel").forEach(function (sel) {
+if (sel.dataset.segBuilt) return;
+if (sel.options.length < 2 || sel.options.length > 4) return;
+sel.dataset.segBuilt = "1";
+var wrap = document.createElement("div");
+wrap.className = "seg-variant";
+wrap.setAttribute("role", "group");
+Array.prototype.forEach.call(sel.options, function (opt) {
+var b = document.createElement("button");
+b.type = "button";
+b.textContent = opt.textContent;
+b.setAttribute("data-value", opt.value);
+b.setAttribute("aria-pressed", opt.value === sel.value? "true": "false");
+b.addEventListener("click", function () {
+if (sel.value !== opt.value) {
+sel.value = opt.value;
+sel.dispatchEvent(new Event("change", { bubbles: true }));
+}
+});
+wrap.appendChild(b);
+});
+sel.parentNode.insertBefore(wrap, sel);
+sel.classList.add("seg-hidden");
+});
+}
+function syncVariantSegments() {
+document.querySelectorAll("select.variant-sel.seg-hidden").forEach(function (sel) {
+var wrap = sel.previousElementSibling;
+if (!wrap || !wrap.classList.contains("seg-variant")) return;
+wrap.querySelectorAll("button").forEach(function (b) {
+b.setAttribute("aria-pressed", b.getAttribute("data-value") === sel.value? "true": "false");
+});
+});
+}
+
+/* Collapsible form sections + progress */
+function formFieldsets(form) {
+if (!form) return [];
+return Array.prototype.filter.call(form.querySelectorAll("fieldset"), function (fs) {
+if (fs.parentElement && fs.parentElement.closest("fieldset")) return false;
+var vp = fs.closest(".vpart");
+if (vp && vp.hidden) return false;
+return true;
+});
+}
+function sectionFilled(fs) {
+var els = fs.querySelectorAll("input, select, textarea");
+for (var i = 0; i < els.length; i++) {
+var el = els[i];
+if (el.type === "checkbox" || el.type === "radio") { if (el.checked) return true; }
+else if (el.value && el.value.trim() !== "") return true;
+}
+return false;
+}
+function setupSections() {
+document.querySelectorAll('form[id^="form-"] fieldset').forEach(function (fs) {
+if (fs.parentElement && fs.parentElement.closest("fieldset")) return;
+fs.classList.add("sec");
+});
+}
+function applySectionStates(form) {
+formFieldsets(form).forEach(function (fs, i) {
+if (i <= 1) { fs.classList.remove("collapsed"); return; }
+if (fs.querySelector("#tr-use")) { fs.classList.add("collapsed"); return; }
+fs.classList.toggle("collapsed", !sectionFilled(fs));
+});
+}
+function expandSectionOf(el) {
+var fs = el && el.closest? el.closest("fieldset.sec.collapsed"): null;
+if (fs) fs.classList.remove("collapsed");
+}
+document.addEventListener("click", function (e) {
+var lg = e.target && e.target.closest? e.target.closest("legend"): null;
+if (lg && lg.parentElement && lg.parentElement.classList && lg.parentElement.classList.contains("sec")) {
+lg.parentElement.classList.toggle("collapsed");
+}
+});
+function updateProgress() {
+var bar = $("formProgress"), txt = $("fpText"), fill = $("fpFill");
+if (!bar || !txt || !fill) return;
+var list = formFieldsets($("form-" + currentType)).filter(function (fs, i) {
+return i > 0 && !fs.querySelector("#tr-use");
+});
+if (!list.length) { bar.hidden = true; return; }
+var done = list.filter(sectionFilled).length;
+bar.hidden = false;
+txt.textContent = "Đã nhập " + done + "/" + list.length + " mục";
+fill.style.width = Math.round(done / list.length * 100) + "%";
+}
+
+/* Recently used document types (ids only, on-device) */
+var RECENT_KEY = "vnDocRecent.v1";
+function loadRecent() {
+try { var a = JSON.parse(lsGet(RECENT_KEY) || "[]"); return Array.isArray(a)? a: []; } catch (e) { return []; }
+}
+function renderRecent() {
+var row = $("recentRow"), holder = $("recentChips");
+if (!row || !holder) return;
+holder.innerHTML = "";
+var shown = 0;
+loadRecent().forEach(function (id) {
+var btn = document.querySelector('.doc-type[data-doctype="' + id + '"]');
+if (!btn) return;
+var t = btn.querySelector(".t");
+var chip = document.createElement("button");
+chip.type = "button";
+chip.className = "recent-chip";
+chip.textContent = t? t.textContent: id;
+chip.addEventListener("click", function () { btn.click(); });
+holder.appendChild(chip);
+shown++;
+});
+row.hidden = shown === 0;
+}
+function pushRecent(id) {
+var ids = loadRecent().filter(function (x) { return x !== id; });
+ids.unshift(id);
+lsSet(RECENT_KEY, JSON.stringify(ids.slice(0, 6)));
+renderRecent();
+}
+
+/* Search extras: Enter picks first match, "/" focuses search */
+if (docSearchEl) {
+docSearchEl.addEventListener("keydown", function (e) {
+if (e.key === "Enter") {
+e.preventDefault();
+var first = null;
+typeButtons.forEach(function (b) {
+if (!first && b.style.display !== "none" && b.offsetParent !== null) first = b;
+});
+if (first) first.click();
+}
+});
+}
+document.addEventListener("keydown", function (e) {
+if (e.key !== "/" || !docSearchEl || !pickerAreaEl || pickerAreaEl.hidden) return;
+var t = e.target;
+var tag = t && t.tagName? t.tagName.toLowerCase(): "";
+if (tag === "input" || tag === "textarea" || tag === "select" || (t && t.isContentEditable)) return;
+e.preventDefault();
+docSearchEl.focus();
+});
+
+/* Copy helpers for repeated address fields */
+var COPY_PAIRS = [
+{ to: "bc-m-addr", from: "bc-f-addr", label: "Giống của cha" },
+{ to: "bc-f-addr", from: "bc-m-addr", label: "Giống của mẹ" },
+{ to: "mc-h-addr", from: "mc-w-addr", label: "Giống vợ" },
+{ to: "mc-w-addr", from: "mc-h-addr", label: "Giống chồng" },
+{ to: "mp-h-addr", from: "mp-w-addr", label: "Giống vợ" },
+{ to: "mp-w-addr", from: "mp-h-addr", label: "Giống chồng" }
+];
+function setupCopyButtons() {
+COPY_PAIRS.forEach(function (p) {
+var target = $(p.to), source = $(p.from);
+if (!target || !source) return;
+var field = target.closest(".field") || target.parentNode;
+var b = document.createElement("button");
+b.type = "button";
+b.className = "copy-btn";
+b.textContent = p.label;
+b.addEventListener("click", function () {
+target.value = source.value;
+expandSectionOf(target);
+target.dispatchEvent(new Event("input", { bubbles: true }));
+});
+field.appendChild(b);
+});
+}
+
+/* Per-block clear ("Xoá mục này") + household "Giống chủ hộ" */
+function decorateBlock(block) {
+if (!block || block.dataset.decorated) return;
+block.dataset.decorated = "1";
+var head = block.querySelector(".member-head");
+if (!head) return;
+var clr = document.createElement("button");
+clr.type = "button";
+clr.className = "btn-small blk-clear";
+clr.textContent = "Xoá mục này";
+head.appendChild(clr);
+if (block.closest && block.closest("#hk-members")) {
+var blocks = document.querySelectorAll("#hk-members .member-block");
+if (blocks.length && blocks[0] !== block) {
+var cp = document.createElement("button");
+cp.type = "button";
+cp.className = "btn-small hk-copy-head";
+cp.textContent = "Giống chủ hộ";
+head.appendChild(cp);
+}
+}
+}
+document.addEventListener("click", function (e) {
+if (!e.target || !e.target.classList) return;
+if (e.target.classList.contains("blk-clear")) {
+var block = e.target.closest(".member-block");
+if (block) {
+block.querySelectorAll("input, select, textarea").forEach(function (el) {
+if (el.type === "checkbox" || el.type === "radio") el.checked = false;
+else el.value = "";
+if (el.dataset) delete el.dataset.manual;
+});
+render();
+}
+}
+if (e.target.classList.contains("hk-copy-head")) {
+var blk = e.target.closest(".member-block");
+var headBlk = document.querySelector("#hk-members .member-block");
+if (blk && headBlk && blk !== headBlk) {
+["hk-hometown", "hk-prev", "hk-ethnic", "hk-religion"].forEach(function (cls) {
+var s = headBlk.querySelector("." + cls), t = blk.querySelector("." + cls);
+if (s && t) t.value = s.value;
+});
+render();
+}
+}
+});
+function setupBlockObserver() {
+document.querySelectorAll(".member-block").forEach(decorateBlock);
+if (!window.MutationObserver) return;
+var obs = new MutationObserver(function (muts) {
+muts.forEach(function (m) {
+Array.prototype.forEach.call(m.addedNodes, function (n) {
+if (n.nodeType !== 1) return;
+if (n.classList && n.classList.contains("member-block")) decorateBlock(n);
+if (n.querySelectorAll) n.querySelectorAll(".member-block").forEach(decorateBlock);
+});
+});
+});
+obs.observe(document.body, { childList: true, subtree: true });
+}
+
+/* Numeric keypads for number-like fields */
+function setupInputModes() {
+var NUM = /(tuổi|số trang|quyển|số tín chỉ|số tiền|thu nhập|số năm|mã số|số tài khoản|số căn cước|số định danh|số chứng minh|điện thoại)/;
+var DEC = /(điểm|số tiền|thu nhập)/;
+document.querySelectorAll('form[id^="form-"] input[type="text"]').forEach(function (el) {
+if (el.classList.contains("kana")) return;
+var field = el.closest(".field");
+var lab = field? field.querySelector("label"): null;
+var text = (lab? lab.textContent: (el.placeholder || "")).toLowerCase();
+var numeric = NUM.test(text) || (/^số/.test(text.trim()) && !/hộ chiếu/.test(text));
+if (numeric) el.setAttribute("inputmode", DEC.test(text)? "decimal": "numeric");
+});
+}
+
+/* Draft autosave (opt-in, this device only) */
+var DRAFT_KEY = "vnDocDraft.v1";
+var DRAFT_ON_KEY = "vnDocDraftOn.v1";
+var DYN_CONTAINERS = ["hk-members", "tp-subjects", "rs-members", "sp-deps", "cv-history", "tx-deps1", "tx-deps2"];
+var draftOn = false;
+var saveTimer = 0;
+function collectDraft() {
+var data = { f: {}, d: {} };
+document.querySelectorAll("form input[id], form select[id], form textarea[id]").forEach(function (el) {
+data.f[el.id] = (el.type === "checkbox" || el.type === "radio")? (el.checked? "1": ""): el.value;
+});
+DYN_CONTAINERS.forEach(function (cid) {
+var c = $(cid);
+if (!c) return;
+var blocks = [];
+c.querySelectorAll(".member-block").forEach(function (block) {
+var vals = [];
+block.querySelectorAll("input, select, textarea").forEach(function (el) {
+vals.push((el.type === "checkbox" || el.type === "radio")? (el.checked? "1": ""): el.value);
+});
+blocks.push(vals);
+});
+data.d[cid] = blocks;
+});
+return data;
+}
+function scheduleSaveDraft() {
+if (!draftOn) return;
+if (saveTimer) clearTimeout(saveTimer);
+saveTimer = setTimeout(function () { lsSet(DRAFT_KEY, JSON.stringify(collectDraft())); }, 400);
+}
+function restoreDraft() {
+var raw = lsGet(DRAFT_KEY);
+if (!raw) return;
+var data = null;
+try { data = JSON.parse(raw); } catch (e) { return; }
+if (!data) return;
+Object.keys(data.f || {}).forEach(function (id) {
+var el = $(id);
+if (!el) return;
+if (el.type === "checkbox") el.checked = data.f[id] === "1";
+else el.value = data.f[id];
+});
+Object.keys(data.d || {}).forEach(function (cid) {
+var c = $(cid);
+if (!c) return;
+var saved = data.d[cid];
+var guard = 0;
+while (c.querySelectorAll(".member-block").length < saved.length && guard < 40) {
+guard++;
+var blocksNow = c.querySelectorAll(".member-block");
+if (!blocksNow.length) break;
+var clone = blocksNow[blocksNow.length - 1].cloneNode(true);
+clone.removeAttribute("data-decorated");
+clone.querySelectorAll("input, select, textarea").forEach(function (el) {
+if (el.type === "checkbox" || el.type === "radio") el.checked = false;
+else el.value = "";
+if (el.dataset) delete el.dataset.manual;
+});
+var extra = clone.querySelectorAll(".blk-clear, .hk-copy-head");
+Array.prototype.forEach.call(extra, function (x) { x.remove(); });
+c.appendChild(clone);
+}
+var blocks = c.querySelectorAll(".member-block");
+saved.forEach(function (vals, bi) {
+var block = blocks[bi];
+if (!block) return;
+var els = block.querySelectorAll("input, select, textarea");
+vals.forEach(function (v, i) {
+var el = els[i];
+if (!el) return;
+if (el.type === "checkbox") el.checked = v === "1";
+else el.value = v;
+});
+});
+});
+if (typeof renumberMembers === "function") renumberMembers();
+document.querySelectorAll(".name-pair").forEach(function (pair) {
+var n = pair.querySelector(".vn-name"), k = pair.querySelector(".kana");
+if (n && k && k.value && n.value.trim() && k.value !== nameToKatakana(n.value)) k.dataset.manual = "1";
+});
+applyVariants();
+}
+function setupDraft() {
+var tgl = $("draftToggle");
+if (!tgl) return;
+draftOn = lsGet(DRAFT_ON_KEY) === "1";
+tgl.checked = draftOn;
+tgl.addEventListener("change", function () {
+draftOn = tgl.checked;
+if (draftOn) { lsSet(DRAFT_ON_KEY, "1"); scheduleSaveDraft(); }
+else { lsDel(DRAFT_ON_KEY); lsDel(DRAFT_KEY); }
+});
+document.addEventListener("input", scheduleSaveDraft);
+document.addEventListener("change", scheduleSaveDraft);
+var br = $("btnReset");
+if (br) br.addEventListener("click", function () { lsDel(DRAFT_KEY); });
+}
+
+/* Pre-print smart check */
+function fieldLabel(el) {
+var field = el.closest(".field");
+var lab = field? field.querySelector("label"): null;
+var text = lab? lab.textContent: (el.getAttribute("placeholder") || el.id || "Mục chưa nhập");
+text = text.replace(/\s+/g, " ").trim();
+var cut = text.split("（")[0].split("(")[0].trim();
+return cut || text;
+}
+function collectEmptyFields() {
+var form = $("form-" + currentType);
+if (!form) return [];
+var out = [];
+form.querySelectorAll("input, select, textarea").forEach(function (el) {
+if (el.type === "hidden" || el.type === "checkbox" || el.type === "radio") return;
+if (el.disabled) return;
+if (el.closest(".feat-builder")) return;
+if (el.classList.contains("kana")) return;
+if (el.closest("[hidden]")) return;
+var vp = el.closest(".vpart");
+if (vp && vp.hidden) return;
+var fs = el.closest("fieldset");
+if (fs && fs.querySelector("#tr-use")) return;
+if (el.value && el.value.trim() !== "") return;
+out.push(el);
+});
+return out;
+}
+function smartPrint() {
+flushRender();
+var panel = $("printCheck");
+var empties = collectEmptyFields();
+if (!empties.length) {
+if (panel) panel.hidden = true;
+window.print();
+return;
+}
+$("pcCount").textContent = empties.length;
+var list = $("pcList");
+list.innerHTML = "";
+empties.forEach(function (el) {
+var chip = document.createElement("button");
+chip.type = "button";
+chip.className = "pc-chip";
+chip.textContent = fieldLabel(el);
+chip.addEventListener("click", function () {
+panel.hidden = true;
+expandSectionOf(el);
+if (window.innerWidth <= 1024 && typeof setMobileView === "function") setMobileView(false);
+el.scrollIntoView({ behavior: "smooth", block: "center" });
+el.classList.add("field-flash");
+setTimeout(function () { el.classList.remove("field-flash"); }, 1800);
+setTimeout(function () { try { el.focus({ preventScroll: true }); } catch (err) {} }, 380);
+});
+list.appendChild(chip);
+});
+panel.hidden = false;
+}
+
+/* Extra wiring on doc-type switch: recent + section states */
+typeButtons.forEach(function (btn) {
+btn.addEventListener("click", function () {
+pushRecent(btn.getAttribute("data-doctype"));
+applySectionStates($("form-" + currentType));
+updateProgress();
+});
+});
+
+function initUX() {
+initI18nFields();
+buildVariantSegments();
+setupSections();
+applySectionStates($("form-" + currentType));
+setupCopyButtons();
+setupInputModes();
+setupBlockObserver();
+renderRecent();
+setupDraft();
+if (draftOn) {
+restoreDraft();
+applySectionStates($("form-" + currentType));
+}
+var zo = $("zoomOut"), zi = $("zoomIn"), zf = $("zoomFit");
+if (zo) zo.addEventListener("click", function () { setZoom(previewZoom - 0.25); });
+if (zi) zi.addEventListener("click", function () { setZoom(previewZoom + 0.25); });
+if (zf) zf.addEventListener("click", function () { setZoom(1); });
+var pcClose = $("pcClose"), pcAnyway = $("pcPrintAnyway"), pcPanel = $("printCheck");
+if (pcClose) pcClose.addEventListener("click", function () { pcPanel.hidden = true; });
+if (pcAnyway) pcAnyway.addEventListener("click", function () { pcPanel.hidden = true; flushRender(); window.print(); });
+updateProgress();
+syncVariantSegments();
+syncSmartOthers();
+}
+
 resetMembers();
 render();
+initUX();
 </script>
 </body>
 </html>

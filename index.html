@@ -28,15 +28,15 @@
   /* Header */
   .site-header{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
   .site-header .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;padding-top:12px;padding-bottom:12px}
-  .logo{font-weight:800;font-size:1.15rem;color:var(--ink);letter-spacing:.2px}
+  .logo{font-weight:800;font-size:1.15rem;color:var(--ink);letter-spacing:.2px;display:inline-flex;align-items:center;min-height:44px}
   .logo span{color:var(--accent)}
-  nav.main-nav{margin-left:auto;display:flex;flex-wrap:wrap;gap:4px 16px}
-  nav.main-nav a{color:var(--ink-soft);font-weight:600;font-size:.95rem}
+  nav.main-nav{margin-left:auto;display:flex;flex-wrap:wrap;gap:2px 12px}
+  nav.main-nav a{color:var(--ink-soft);font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;min-height:44px;padding:6px 6px}
   nav.main-nav a:hover{color:var(--accent);text-decoration:none}
 
   /* Hero */
-  .hero{padding:52px 0 40px;text-align:center}
-  .hero h1{font-size:1.9rem;line-height:1.3;font-weight:800;max-width:760px;margin:0 auto 14px}
+  .hero{padding:38px 0 30px;text-align:center}
+  .hero h1{font-size:1.55rem;line-height:1.3;font-weight:800;max-width:760px;margin:0 auto 14px}
   .hero h1 .hl{color:var(--accent)}
   .hero p{max-width:680px;margin:0 auto 24px;color:var(--ink-soft);font-size:1.05rem}
   .btn{
@@ -54,7 +54,7 @@
   section.block .lead{color:var(--ink-soft);margin-bottom:20px;max-width:720px}
 
   /* Document grid */
-  .doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .doc-grid{display:grid;grid-template-columns:1fr;gap:10px}
   .doc-grid .doc{
     background:var(--card);border:1px solid var(--line);border-radius:10px;
     padding:12px 14px;font-weight:600;font-size:.95rem;text-align:center;
@@ -62,7 +62,7 @@
 
   /* Service */
   .service-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px}
-  .service-box p{margin-bottom:12px;color:var(--ink-soft)}
+  .service-box p{margin-bottom:12px;color:var(--ink-soft);max-width:75ch}
   .service-box p strong{color:var(--ink)}
   .btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
 
@@ -76,7 +76,7 @@
   .ad-slot:hover{text-decoration:none;background:#EDE5D2}
 
   /* Guide cards */
-  .guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .guide-grid{display:grid;grid-template-columns:1fr;gap:14px}
   .guide-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:block}
   .guide-card:hover{text-decoration:none;border-color:var(--accent)}
   .guide-card h3{color:var(--ink);font-size:1.08rem;margin-bottom:8px}
@@ -85,12 +85,23 @@
 
   /* Footer */
   footer.site-footer{border-top:1px solid var(--line);margin-top:20px;padding:28px 0 36px;background:var(--card)}
-  footer.site-footer .links{display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:12px}
+  footer.site-footer .links{display:flex;flex-wrap:wrap;gap:2px 18px;margin-bottom:12px}
+  footer.site-footer .links a{display:inline-flex;align-items:center;min-height:44px;padding:4px 2px}
   footer.site-footer p{font-size:.9rem;color:var(--ink-soft)}
-  @media (max-width:560px){
-    .hero{padding:38px 0 30px}
-    .hero h1{font-size:1.5rem}
-    nav.main-nav{margin-left:0}
+
+  /* Breakpoints: phone-first, then tablet >=640px, desktop >=1024px */
+  @media (max-width:720px){
+    nav.main-nav{margin-left:0;width:100%}
+  }
+  @media (min-width:640px){
+    .hero{padding:52px 0 40px}
+    .hero h1{font-size:1.9rem}
+    .doc-grid{grid-template-columns:repeat(2,1fr)}
+    .guide-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (min-width:1024px){
+    .hero h1{font-size:2.3rem}
+    .doc-grid{grid-template-columns:repeat(4,1fr)}
   }
 </style>
 </head>

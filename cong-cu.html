@@ -160,14 +160,18 @@
       .doc-type[data-doctype="birth"], .doc-type[data-doctype="marriage"],
       .doc-type[data-doctype="maritalstatus"], .doc-type[data-doctype="household"],
       .doc-type[data-doctype="residence"], .doc-type[data-doctype="idcard"],
-      .doc-type[data-doctype="passport"], .doc-type[data-doctype="hospitalbirth"] { order: 11; }
+      .doc-type[data-doctype="passport"], .doc-type[data-doctype="hospitalbirth"],
+      .doc-type[data-doctype="death"], .doc-type[data-doctype="criminal"] { order: 11; }
       .doc-type[data-doctype="uni"], .doc-type[data-doctype="hs"],
-      .doc-type[data-doctype="transcript"], .doc-type[data-doctype="schoolrecord"] { order: 21; }
+      .doc-type[data-doctype="transcript"], .doc-type[data-doctype="schoolrecord"],
+      .doc-type[data-doctype="thcs"], .doc-type[data-doctype="college"],
+      .doc-type[data-doctype="grad"] { order: 21; }
       .doc-type[data-doctype="business"], .doc-type[data-doctype="company"],
       .doc-type[data-doctype="bank"], .doc-type[data-doctype="income"],
       .doc-type[data-doctype="employment"], .doc-type[data-doctype="support"],
-      .doc-type[data-doctype="resume"] { order: 31; }
-      .doc-type[data-doctype="health"], .doc-type[data-doctype="land"] { order: 41; }
+      .doc-type[data-doctype="resume"], .doc-type[data-doctype="poa"] { order: 31; }
+      .doc-type[data-doctype="health"], .doc-type[data-doctype="land"],
+      .doc-type[data-doctype="license"], .doc-type[data-doctype="vehiclereg"] { order: 41; }
       .search-wrap { margin-bottom: 12px; }
       .search-wrap input {
         width: 100%;
@@ -613,7 +617,7 @@
       <!-- ================= FORM ================= -->
       <section class="panel no-print" aria-label="Nhập thông tin">
         <h2>Chọn loại giấy tờ</h2>
-        <p class="lede">21 mẫu dịch tiếng Nhật theo đúng bộ form mẫu chính thức — gồm cả các biến thể của từng loại giấy. Điền thông tin tiếng Việt, bản dịch sẽ tự hiện ở khung bên cạnh.</p>
+        <p class="lede">29 mẫu dịch tiếng Nhật — đã kiểm chứng lại theo mẫu chính thức hiện hành và các biến thể theo thời kỳ của từng loại giấy. Điền thông tin tiếng Việt, bản dịch sẽ tự hiện ở khung bên cạnh.</p>
 
         <div class="search-wrap">
           <input type="search" id="docSearch" placeholder="Tìm loại giấy… (ví dụ: khai sinh, bảng điểm, cư trú)" aria-label="Tìm loại giấy tờ" />
@@ -633,6 +637,14 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>
             <span><span class="t">Xác nhận tình trạng hôn nhân</span><span class="j">婚姻状態証明書</span></span>
           </button>
+          <button type="button" class="doc-type" data-doctype="death" aria-pressed="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 10v6M9 13h6"/></svg>
+            <span><span class="t">Giấy chứng tử / Trích lục khai tử</span><span class="j">死亡の摘録・死亡証明書</span></span>
+          </button>
+          <button type="button" class="doc-type" data-doctype="criminal" aria-pressed="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            <span><span class="t">Phiếu lý lịch tư pháp (số 1 / số 2)</span><span class="j">犯罪経歴証明書</span></span>
+          </button>
           <span class="grp g2">Học vấn · Bằng cấp · Điểm số</span>
           <button type="button" class="doc-type" data-doctype="uni" aria-pressed="false">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 9L12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.5"/><path d="M22 9v5"/></svg>
@@ -644,11 +656,23 @@
           </button>
           <button type="button" class="doc-type" data-doctype="transcript" aria-pressed="false">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3h16v18H4z"/><path d="M4 8h16M4 13h16M9 3v18M15 3v18"/></svg>
-            <span><span class="t">Bảng điểm đại học</span><span class="j">学習成績証明書</span></span>
+            <span><span class="t">Bảng điểm đại học (Phụ lục văn bằng)</span><span class="j">学習成績証明書</span></span>
           </button>
           <button type="button" class="doc-type" data-doctype="schoolrecord" aria-pressed="false">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h12a2 2 0 0 1 2 2v16H7a2 2 0 0 1-2-2z"/><path d="M5 16a2 2 0 0 1 2-2h12"/><path d="M9 7h6"/></svg>
             <span><span class="t">Học bạ THPT</span><span class="j">学歴成績表</span></span>
+          </button>
+          <button type="button" class="doc-type" data-doctype="thcs" aria-pressed="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V8l8-5 8 5v13"/><path d="M2 21h20"/><path d="M10 21v-4a2 2 0 0 1 4 0v4"/></svg>
+            <span><span class="t">Bằng tốt nghiệp THCS</span><span class="j">中学校卒業証明書</span></span>
+          </button>
+          <button type="button" class="doc-type" data-doctype="college" aria-pressed="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h12a2 2 0 0 1 2 2v16H7a2 2 0 0 1-2-2z"/><path d="M5 16a2 2 0 0 1 2-2h12"/><path d="M9 7h6"/></svg>
+            <span><span class="t">Bằng cao đẳng / trung cấp nghề</span><span class="j">専門学校卒業証明書</span></span>
+          </button>
+          <button type="button" class="doc-type" data-doctype="grad" aria-pressed="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 9L12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.5"/><path d="M22 9v5"/></svg>
+            <span><span class="t">Bằng thạc sĩ / tiến sĩ</span><span class="j">修士号・博士号</span></span>
           </button>
           <span class="grp g3">Kinh doanh · Công việc · Tài chính · Phụng dưỡng</span>
           <button type="button" class="doc-type" data-doctype="household" aria-pressed="false">
@@ -687,6 +711,10 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5 21c.8-3.8 3.6-5.6 7-5.6s6.2 1.8 7 5.6"/><path d="M17.5 3.5h3v3"/></svg>
             <span><span class="t">Sơ yếu lý lịch tự thuật</span><span class="j">履歴書</span></span>
           </button>
+          <button type="button" class="doc-type" data-doctype="poa" aria-pressed="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8.5 17.5c1.5-2 2.5-2 3.5 0 .7 1.4 1.7 1.4 3-.5"/></svg>
+            <span><span class="t">Giấy ủy quyền / Hợp đồng ủy quyền</span><span class="j">委任状</span></span>
+          </button>
           <button type="button" class="doc-type" data-doctype="bank" aria-pressed="false">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5L12 4l9 5.5"/><path d="M4.5 9.5V18M9.5 9.5V18M14.5 9.5V18M19.5 9.5V18"/><path d="M3 20.5h18"/></svg>
             <span><span class="t">Xác nhận số dư ngân hàng</span><span class="j">預金口座残高証明書</span></span>
@@ -699,7 +727,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M9 7.5V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2.5"/><path d="M3 12.5h18"/></svg>
             <span><span class="t">Chứng nhận đang đi làm</span><span class="j">在籍証明書</span></span>
           </button>
-          <span class="grp g4">Sức khỏe · Đất đai</span>
+          <span class="grp g4">Sức khỏe · Đất đai · Xe cộ</span>
           <button type="button" class="doc-type" data-doctype="health" aria-pressed="false">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.3-9-8.5C1.6 8 3.6 5 6.7 5c2 0 3.7 1.1 4.5 2.7l.8 1.5.8-1.5C13.6 6.1 15.3 5 17.3 5c3.1 0 5.1 3 3.7 6.5C19 15.7 12 20 12 20z"/><path d="M4 12h4l1.5-3 3 5 1.5-2h6"/></svg>
             <span><span class="t">Khám sức khỏe lái xe (03-GT)</span><span class="j">健康承認書</span></span>
@@ -707,6 +735,14 @@
           <button type="button" class="doc-type" data-doctype="land" aria-pressed="false">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20L20 4"/><path d="M4 20h16v-4"/><path d="M4 20v-9l5 3v6"/><path d="M13 20v-6l7-3v9"/></svg>
             <span><span class="t">Quyền sử dụng đất &amp; nhà</span><span class="j">土地及び建物所有権証明書</span></span>
+          </button>
+          <button type="button" class="doc-type" data-doctype="license" aria-pressed="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M5 17c.6-1.7 1.7-2.5 3-2.5s2.4.8 3 2.5"/><path d="M14.5 9.5H19M14.5 13H19"/></svg>
+            <span><span class="t">Giấy phép lái xe</span><span class="j">運転免許証</span></span>
+          </button>
+          <button type="button" class="doc-type" data-doctype="vehiclereg" aria-pressed="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16l1.6-5.2A2 2 0 0 1 7.5 9.5h9a2 2 0 0 1 1.9 1.3L20 16"/><path d="M3 16h18v4h-2.5M3 20h2.5"/><circle cx="7.5" cy="20" r="1.6"/><circle cx="16.5" cy="20" r="1.6"/><path d="M9.1 20h5.8"/></svg>
+            <span><span class="t">Giấy đăng ký xe (cà vẹt)</span><span class="j">車両登録証明書</span></span>
           </button>
         </div>
 
@@ -717,9 +753,9 @@
             <div class="field">
               <label for="bc-variant">Chọn biến thể giấy khai sinh</label>
               <select id="bc-variant" class="variant-sel" data-scope="bcv">
-                <option value="normal">Thông thường (mẫu đợt 1)</option>
+                <option value="normal">Thông thường — phôi TT 04/2020/TT-BTP</option>
                 <option value="rereg">Đăng ký lại — 出生証明書（再登録）</option>
-                <option value="main">Bản chính — 出生届</option>
+                <option value="main">Bản chính — 出生届（TT 04/2020)</option>
                 <option value="extract">Trích lục / bản sao — 出生届の摘録（写し）</option>
               </select>
             </div>
@@ -786,6 +822,10 @@
             <div class="field">
               <label for="bc-ethnic">Dân tộc （民族）</label>
               <input type="text" id="bc-ethnic" list="ethnic-list" placeholder="Ví dụ: Kinh (để trống = キン族）" />
+            </div>
+            <div class="field">
+              <label for="bc-idno">Số định danh cá nhân （個人識別番号）</label>
+              <input type="text" id="bc-idno" placeholder="Số định danh cá nhân của trẻ (Điều 14 Luật Hộ tịch)" />
             </div>
           </fieldset>
 
@@ -1213,6 +1253,10 @@
 <label for="bx-hometown">Nguyên quán （本籍）</label>
 <input type="text" id="bx-hometown" placeholder="Nguyên quán" />
 </div>
+<div class="field">
+<label for="bx-idno">Số định danh cá nhân （個人識別番号）</label>
+<input type="text" id="bx-idno" placeholder="Số định danh cá nhân (nếu có)" />
+</div>
 </div>
 </fieldset>
 <fieldset>
@@ -1301,6 +1345,7 @@
                 <option value="normal">Thông thường (vợ trên, chồng dưới)</option>
                 <option value="parallel">Hai cột song song （並列）</option>
                 <option value="embassy">Đăng ký tại Đại sứ quán/Lãnh sự （様式 TP/HT6)</option>
+                <option value="extract">Trích lục kết hôn (bản sao) — 結婚の摘録（写し）</option>
               </select>
             </div>
           </fieldset>
@@ -1611,10 +1656,119 @@
 </div>
 </fieldset>
 </div>
-        </form>
+        
+<div class="vpart" data-scope="mcv" data-show="extract" hidden>
+<fieldset>
+<legend>Trích lục kết hôn — thông tin chung</legend>
+<div class="grid2">
+<div class="field">
+<label for="mx-committee">Ủy ban nhân dân cấp （人民委員会）</label>
+<input type="text" id="mx-committee" placeholder="Ví dụ: Ủy ban nhân dân phường …" />
+</div>
+<div class="field">
+<label for="mx-no">Số trích lục （摘録番号）</label>
+<input type="text" id="mx-no" placeholder="Số trích lục" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="mx-place">Nơi cấp trích lục</label>
+<input type="text" id="mx-place" placeholder="Tên xã / phường nơi cấp" />
+</div>
+<div class="field">
+<label for="mx-date">Ngày cấp trích lục</label>
+<input type="date" id="mx-date" />
+</div>
+</div>
+</fieldset>
+<fieldset>
+<legend>Bên nữ （妻）</legend>
+<div class="field name-pair">
+<label for="mx-w-name">Họ và tên bên nữ</label>
+<input type="text" id="mx-w-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="mx-w-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="mx-w-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="mx-w-dob">Ngày sinh bên nữ</label>
+<input type="date" id="mx-w-dob" />
+</div>
+<div class="field">
+<label for="mx-w-ethnic">Dân tộc bên nữ</label>
+<input type="text" id="mx-w-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+</div>
+<div class="field">
+<label for="mx-w-addr">Nơi cư trú bên nữ （居住地）</label>
+<input type="text" id="mx-w-addr" placeholder="Địa chỉ cư trú" />
+</div>
+<div class="field">
+<label for="mx-w-id">Giấy tờ nhân thân bên nữ （本人確認書類）</label>
+<input type="text" id="mx-w-id" placeholder="Loại giấy, số, ngày cấp, cơ quan cấp (bản dịch ghi tiếng Nhật)" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Bên nam （夫）</legend>
+<div class="field name-pair">
+<label for="mx-h-name">Họ và tên bên nam</label>
+<input type="text" id="mx-h-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="mx-h-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="mx-h-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="mx-h-dob">Ngày sinh bên nam</label>
+<input type="date" id="mx-h-dob" />
+</div>
+<div class="field">
+<label for="mx-h-ethnic">Dân tộc bên nam</label>
+<input type="text" id="mx-h-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+</div>
+<div class="field">
+<label for="mx-h-addr">Nơi cư trú bên nam （居住地）</label>
+<input type="text" id="mx-h-addr" placeholder="Địa chỉ cư trú" />
+</div>
+<div class="field">
+<label for="mx-h-id">Giấy tờ nhân thân bên nam （本人確認書類）</label>
+<input type="text" id="mx-h-id" placeholder="Loại giấy, số, ngày cấp, cơ quan cấp (bản dịch ghi tiếng Nhật)" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Đăng ký &amp; người ký trích lục</legend>
+<div class="grid2">
+<div class="field">
+<label for="mx-regplace">Nơi đăng ký kết hôn （登録地）</label>
+<input type="text" id="mx-regplace" placeholder="Cơ quan đã đăng ký kết hôn" />
+</div>
+<div class="field">
+<label for="mx-regdate">Ngày đăng ký kết hôn</label>
+<input type="date" id="mx-regdate" />
+</div>
+</div>
+<div class="field name-pair">
+<label for="mx-signname">Người ký trích lục — họ và tên （摘録署名者）</label>
+<input type="text" id="mx-signname" class="vn-name" placeholder="Họ và tên người ký" />
+<label class="kana-label" for="mx-signkana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="mx-signkana" class="kana" placeholder="カタカナ" />
+</div>
+</fieldset>
+</div>
+</form>
 
         <!-- ========== FORM: BẰNG ĐẠI HỌC ========== -->
         <form id="form-uni" autocomplete="off" hidden>
+          <fieldset>
+            <legend>Biến thể mẫu （様式）</legend>
+            <div class="field">
+              <label for="du-variant">Chọn thời kỳ mẫu bằng</label>
+              <select id="du-variant" class="variant-sel" data-scope="duv">
+                <option value="post2020">Từ 2020 — TT 27/2019/TT-BGDĐT (10 nội dung, không ghi hình thức đào tạo)</option>
+                <option value="pre2020">Trước 2020 — mẫu cũ (có hình thức đào tạo)</option>
+              </select>
+            </div>
+          </fieldset>
           <fieldset>
             <legend>Thông tin bằng tốt nghiệp</legend>
             <div class="field">
@@ -2096,7 +2250,8 @@
 <select id="id-variant" class="variant-sel" data-scope="idv">
 <option value="cccd">Căn cước công dân gắn chip (CCCD)</option>
 <option value="old">CMND cũ — bản giấy (9 số)</option>
-<option value="new">CMND mới — thẻ nhựa (12 số)</option>
+<option value="new">CMND 12 số — thẻ nhựa (mã vạch)</option>
+<option value="cc2024">Thẻ Căn cước — Luật Căn cước 2023 (từ 01/7/2024)</option>
 </select>
 </div>
 </fieldset>
@@ -2255,10 +2410,74 @@
 <p class="hint">Người cấp trên bản dịch cố định: Cục trưởng Cục Cảnh sát quản lý hành chính về trật tự xã hội — 公安局長 居住の管理登録及び住民の国家データ.</p>
 </fieldset>
 </div>
+
+<div class="vpart" data-scope="idv" data-show="cc2024" hidden>
+<fieldset>
+<legend>Thẻ Căn cước — mặt trước (Luật Căn cước 2023)</legend>
+<div class="field">
+<label for="cc24-no">Số định danh cá nhân （個人識別番号）</label>
+<input type="text" id="cc24-no" placeholder="Số định danh cá nhân 12 chữ số" />
+</div>
+<div class="field name-pair">
+<label for="cc24-name">Họ, chữ đệm và tên khai sinh</label>
+<input type="text" id="cc24-name" class="vn-name" placeholder="Họ và tên khai sinh đầy đủ" />
+<label class="kana-label" for="cc24-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="cc24-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="cc24-dob">Ngày, tháng, năm sinh</label>
+<input type="date" id="cc24-dob" />
+</div>
+<div class="field">
+<label for="cc24-gender">Giới tính</label>
+<select id="cc24-gender">
+<option value="">— Chưa chọn —</option>
+<option value="男">Nam</option>
+<option value="女">Nữ</option>
+</select>
+</div>
+</div>
+<p class="hint">Mặt trước thẻ Căn cước không còn quê quán, vân tay và đặc điểm nhận dạng như thẻ CCCD.</p>
+</fieldset>
+<fieldset>
+<legend>Thẻ Căn cước — mặt sau</legend>
+<div class="field">
+<label for="cc24-addr">Nơi cư trú （居住地）</label>
+<input type="text" id="cc24-addr" placeholder="Nơi cư trú ghi trên thẻ" />
+</div>
+<div class="field">
+<label for="cc24-birthreg">Nơi đăng ký khai sinh （出生登録地）</label>
+<input type="text" id="cc24-birthreg" placeholder="Nơi đăng ký khai sinh ghi trên thẻ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="cc24-issuedate">Ngày cấp （発行日）</label>
+<input type="date" id="cc24-issuedate" />
+</div>
+<div class="field">
+<label for="cc24-expiry">Ngày hết hạn （有効期限）</label>
+<input type="date" id="cc24-expiry" />
+</div>
+</div>
+<p class="hint">Mặt sau có chip điện tử và mã QR; cơ quan cấp: Bộ Công an （公安省）.</p>
+</fieldset>
+</div>
 </form>
 
 <!-- ========== FORM: HỘ CHIẾU ========== -->
 <form id="form-passport" autocomplete="off" hidden>
+<fieldset>
+<legend>Biến thể mẫu （様式）</legend>
+<div class="field">
+<label for="pp-variant">Chọn biến thể hộ chiếu</label>
+<select id="pp-variant" class="variant-sel" data-scope="ppv">
+<option value="current">Mẫu hiện hành (từ 2023 — có nơi sinh, họ/tên tách dòng)</option>
+<option value="v2022">Mẫu 7–12/2022 (không có nơi sinh)</option>
+</select>
+</div>
+</fieldset>
+<div class="vpart" data-scope="ppv" data-show="current">
 <fieldset>
 <legend>Thông tin hộ chiếu （旅券）</legend>
 <div class="field">
@@ -2270,6 +2489,16 @@
 <input type="text" id="pp-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
 <label class="kana-label" for="pp-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
 <input type="text" id="pp-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="pp-surname">Họ (dòng riêng — chữ in trên hộ chiếu)</label>
+<input type="text" id="pp-surname" placeholder="Ví dụ: NGUYEN" />
+</div>
+<div class="field">
+<label for="pp-givenname">Tên (dòng riêng — chữ in trên hộ chiếu)</label>
+<input type="text" id="pp-givenname" placeholder="Ví dụ: VAN AN" />
+</div>
 </div>
 <div class="grid2">
 <div class="field">
@@ -2317,6 +2546,58 @@
 <input type="text" id="pp-mrz2" class="mono" placeholder="B1234567&lt;VNM…" />
 </div>
 </fieldset>
+</div>
+<div class="vpart" data-scope="ppv" data-show="v2022" hidden>
+<fieldset>
+<legend>Hộ chiếu mẫu 7–12/2022 (không có nơi sinh)</legend>
+<div class="field">
+<label for="pq-no">Số hộ chiếu （番号）</label>
+<input type="text" id="pq-no" placeholder="Ví dụ: B1234567" />
+</div>
+<div class="field name-pair">
+<label for="pq-name">Họ và tên chủ hộ chiếu</label>
+<input type="text" id="pq-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="pq-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="pq-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="pq-dob">Ngày sinh</label>
+<input type="date" id="pq-dob" />
+</div>
+<div class="field">
+<label for="pq-gender">Giới tính</label>
+<select id="pq-gender">
+<option value="">— Chưa chọn —</option>
+<option value="男">Nam</option>
+<option value="女">Nữ</option>
+</select>
+</div>
+</div>
+<div class="field">
+<label for="pq-idno">Số định danh cá nhân （個人識別番号）</label>
+<input type="text" id="pq-idno" placeholder="Số định danh cá nhân" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="pq-issued">Ngày cấp （発効日）</label>
+<input type="date" id="pq-issued" />
+</div>
+<div class="field">
+<label for="pq-expiry">Ngày hết hạn （有効期限）</label>
+<input type="date" id="pq-expiry" />
+</div>
+</div>
+<div class="field">
+<label for="pq-mrz1">Dòng MRZ 1</label>
+<input type="text" id="pq-mrz1" class="mono" placeholder="P&lt;VNM…" />
+</div>
+<div class="field">
+<label for="pq-mrz2">Dòng MRZ 2</label>
+<input type="text" id="pq-mrz2" class="mono" placeholder="B1234567&lt;VNM…" />
+</div>
+</fieldset>
+</div>
 </form>
 
 <!-- ========== FORM: SỐ DƯ NGÂN HÀNG ========== -->
@@ -2875,6 +3156,17 @@
 <!-- ========== FORM: GIẤY CHỨNG SINH ========== -->
 <form id="form-hospitalbirth" autocomplete="off" hidden>
 <fieldset>
+<legend>Biến thể mẫu （様式）</legend>
+<div class="field">
+<label for="hb-variant">Chọn biến thể giấy chứng sinh</label>
+<select id="hb-variant" class="variant-sel" data-scope="hbv">
+<option value="new2025">Mẫu mới — TT 22/2025/TT-BYT, Mẫu số 01 (từ 01/10/2025)</option>
+<option value="legacy">Mẫu cũ — BYT/CS-2012 (trước 10/2025)</option>
+</select>
+</div>
+</fieldset>
+<div class="vpart" data-scope="hbv" data-show="legacy" hidden>
+<fieldset>
 <legend>Bệnh viện &amp; số giấy</legend>
 <div class="grid2">
 <div class="field">
@@ -3047,6 +3339,126 @@
 <input type="text" id="hb-vice-kana" class="kana" placeholder="カタカナ" />
 </div>
 </fieldset>
+</div>
+<div class="vpart" data-scope="hbv" data-show="new2025">
+<fieldset>
+<legend>Cơ sở khám chữa bệnh &amp; mã số</legend>
+<div class="field">
+<label for="hn-facility">Tên cơ sở khám, chữa bệnh （医療機関名）</label>
+<input type="text" id="hn-facility" placeholder="Tên bệnh viện / cơ sở y tế" />
+</div>
+<div class="grid3">
+<div class="field">
+<label for="hn-issue">Loại cấp （発行種別）</label>
+<select id="hn-issue">
+<option value="初回発行">Cấp lần đầu （初回発行）</option>
+<option value="再発行">Cấp lại （再発行）</option>
+</select>
+</div>
+<div class="field">
+<label for="hn-code">Mã số GCS （GCSコード）</label>
+<input type="text" id="hn-code" placeholder="Mã số giấy chứng sinh" />
+</div>
+<div class="field">
+<label for="hn-insurance">Mã số BHXH / số thẻ BHYT của mẹ （社会保険・健康保険番号）</label>
+<input type="text" id="hn-insurance" placeholder="Mã BHXH hoặc số thẻ BHYT" />
+</div>
+</div>
+</fieldset>
+<fieldset>
+<legend>Người mẹ</legend>
+<div class="field name-pair">
+<label for="hn-m-name">Họ, chữ đệm, tên khai sinh của mẹ</label>
+<input type="text" id="hn-m-name" class="vn-name" placeholder="Họ và tên đầy đủ của mẹ" />
+<label class="kana-label" for="hn-m-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="hn-m-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="hn-m-dob">Ngày, tháng, năm sinh của mẹ</label>
+<input type="date" id="hn-m-dob" />
+</div>
+<div class="field">
+<label for="hn-m-ethnic">Dân tộc của mẹ （民族）</label>
+<input type="text" id="hn-m-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+</div>
+<div class="field">
+<label for="hn-m-id">Số định danh cá nhân / Hộ chiếu của mẹ （個人識別番号/旅券番号）</label>
+<input type="text" id="hn-m-id" placeholder="Số ĐDCN hoặc hộ chiếu" />
+</div>
+<div class="field">
+<label for="hn-m-addr">Nơi cư trú của mẹ （居住地）</label>
+<input type="text" id="hn-m-addr" placeholder="Địa chỉ cư trú" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Thông tin ca sinh &amp; trẻ</legend>
+<div class="grid2">
+<div class="field">
+<label for="hn-birthtime">Đã sinh con vào lúc （出産日時）</label>
+<input type="datetime-local" id="hn-birthtime" />
+</div>
+<div class="field">
+<label for="hn-birthplace">Tại （出産場所）</label>
+<input type="text" id="hn-birthplace" placeholder="Để trống = tên cơ sở y tế ở trên" />
+</div>
+</div>
+<div class="grid3">
+<div class="field">
+<label for="hn-count">Số con trong lần sinh này （今回の出産児数）</label>
+<input type="text" id="hn-count" placeholder="Ví dụ: 1" />
+</div>
+<div class="field">
+<label for="hn-c-gender">Giới tính của con （子の性別）</label>
+<select id="hn-c-gender">
+<option value="">— Chưa chọn —</option>
+<option value="男">Nam （男）</option>
+<option value="女">Nữ （女）</option>
+</select>
+</div>
+<div class="field">
+<label for="hn-c-weight">Cân nặng — gram （体重（グラム）)</label>
+<input type="text" id="hn-c-weight" placeholder="Ví dụ: 3200" />
+</div>
+</div>
+<div class="field">
+<label for="hn-c-planname">Dự định đặt tên con là （命名予定）</label>
+<input type="text" id="hn-c-planname" placeholder="Tên dự kiến (tiếng Việt)" />
+</div>
+<div class="field">
+<label for="hn-note">Ghi chú （備考）</label>
+<input type="text" id="hn-note" placeholder="Ghi chú trên giấy (nếu có)" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Người ký</legend>
+<div class="field name-pair">
+<label for="hn-relative-name">Thân nhân của trẻ （子の親族）</label>
+<input type="text" id="hn-relative-name" class="vn-name" placeholder="Họ và tên thân nhân ký" />
+<label class="kana-label" for="hn-relative-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="hn-relative-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="field name-pair">
+<label for="hn-midwife-name">Người đỡ đẻ （分娩介助者）</label>
+<input type="text" id="hn-midwife-name" class="vn-name" placeholder="Họ và tên người đỡ đẻ" />
+<label class="kana-label" for="hn-midwife-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="hn-midwife-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field name-pair">
+<label for="hn-rep-name">Đại diện cơ sở khám chữa bệnh （医療機関代表）</label>
+<input type="text" id="hn-rep-name" class="vn-name" placeholder="Họ và tên người đại diện" />
+<label class="kana-label" for="hn-rep-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="hn-rep-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="field">
+<label for="hn-rep-title">Chức danh người đại diện （職務）</label>
+<input type="text" id="hn-rep-title" placeholder="Để trống = 院長" />
+</div>
+</div>
+</fieldset>
+</div>
 </form>
 
 <!-- ========== FORM: XÁC NHẬN CƯ TRÚ CT07 ========== -->
@@ -3341,6 +3753,17 @@
 <!-- ========== FORM: ĐƠN PHỤNG DƯỠNG ========== -->
 <form id="form-support" autocomplete="off" hidden>
 <fieldset>
+<legend>Biến thể mẫu （様式）</legend>
+<div class="field">
+<label for="sp-variant">Chọn biến thể đơn phụng dưỡng</label>
+<select id="sp-variant" class="variant-sel" data-scope="spv">
+<option value="cert">Đơn phụng dưỡng (xác nhận của chính quyền) — 扶養証明書</option>
+<option value="tax20">Tờ khai đăng ký người phụ thuộc — Mẫu 20-ĐK-TCT (TT 105/2020/TT-BTC)</option>
+</select>
+</div>
+</fieldset>
+<div class="vpart" data-scope="spv" data-show="cert">
+<fieldset>
 <legend>Người khai （申告者）</legend>
 <div class="field name-pair">
 <label for="sp-name">Họ và tên （氏名）</label>
@@ -3387,6 +3810,61 @@
 <input type="text" id="sp-chair-kana" class="kana" placeholder="カタカナ" />
 </div>
 </fieldset>
+</div>
+<div class="vpart" data-scope="spv" data-show="tax20" hidden>
+<fieldset>
+<legend>Cá nhân có thu nhập (Mẫu 20-ĐK-TCT)</legend>
+<div class="grid2">
+<div class="field">
+<label for="tx-regtype">Loại đăng ký （登録種別）</label>
+<select id="tx-regtype">
+<option value="税務登録">Đăng ký thuế （税務登録）</option>
+<option value="情報変更">Thay đổi thông tin （情報変更）</option>
+</select>
+</div>
+<div class="field">
+<label for="tx-date">Ngày khai</label>
+<input type="date" id="tx-date" />
+</div>
+</div>
+<div class="field name-pair">
+<label for="tx-name">1. Họ và tên cá nhân có thu nhập （所得者の氏名）</label>
+<input type="text" id="tx-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="tx-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="tx-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="tx-taxcode">2. Mã số thuế （納税者番号）</label>
+<input type="text" id="tx-taxcode" placeholder="Mã số thuế cá nhân" />
+</div>
+<div class="field">
+<label for="tx-notify-addr">3. Địa chỉ nhận thông báo mã số người phụ thuộc （通知先住所）</label>
+<input type="text" id="tx-notify-addr" placeholder="Địa chỉ nhận thông báo" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="tx-regplace">4. Nơi đăng ký giảm trừ gia cảnh （控除登録先）</label>
+<input type="text" id="tx-regplace" placeholder="Tổ chức / cơ quan chi trả thu nhập" />
+</div>
+<div class="field">
+<label for="tx-payer-taxcode">5. Mã số thuế của tổ chức chi trả （支払機関の納税者番号）</label>
+<input type="text" id="tx-payer-taxcode" placeholder="Mã số thuế tổ chức chi trả" />
+</div>
+</div>
+</fieldset>
+<fieldset>
+<legend>Bảng I — Người phụ thuộc theo CCCD / hộ chiếu</legend>
+<div id="tx-deps1"></div>
+<button type="button" class="btn-add" id="btnAddTxDep1">＋ Thêm người phụ thuộc (Bảng I)</button>
+</fieldset>
+<fieldset>
+<legend>Bảng II — Người phụ thuộc theo giấy khai sinh</legend>
+<div id="tx-deps2"></div>
+<button type="button" class="btn-add" id="btnAddTxDep2">＋ Thêm người phụ thuộc (Bảng II)</button>
+</fieldset>
+</div>
 </form>
 
 <!-- ========== FORM: SƠ YẾU LÝ LỊCH ========== -->
@@ -3962,6 +4440,17 @@
 <!-- ========== FORM: ĐẤT & NHÀ ========== -->
 <form id="form-land" autocomplete="off" hidden>
 <fieldset>
+<legend>Biến thể mẫu （様式）</legend>
+<div class="field">
+<label for="ld-variant">Chọn biến thể giấy chứng nhận đất</label>
+<select id="ld-variant" class="variant-sel" data-scope="ldv">
+<option value="current2024">Mẫu mới từ 01/8/2024 — Mẫu 04/ĐK-GCN (TT 10/2024/TT-BTNMT, 2 trang, có mã QR)</option>
+<option value="legacy">Sổ hồng cũ (trước 8/2024)</option>
+</select>
+</div>
+</fieldset>
+<div class="vpart" data-scope="ldv" data-show="legacy" hidden>
+<fieldset>
 <legend>Người sử dụng đất / chủ sở hữu</legend>
 <div class="field name-pair">
 <label for="ld-o1-name">Người thứ nhất — họ và tên （氏名）</label>
@@ -4084,6 +4573,141 @@
 <input type="text" id="ld-chair-kana" class="kana" placeholder="カタカナ" />
 </div>
 </fieldset>
+</div>
+<div class="vpart" data-scope="ldv" data-show="current2024">
+<fieldset>
+<legend>Mã giấy chứng nhận</legend>
+<div class="grid3">
+<div class="field">
+<label for="ln-certcode">Mã Giấy chứng nhận （証明書コード）</label>
+<input type="text" id="ln-certcode" placeholder="Mã GCN" />
+</div>
+<div class="field">
+<label for="ln-seri">Số phát hành / seri （通し番号：2文字＋8数字）</label>
+<input type="text" id="ln-seri" placeholder="Ví dụ: AB 01234567" />
+</div>
+<div class="field">
+<label for="ln-regno">Số vào sổ cấp GCN （登録簿番号）</label>
+<input type="text" id="ln-regno" placeholder="Số vào sổ" />
+</div>
+</div>
+<p class="hint">Trang 1 của mẫu mới có mã QR — thông tin chi tiết thể hiện tại mã QR.</p>
+</fieldset>
+<fieldset>
+<legend>1. Người sử dụng đất, chủ sở hữu tài sản</legend>
+<div class="field name-pair">
+<label for="ln-o-name">Họ và tên</label>
+<input type="text" id="ln-o-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="ln-o-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ln-o-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ln-o-id">Giấy tờ tùy thân （身分証明書）</label>
+<input type="text" id="ln-o-id" placeholder="Loại giấy, số (bản dịch ghi tiếng Nhật)" />
+</div>
+<div class="field">
+<label for="ln-o-addr">Địa chỉ （住所）</label>
+<input type="text" id="ln-o-addr" placeholder="Địa chỉ của người sử dụng đất" />
+</div>
+</div>
+</fieldset>
+<fieldset>
+<legend>2. Thông tin thửa đất</legend>
+<div class="grid2">
+<div class="field">
+<label for="ln-plotno">Số thửa đất （土地番号）</label>
+<input type="text" id="ln-plotno" placeholder="Số thửa" />
+</div>
+<div class="field">
+<label for="ln-mapno">Số tờ bản đồ （地図番号）</label>
+<input type="text" id="ln-mapno" placeholder="Số tờ bản đồ" />
+</div>
+</div>
+<div class="field">
+<label for="ln-addr">Địa chỉ thửa đất （土地の住所）</label>
+<input type="text" id="ln-addr" placeholder="Địa chỉ thửa đất" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ln-area">Diện tích (m²) （面積）</label>
+<input type="text" id="ln-area" placeholder="Ví dụ: 100 m²" />
+</div>
+<div class="field">
+<label for="ln-useform">Hình thức sử dụng （利用形態）</label>
+<input type="text" id="ln-useform" placeholder="Sử dụng riêng / chung" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ln-purpose">Mục đích sử dụng （利用目的）</label>
+<input type="text" id="ln-purpose" placeholder="Ví dụ: Đất ở tại đô thị" />
+</div>
+<div class="field">
+<label for="ln-term">Thời hạn sử dụng （利用期限）</label>
+<input type="text" id="ln-term" placeholder="Ví dụ: Lâu dài （長期）" />
+</div>
+</div>
+<div class="field">
+<label for="ln-origin">Nguồn gốc sử dụng （取得経緯）</label>
+<input type="text" id="ln-origin" placeholder="Nguồn gốc sử dụng đất" />
+</div>
+</fieldset>
+<fieldset>
+<legend>3. Thông tin tài sản gắn liền với đất</legend>
+<div class="grid2">
+<div class="field">
+<label for="ln-asset-type">Loại tài sản / nhà ở （資産の種類）</label>
+<input type="text" id="ln-asset-type" placeholder="Ví dụ: Nhà ở riêng lẻ" />
+</div>
+<div class="field">
+<label for="ln-asset-grade">Cấp / hạng （等級）</label>
+<input type="text" id="ln-asset-grade" placeholder="Cấp công trình" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ln-asset-buildarea">Diện tích xây dựng (m²) （建築面積）</label>
+<input type="text" id="ln-asset-buildarea" placeholder="Diện tích xây dựng" />
+</div>
+<div class="field">
+<label for="ln-asset-floorarea">Diện tích sàn (m²) （延床面積）</label>
+<input type="text" id="ln-asset-floorarea" placeholder="Diện tích sàn" />
+</div>
+</div>
+<div class="field">
+<label for="ln-asset-term">Thời hạn sở hữu （所有期限）</label>
+<input type="text" id="ln-asset-term" placeholder="Thời hạn sở hữu tài sản" />
+</div>
+<div class="field">
+<label for="ln-note">5. Ghi chú （備考）</label>
+<textarea id="ln-note" placeholder="Nội dung ghi chú ở trang 2 (nếu có)"></textarea>
+</div>
+</fieldset>
+<fieldset>
+<legend>Nơi ký &amp; người ký</legend>
+<div class="grid2">
+<div class="field">
+<label for="ln-place">Địa danh ký (tỉnh / thành phố)</label>
+<input type="text" id="ln-place" placeholder="Ví dụ: Hà Nội" />
+</div>
+<div class="field">
+<label for="ln-issuedate">Ngày ký cấp</label>
+<input type="date" id="ln-issuedate" />
+</div>
+</div>
+<div class="field">
+<label for="ln-signorg">Cơ quan ký cấp （発行機関）</label>
+<input type="text" id="ln-signorg" placeholder="Ví dụ: Sở Tài nguyên và Môi trường — 資源環境局" />
+</div>
+<div class="field name-pair">
+<label for="ln-signname">Người ký — họ và tên</label>
+<input type="text" id="ln-signname" class="vn-name" placeholder="Họ và tên người ký" />
+<label class="kana-label" for="ln-signkana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ln-signkana" class="kana" placeholder="カタカナ" />
+</div>
+</fieldset>
+</div>
 </form>
 
 <!-- ========== FORM: ĐĂNG KÝ DOANH NGHIỆP ========== -->
@@ -4176,26 +4800,22 @@
 </div>
 </fieldset>
 
-<fieldset>
-<legend>3. Ngành nghề kinh doanh （事業分野）</legend>
-<div id="cp-inds"></div>
-<button type="button" class="btn-add" id="btnAddCpInd">＋ Thêm ngành nghề</button>
-</fieldset>
+<p class="hint" style="margin:0 0 14px">Lưu ý: Giấy chứng nhận đăng ký doanh nghiệp không in ngành nghề kinh doanh (Điều 28 Luật Doanh nghiệp 2020) — ngành nghề chỉ tra cứu trên Cổng thông tin quốc gia về đăng ký doanh nghiệp. Bảng ngành nghề chỉ có trên giấy đăng ký hộ kinh doanh.</p>
 
 <fieldset>
-<legend>4–5. Vốn</legend>
+<legend>3–4. Vốn</legend>
 <div class="field">
-<label for="cp-capital-words">4. Vốn đầu tư — bằng chữ （投資本（文字で）)</label>
+<label for="cp-capital-words">3. Vốn điều lệ / vốn đầu tư — bằng chữ （定款資本・投資資本（文字で）)</label>
 <input type="text" id="cp-capital-words" placeholder="Ví dụ: 一億ドン (Một trăm triệu đồng)" />
 </div>
 <div class="field">
-<label for="cp-legal-capital">5. Vốn pháp định （法定本）</label>
+<label for="cp-legal-capital">4. Vốn pháp định （法定本）</label>
 <input type="text" id="cp-legal-capital" placeholder="Vốn pháp định (nếu có)" />
 </div>
 </fieldset>
 
 <fieldset>
-<legend>6. Thông tin chủ sở hữu （所有者に関する情報）</legend>
+<legend>5. Thông tin chủ sở hữu （所有者に関する情報）</legend>
 <div class="field name-pair">
 <label for="cp-o-name">Họ và tên chủ sở hữu</label>
 <input type="text" id="cp-o-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
@@ -4247,7 +4867,7 @@
 </fieldset>
 
 <fieldset>
-<legend>7. Người đại diện theo pháp luật （法律に関する会社の代表者）</legend>
+<legend>6. Người đại diện theo pháp luật （法律に関する会社の代表者）</legend>
 <div class="field name-pair">
 <label for="cp-r-name">Họ và tên người đại diện</label>
 <input type="text" id="cp-r-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
@@ -4305,17 +4925,17 @@
 </fieldset>
 
 <fieldset>
-<legend>8–10. Chi nhánh · Văn phòng đại diện · Địa điểm kinh doanh</legend>
+<legend>7–9. Chi nhánh · Văn phòng đại diện · Địa điểm kinh doanh</legend>
 <div class="field">
-<label for="cp-branch">8. Thông tin chi nhánh （支店の情報）</label>
+<label for="cp-branch">7. Thông tin chi nhánh （支店の情報）</label>
 <textarea id="cp-branch" placeholder="Tên, địa chỉ chi nhánh (nếu có)"></textarea>
 </div>
 <div class="field">
-<label for="cp-reoffice">9. Thông tin văn phòng đại diện （代表の事務所の情報）</label>
+<label for="cp-reoffice">8. Thông tin văn phòng đại diện （代表の事務所の情報）</label>
 <textarea id="cp-reoffice" placeholder="Tên, địa chỉ văn phòng đại diện (nếu có)"></textarea>
 </div>
 <div class="field">
-<label for="cp-bizaddr">10. Thông tin địa điểm kinh doanh （営業住所の情報）</label>
+<label for="cp-bizaddr">9. Thông tin địa điểm kinh doanh （営業住所の情報）</label>
 <textarea id="cp-bizaddr" placeholder="Địa điểm kinh doanh (nếu có)"></textarea>
 </div>
 <div class="field name-pair">
@@ -4326,6 +4946,922 @@
 </div>
 </fieldset>
 </form>
+
+
+<!-- ========== FORM: GIẤY CHỨNG TỬ / TRÍCH LỤC KHAI TỬ ========== -->
+<form id="form-death" autocomplete="off" hidden>
+<fieldset>
+<legend>Biến thể mẫu （様式）</legend>
+<div class="field">
+<label for="dt-variant">Chọn biến thể giấy chứng tử</label>
+<select id="dt-variant" class="variant-sel" data-scope="dtv">
+<option value="extract">Trích lục khai tử (từ 2016 — Luật Hộ tịch Điều 34, TT 04/2020)</option>
+<option value="legacy">Giấy chứng tử cũ (trước 2016 — mẫu TP/HT-2010-KT.1.a)</option>
+</select>
+</div>
+</fieldset>
+<div class="vpart" data-scope="dtv" data-show="extract">
+<fieldset>
+<legend>Trích lục khai tử</legend>
+<div class="grid2">
+<div class="field">
+<label for="dt-committee">Cơ quan cấp （人民委員会）</label>
+<input type="text" id="dt-committee" placeholder="Ví dụ: Ủy ban nhân dân phường …" />
+</div>
+<div class="field">
+<label for="dt-no">Số trích lục （番号：…/TLKT)</label>
+<input type="text" id="dt-no" placeholder="Ví dụ: 12/TLKT" />
+</div>
+</div>
+<div class="grid3">
+<div class="field">
+<label for="dt-copytype">Loại bản （種別）</label>
+<select id="dt-copytype">
+<option value="（本正）">Bản chính （本正）</option>
+<option value="（写し）">Bản sao （写し）</option>
+</select>
+</div>
+<div class="field">
+<label for="dt-place">Nơi cấp</label>
+<input type="text" id="dt-place" placeholder="Tên xã / phường nơi cấp" />
+</div>
+<div class="field">
+<label for="dt-date">Ngày cấp trích lục</label>
+<input type="date" id="dt-date" />
+</div>
+</div>
+</fieldset>
+<fieldset>
+<legend>Người chết</legend>
+<div class="field name-pair">
+<label for="dt-name">Họ, chữ đệm và tên người chết</label>
+<input type="text" id="dt-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="dt-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="dt-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="dt-birthyear">Năm sinh （生年）</label>
+<input type="text" id="dt-birthyear" placeholder="Ví dụ: 1950" />
+</div>
+<div class="field">
+<label for="dt-idno">Số định danh cá nhân （個人識別番号）</label>
+<input type="text" id="dt-idno" placeholder="Số định danh (nếu có)" />
+</div>
+</div>
+<div class="field">
+<label for="dt-nation">Quốc tịch （国籍）<span class="opt"> — chỉ ghi khi người chết là người nước ngoài</span></label>
+<input type="text" id="dt-nation" placeholder="Để trống nếu là công dân Việt Nam" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Sự kiện chết &amp; đăng ký</legend>
+<div class="grid2">
+<div class="field">
+<label for="dt-deathtime">Giờ, ngày chết （死亡日時）</label>
+<input type="datetime-local" id="dt-deathtime" />
+</div>
+<div class="field">
+<label for="dt-deathplace">Nơi chết （死亡場所）</label>
+<input type="text" id="dt-deathplace" placeholder="Nơi chết" />
+</div>
+</div>
+<div class="field">
+<label for="dt-cause">Nguyên nhân chết （死因）</label>
+<input type="text" id="dt-cause" placeholder="Nguyên nhân chết (bản dịch ghi tiếng Nhật)" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="dt-regplace">Nơi đăng ký khai tử （登録地）</label>
+<input type="text" id="dt-regplace" placeholder="Cơ quan đăng ký khai tử" />
+</div>
+<div class="field">
+<label for="dt-regdate">Ngày đăng ký khai tử</label>
+<input type="date" id="dt-regdate" />
+</div>
+</div>
+<div class="field">
+<label for="dt-note">Ghi chú （備考）</label>
+<input type="text" id="dt-note" placeholder="Ghi chú trên trích lục (nếu có)" />
+</div>
+<div class="field name-pair">
+<label for="dt-signname">Người ký trích lục — họ và tên （署名者）</label>
+<input type="text" id="dt-signname" class="vn-name" placeholder="Họ và tên người ký" />
+<label class="kana-label" for="dt-signkana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="dt-signkana" class="kana" placeholder="カタカナ" />
+</div>
+</fieldset>
+</div>
+<div class="vpart" data-scope="dtv" data-show="legacy" hidden>
+<fieldset>
+<legend>Giấy chứng tử cũ — người chết (bản sao TP/HT-2010-KT.1.a)</legend>
+<div class="field name-pair">
+<label for="dl-name">Họ và tên</label>
+<input type="text" id="dl-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="dl-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="dl-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="dl-gender">Giới tính</label>
+<select id="dl-gender">
+<option value="">— Chưa chọn —</option>
+<option value="男">Nam</option>
+<option value="女">Nữ</option>
+</select>
+</div>
+<div class="field">
+<label for="dl-dob">Ngày, tháng, năm sinh</label>
+<input type="date" id="dl-dob" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="dl-ethnic">Dân tộc （民族）</label>
+<input type="text" id="dl-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+<div class="field">
+<label for="dl-nation">Quốc tịch （国籍）</label>
+<input type="text" id="dl-nation" placeholder="Để trống = ベトナム" />
+</div>
+</div>
+<div class="field">
+<label for="dl-lastaddr">Nơi thường trú/tạm trú cuối cùng （最終住所）</label>
+<input type="text" id="dl-lastaddr" placeholder="Địa chỉ cuối cùng" />
+</div>
+<div class="field">
+<label for="dl-idno">Số CMND / Hộ chiếu / giấy tờ hợp lệ thay thế （身分証番号）</label>
+<input type="text" id="dl-idno" placeholder="Số giấy tờ" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Sự kiện chết &amp; giấy báo tử</legend>
+<div class="grid2">
+<div class="field">
+<label for="dl-deathtime">Đã chết vào lúc （死亡日時）</label>
+<input type="datetime-local" id="dl-deathtime" />
+</div>
+<div class="field">
+<label for="dl-deathplace">Nơi chết （死亡場所）</label>
+<input type="text" id="dl-deathplace" placeholder="Nơi chết" />
+</div>
+</div>
+<div class="field">
+<label for="dl-cause">Nguyên nhân chết （死因）</label>
+<input type="text" id="dl-cause" placeholder="Nguyên nhân chết (bản dịch ghi tiếng Nhật)" />
+</div>
+<div class="grid3">
+<div class="field">
+<label for="dl-baotu">Giấy báo tử / giấy tờ thay thế （死亡届出書）</label>
+<input type="text" id="dl-baotu" placeholder="Tên giấy báo tử" />
+</div>
+<div class="field">
+<label for="dl-baotu-issuer">Do cơ quan cấp （発行機関）</label>
+<input type="text" id="dl-baotu-issuer" placeholder="Cơ quan cấp giấy báo tử" />
+</div>
+<div class="field">
+<label for="dl-baotu-date">Ngày cấp giấy báo tử</label>
+<input type="date" id="dl-baotu-date" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="dl-regplace">Nơi đăng ký （登録地）</label>
+<input type="text" id="dl-regplace" placeholder="Cơ quan đăng ký" />
+</div>
+<div class="field">
+<label for="dl-regdate">Ngày đăng ký</label>
+<input type="date" id="dl-regdate" />
+</div>
+</div>
+<div class="field">
+<label for="dl-note">Ghi chú （備考）</label>
+<input type="text" id="dl-note" placeholder="Ghi chú (nếu có)" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Người thực hiện &amp; người ký (bản sao)</legend>
+<div class="field name-pair">
+<label for="dl-exec-name">Người thực hiện （実施者）</label>
+<input type="text" id="dl-exec-name" class="vn-name" placeholder="Họ và tên người thực hiện" />
+<label class="kana-label" for="dl-exec-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="dl-exec-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="field name-pair">
+<label for="dl-signer-name">Người ký giấy chứng tử （署名者）</label>
+<input type="text" id="dl-signer-name" class="vn-name" placeholder="Họ và tên người ký" />
+<label class="kana-label" for="dl-signer-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="dl-signer-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="dl-copydate">Ngày sao bản sao</label>
+<input type="date" id="dl-copydate" />
+</div>
+<div class="field name-pair">
+<label for="dl-copysign-name">Người ký bản sao （写し署名者）</label>
+<input type="text" id="dl-copysign-name" class="vn-name" placeholder="Họ và tên người ký bản sao" />
+<label class="kana-label" for="dl-copysign-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="dl-copysign-kana" class="kana" placeholder="カタカナ" />
+</div>
+</div>
+</fieldset>
+</div>
+</form>
+
+<!-- ========== FORM: PHIẾU LÝ LỊCH TƯ PHÁP ========== -->
+<form id="form-criminal" autocomplete="off" hidden>
+<fieldset>
+<legend>Biến thể mẫu （様式）</legend>
+<div class="field">
+<label for="ll-variant">Chọn loại phiếu</label>
+<select id="ll-variant" class="variant-sel" data-scope="llv">
+<option value="so1">Phiếu số 1 (cấp cho cá nhân / cơ quan — án tích chưa xoá)</option>
+<option value="so2">Phiếu số 2 (cấp cho cơ quan tiến hành tố tụng / theo yêu cầu — đầy đủ án tích)</option>
+</select>
+</div>
+</fieldset>
+<fieldset>
+<legend>Cơ quan cấp &amp; số phiếu</legend>
+<div class="grid2">
+<div class="field">
+<label for="ll-office">Cơ quan cấp （司法局）</label>
+<input type="text" id="ll-office" placeholder="Ví dụ: Sở Tư pháp thành phố Hà Nội — ハノイ司法局" />
+</div>
+<div class="field">
+<label for="ll-no">Số phiếu （番号）</label>
+<input type="text" id="ll-no" placeholder="Số phiếu lý lịch tư pháp" />
+</div>
+</div>
+<div class="field">
+<label for="ll-issuedate">Ngày cấp</label>
+<input type="date" id="ll-issuedate" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Thông tin cá nhân</legend>
+<div class="field name-pair">
+<label for="ll-name">Họ và tên</label>
+<input type="text" id="ll-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="ll-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ll-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ll-gender">Giới tính</label>
+<select id="ll-gender">
+<option value="">— Chưa chọn —</option>
+<option value="男">Nam</option>
+<option value="女">Nữ</option>
+</select>
+</div>
+<div class="field">
+<label for="ll-dob">Ngày, tháng, năm sinh</label>
+<input type="date" id="ll-dob" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ll-birthplace">Nơi sinh （出生地）</label>
+<input type="text" id="ll-birthplace" placeholder="Nơi sinh" />
+</div>
+<div class="field">
+<label for="ll-nation">Quốc tịch （国籍）</label>
+<input type="text" id="ll-nation" placeholder="Để trống = ベトナム" />
+</div>
+</div>
+<div class="field">
+<label for="ll-addr">Nơi cư trú （居住地）</label>
+<input type="text" id="ll-addr" placeholder="Địa chỉ cư trú" />
+</div>
+<div class="grid3">
+<div class="field">
+<label for="ll-idno">Số CCCD / CMND / hộ chiếu （身分証番号）</label>
+<input type="text" id="ll-idno" placeholder="Số giấy tờ" />
+</div>
+<div class="field">
+<label for="ll-iddate">Ngày cấp giấy tờ</label>
+<input type="date" id="ll-iddate" />
+</div>
+<div class="field">
+<label for="ll-idplace">Nơi cấp giấy tờ （発行地）</label>
+<input type="text" id="ll-idplace" placeholder="Nơi cấp" />
+</div>
+</div>
+</fieldset>
+<div class="vpart" data-scope="llv" data-show="so2" hidden>
+<fieldset>
+<legend>Cha, mẹ, vợ/chồng (chỉ có ở phiếu số 2)</legend>
+<div class="field name-pair">
+<label for="ll-f-name">Họ và tên cha</label>
+<input type="text" id="ll-f-name" class="vn-name" placeholder="Họ và tên cha" />
+<label class="kana-label" for="ll-f-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ll-f-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="field name-pair">
+<label for="ll-m-name">Họ và tên mẹ</label>
+<input type="text" id="ll-m-name" class="vn-name" placeholder="Họ và tên mẹ" />
+<label class="kana-label" for="ll-m-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ll-m-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="field name-pair">
+<label for="ll-s-name">Họ và tên vợ / chồng</label>
+<input type="text" id="ll-s-name" class="vn-name" placeholder="Họ và tên vợ hoặc chồng" />
+<label class="kana-label" for="ll-s-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ll-s-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="field">
+<label for="ll-history">Quá trình cư trú （居住経歴）</label>
+<textarea id="ll-history" placeholder="Từng giai đoạn cư trú (bản dịch ghi tiếng Nhật)"></textarea>
+</div>
+</fieldset>
+</div>
+<fieldset>
+<legend>Án tích &amp; thông tin cấm đảm nhiệm</legend>
+<div class="field">
+<label for="ll-record">Án tích （前科）</label>
+<textarea id="ll-record" placeholder="Để trống = không có án tích thuộc phạm vi của phiếu. Phiếu số 1: chỉ án tích chưa được xoá. Phiếu số 2: toàn bộ án tích, kể cả đã xoá."></textarea>
+</div>
+<div class="field">
+<label for="ll-ban">Cấm đảm nhiệm chức vụ / thành lập, quản lý doanh nghiệp （就任禁止等）</label>
+<textarea id="ll-ban" placeholder="Để trống = không có. Phiếu số 1: mục này chỉ ghi khi người yêu cầu đề nghị; phiếu số 2: luôn ghi."></textarea>
+</div>
+<div class="field name-pair">
+<label for="ll-signname">Giám đốc Sở Tư pháp — họ và tên （司法局長）</label>
+<input type="text" id="ll-signname" class="vn-name" placeholder="Họ và tên người ký" />
+<label class="kana-label" for="ll-signkana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ll-signkana" class="kana" placeholder="カタカナ" />
+</div>
+</fieldset>
+</form>
+
+<!-- ========== FORM: GIẤY ỦY QUYỀN ========== -->
+<form id="form-poa" autocomplete="off" hidden>
+<fieldset>
+<legend>Nơi lập &amp; ngày lập</legend>
+<div class="grid2">
+<div class="field">
+<label for="po-place">Nơi lập （作成地）</label>
+<input type="text" id="po-place" placeholder="Ví dụ: Hà Nội" />
+</div>
+<div class="field">
+<label for="po-date">Ngày lập</label>
+<input type="date" id="po-date" />
+</div>
+</div>
+<p class="hint">Giấy ủy quyền không có mẫu chính thức thống nhất — đây là cấu trúc chuẩn thường dùng tại văn phòng công chứng (Hợp đồng ủy quyền, Điều 562–563 Bộ luật Dân sự 2015).</p>
+</fieldset>
+<fieldset>
+<legend>Bên ủy quyền （委任者）</legend>
+<div class="field name-pair">
+<label for="po-g-name">Họ và tên</label>
+<input type="text" id="po-g-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="po-g-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="po-g-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="po-g-dob">Ngày sinh</label>
+<input type="date" id="po-g-dob" />
+</div>
+<div class="field">
+<label for="po-g-phone">Điện thoại （電話）</label>
+<input type="text" id="po-g-phone" placeholder="Số điện thoại" />
+</div>
+</div>
+<div class="grid3">
+<div class="field">
+<label for="po-g-idno">Số CCCD / hộ chiếu （身分証番号）</label>
+<input type="text" id="po-g-idno" placeholder="Số giấy tờ" />
+</div>
+<div class="field">
+<label for="po-g-iddate">Ngày cấp</label>
+<input type="date" id="po-g-iddate" />
+</div>
+<div class="field">
+<label for="po-g-idplace">Nơi cấp （発行地）</label>
+<input type="text" id="po-g-idplace" placeholder="Nơi cấp" />
+</div>
+</div>
+<div class="field">
+<label for="po-g-addr">Địa chỉ cư trú （居住地）</label>
+<input type="text" id="po-g-addr" placeholder="Địa chỉ cư trú" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Bên được ủy quyền （受任者）</legend>
+<div class="field name-pair">
+<label for="po-a-name">Họ và tên</label>
+<input type="text" id="po-a-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="po-a-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="po-a-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="po-a-dob">Ngày sinh</label>
+<input type="date" id="po-a-dob" />
+</div>
+<div class="field">
+<label for="po-a-phone">Điện thoại （電話）</label>
+<input type="text" id="po-a-phone" placeholder="Số điện thoại" />
+</div>
+</div>
+<div class="grid3">
+<div class="field">
+<label for="po-a-idno">Số CCCD / hộ chiếu （身分証番号）</label>
+<input type="text" id="po-a-idno" placeholder="Số giấy tờ" />
+</div>
+<div class="field">
+<label for="po-a-iddate">Ngày cấp</label>
+<input type="date" id="po-a-iddate" />
+</div>
+<div class="field">
+<label for="po-a-idplace">Nơi cấp （発行地）</label>
+<input type="text" id="po-a-idplace" placeholder="Nơi cấp" />
+</div>
+</div>
+<div class="field">
+<label for="po-a-addr">Địa chỉ cư trú （居住地）</label>
+<input type="text" id="po-a-addr" placeholder="Địa chỉ cư trú" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Nội dung ủy quyền</legend>
+<div class="field">
+<label for="po-content">Nội dung / phạm vi ủy quyền （委任内容）</label>
+<textarea id="po-content" placeholder="Việc cụ thể được ủy quyền, tài sản/giấy tờ liên quan kèm số hiệu (bản dịch ghi tiếng Nhật)"></textarea>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="po-term">Thời hạn ủy quyền （委任期間）</label>
+<input type="text" id="po-term" placeholder="Để trống = 1 năm (Điều 563 BLDS)" />
+</div>
+<div class="field">
+<label for="po-fee">Thù lao （報酬）<span class="opt"> — nếu có</span></label>
+<input type="text" id="po-fee" placeholder="Mức thù lao (nếu có)" />
+</div>
+</div>
+</fieldset>
+<fieldset>
+<legend>Công chứng / chứng thực</legend>
+<div class="field">
+<label for="po-notary">Hình thức chứng （認証）</label>
+<select id="po-notary">
+<option value="yes">Có công chứng / chứng thực （公証済み）</option>
+<option value="no">Không công chứng (chỉ ký tay)</option>
+</select>
+</div>
+<div class="grid3">
+<div class="field">
+<label for="po-notary-no">Số công chứng （公証番号）</label>
+<input type="text" id="po-notary-no" placeholder="Số công chứng" />
+</div>
+<div class="field">
+<label for="po-notary-book">Quyển số （冊号）</label>
+<input type="text" id="po-notary-book" placeholder="Quyển số" />
+</div>
+<div class="field">
+<label for="po-notary-date">Ngày công chứng</label>
+<input type="date" id="po-notary-date" />
+</div>
+</div>
+<div class="field name-pair">
+<label for="po-notary-name">Công chứng viên — họ và tên （公証人）</label>
+<input type="text" id="po-notary-name" class="vn-name" placeholder="Họ và tên công chứng viên" />
+<label class="kana-label" for="po-notary-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="po-notary-kana" class="kana" placeholder="カタカナ" />
+</div>
+</fieldset>
+</form>
+
+<!-- ========== FORM: BẰNG TỐT NGHIỆP THCS ========== -->
+<form id="form-thcs" autocomplete="off" hidden>
+<fieldset>
+<legend>Thông tin bằng THCS</legend>
+<div class="field">
+<label for="tc-authority">Cơ quan cấp （発行機関）</label>
+<input type="text" id="tc-authority" placeholder="Ví dụ: Phòng Giáo dục và Đào tạo … — 教育訓練室" />
+</div>
+<div class="field">
+<label for="tc-school">Trường THCS （中学校）</label>
+<input type="text" id="tc-school" placeholder="Tên trường trung học cơ sở" />
+</div>
+<div class="field name-pair">
+<label for="tc-name">Họ và tên học sinh</label>
+<input type="text" id="tc-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="tc-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="tc-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="tc-dob">Ngày sinh</label>
+<input type="date" id="tc-dob" />
+</div>
+<div class="field">
+<label for="tc-birthplace">Nơi sinh （出生地）</label>
+<input type="text" id="tc-birthplace" placeholder="Nơi sinh" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="tc-gender">Giới tính</label>
+<select id="tc-gender">
+<option value="">— Chưa chọn —</option>
+<option value="男">Nam</option>
+<option value="女">Nữ</option>
+</select>
+</div>
+<div class="field">
+<label for="tc-ethnic">Dân tộc （民族）</label>
+<input type="text" id="tc-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="tc-gradyear">Năm tốt nghiệp （卒業年）</label>
+<input type="text" id="tc-gradyear" placeholder="Ví dụ: 2023" />
+</div>
+<div class="field">
+<label for="tc-grade">Xếp loại tốt nghiệp （卒業格付け）</label>
+<select id="tc-grade">
+<option value="">— Chưa chọn —</option>
+<option value="優">Giỏi （優）</option>
+<option value="良">Khá （良）</option>
+<option value="可">Trung bình （可）</option>
+</select>
+</div>
+</div>
+</fieldset>
+<fieldset>
+<legend>Cấp bằng &amp; người ký</legend>
+<div class="grid2">
+<div class="field">
+<label for="tc-place">Nơi cấp (tỉnh / thành phố)</label>
+<input type="text" id="tc-place" placeholder="Ví dụ: Hà Nội" />
+</div>
+<div class="field">
+<label for="tc-issuedate">Ngày cấp</label>
+<input type="date" id="tc-issuedate" />
+</div>
+</div>
+<div class="field name-pair">
+<label for="tc-signname">Trưởng phòng GD&amp;ĐT — họ và tên （教育訓練室長）</label>
+<input type="text" id="tc-signname" class="vn-name" placeholder="Họ và tên người ký" />
+<label class="kana-label" for="tc-signkana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="tc-signkana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="tc-no">Số hiệu bằng （番号）</label>
+<input type="text" id="tc-no" placeholder="Số hiệu in trên bằng" />
+</div>
+<div class="field">
+<label for="tc-regno">Số vào sổ cấp bằng （登録番号）</label>
+<input type="text" id="tc-regno" placeholder="Số vào sổ" />
+</div>
+</div>
+</fieldset>
+</form>
+
+<!-- ========== FORM: BẰNG CAO ĐẲNG / TRUNG CẤP NGHỀ ========== -->
+<form id="form-college" autocomplete="off" hidden>
+<fieldset>
+<legend>Thông tin văn bằng nghề (TT 10/2017/TT-BLĐTBXH)</legend>
+<div class="field">
+<label for="cd-degree">Loại văn bằng （卒業証書）</label>
+<select id="cd-degree">
+<option value="専門学校卒業証書（高等課程）">Bằng cao đẳng （専門学校卒業証書（高等課程）)</option>
+<option value="専門学校卒業証書（中級課程）">Bằng trung cấp nghề （専門学校卒業証書（中級課程）)</option>
+</select>
+</div>
+<div class="field">
+<label for="cd-school">Tên trường （学校名）</label>
+<input type="text" id="cd-school" placeholder="Tên trường cao đẳng / trung cấp" />
+</div>
+<div class="field name-pair">
+<label for="cd-name">Họ và tên người tốt nghiệp</label>
+<input type="text" id="cd-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="cd-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="cd-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="field">
+<label for="cd-dob">Ngày, tháng, năm sinh</label>
+<input type="date" id="cd-dob" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="cd-major">Nghề đào tạo （訓練職種）</label>
+<input type="text" id="cd-major" placeholder="Tên nghề (bản dịch ghi tiếng Nhật)" />
+</div>
+<div class="field">
+<label for="cd-course">Khóa học （課程）</label>
+<input type="text" id="cd-course" placeholder="Ví dụ: Khóa 2019–2022" />
+</div>
+</div>
+<div class="field">
+<label for="cd-grade">Xếp loại tốt nghiệp （卒業格付け）</label>
+<select id="cd-grade">
+<option value="">— Chưa chọn —</option>
+<option value="特優">Xuất sắc （特優）</option>
+<option value="優">Giỏi （優）</option>
+<option value="良">Khá （良）</option>
+<option value="可">Trung bình （可）</option>
+</select>
+</div>
+</fieldset>
+<fieldset>
+<legend>Cấp bằng &amp; người ký</legend>
+<div class="grid2">
+<div class="field">
+<label for="cd-place">Nơi cấp (tỉnh / thành phố)</label>
+<input type="text" id="cd-place" placeholder="Ví dụ: Hà Nội" />
+</div>
+<div class="field">
+<label for="cd-issuedate">Ngày cấp</label>
+<input type="date" id="cd-issuedate" />
+</div>
+</div>
+<div class="field name-pair">
+<label for="cd-signname">Hiệu trưởng — họ và tên （校長）</label>
+<input type="text" id="cd-signname" class="vn-name" placeholder="Họ và tên hiệu trưởng" />
+<label class="kana-label" for="cd-signkana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="cd-signkana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="cd-no">Số hiệu văn bằng （番号）</label>
+<input type="text" id="cd-no" placeholder="Số hiệu in trên bằng" />
+</div>
+<div class="field">
+<label for="cd-regno">Số vào sổ cấp bằng （登録番号）</label>
+<input type="text" id="cd-regno" placeholder="Số vào sổ" />
+</div>
+</div>
+</fieldset>
+</form>
+
+<!-- ========== FORM: BẰNG THẠC SĨ / TIẾN SĨ ========== -->
+<form id="form-grad" autocomplete="off" hidden>
+<fieldset>
+<legend>Thông tin văn bằng sau đại học (khung 10 nội dung — TT 27/2019)</legend>
+<div class="field">
+<label for="dg-degree">Loại văn bằng （学位）</label>
+<select id="dg-degree">
+<option value="修士号">Bằng thạc sĩ （修士号）</option>
+<option value="博士号">Bằng tiến sĩ （博士号）</option>
+</select>
+</div>
+<div class="field">
+<label for="dg-school">Tên cơ sở giáo dục （教育機関）</label>
+<input type="text" id="dg-school" placeholder="Tên trường đại học / viện" />
+</div>
+<div class="field name-pair">
+<label for="dg-name">Họ và tên người được cấp bằng</label>
+<input type="text" id="dg-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="dg-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="dg-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="field">
+<label for="dg-dob">Ngày, tháng, năm sinh</label>
+<input type="date" id="dg-dob" />
+</div>
+<div class="field">
+<label for="dg-major">Ngành đào tạo （専攻）</label>
+<input type="text" id="dg-major" placeholder="Tên ngành (bản dịch ghi tiếng Nhật)" />
+</div>
+<div class="field">
+<label for="dg-grade">Hạng tốt nghiệp （格付け）<span class="opt"> — nếu có</span></label>
+<select id="dg-grade">
+<option value="">— Không ghi —</option>
+<option value="優">Giỏi （優）</option>
+<option value="良">Khá （良）</option>
+<option value="可">Trung bình （可）</option>
+</select>
+</div>
+</fieldset>
+<fieldset>
+<legend>Cấp bằng &amp; người ký</legend>
+<div class="grid2">
+<div class="field">
+<label for="dg-place">Nơi cấp (tỉnh / thành phố)</label>
+<input type="text" id="dg-place" placeholder="Ví dụ: Hà Nội" />
+</div>
+<div class="field">
+<label for="dg-issuedate">Ngày cấp</label>
+<input type="date" id="dg-issuedate" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="dg-signrole">Người ký （学長）</label>
+<select id="dg-signrole">
+<option value="学長">Hiệu trưởng / Giám đốc （学長）</option>
+<option value="学長代理">Ký thay （学長代理）</option>
+</select>
+</div>
+<div class="field">
+<label for="dg-signtitle">Học hàm / học vị người ký</label>
+<input type="text" id="dg-signtitle" placeholder="Ví dụ: GS.TS — 教授・博士" />
+</div>
+</div>
+<div class="field name-pair">
+<label for="dg-signname">Họ và tên người ký</label>
+<input type="text" id="dg-signname" class="vn-name" placeholder="Họ và tên người ký bằng" />
+<label class="kana-label" for="dg-signkana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="dg-signkana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="dg-no">Số hiệu văn bằng （番号）</label>
+<input type="text" id="dg-no" placeholder="Số hiệu in trên bằng" />
+</div>
+<div class="field">
+<label for="dg-regno">Số vào sổ gốc （登録番号）</label>
+<input type="text" id="dg-regno" placeholder="Số vào sổ gốc cấp văn bằng" />
+</div>
+</div>
+</fieldset>
+</form>
+
+<!-- ========== FORM: GIẤY PHÉP LÁI XE ========== -->
+<form id="form-license" autocomplete="off" hidden>
+<fieldset>
+<legend>Giấy phép lái xe (mẫu PET hiện hành — TT 12/2025/TT-BCA)</legend>
+<div class="grid2">
+<div class="field">
+<label for="lx-no">Số giấy phép lái xe （免許番号）</label>
+<input type="text" id="lx-no" placeholder="Số GPLX" />
+</div>
+<div class="field">
+<label for="lx-class">Hạng （等級）</label>
+<select id="lx-class">
+<option value="">— Chưa chọn —</option>
+<option value="A1">A1</option>
+<option value="A">A</option>
+<option value="B1">B1</option>
+<option value="B">B</option>
+<option value="C1">C1</option>
+<option value="C">C</option>
+<option value="D1">D1</option>
+<option value="D2">D2</option>
+<option value="D">D</option>
+<option value="BE">BE</option>
+<option value="C1E">C1E</option>
+<option value="CE">CE</option>
+<option value="D1E">D1E</option>
+<option value="D2E">D2E</option>
+<option value="DE">DE</option>
+</select>
+</div>
+</div>
+<div class="field name-pair">
+<label for="lx-name">Họ và tên</label>
+<input type="text" id="lx-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="lx-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="lx-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="lx-dob">Ngày sinh</label>
+<input type="date" id="lx-dob" />
+</div>
+<div class="field">
+<label for="lx-nation">Quốc tịch （国籍）</label>
+<input type="text" id="lx-nation" placeholder="Để trống = ベトナム" />
+</div>
+</div>
+<div class="field">
+<label for="lx-addr">Nơi cư trú （居住地）</label>
+<input type="text" id="lx-addr" placeholder="Địa chỉ cư trú ghi trên GPLX" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="lx-issuedate">Ngày cấp （発行日）</label>
+<input type="date" id="lx-issuedate" />
+</div>
+<div class="field">
+<label for="lx-expiry">Ngày hết hạn （有効期限）</label>
+<input type="date" id="lx-expiry" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="lx-issuer">Cơ quan cấp （発行機関）</label>
+<input type="text" id="lx-issuer" placeholder="Để trống = 公安 （警察）" />
+</div>
+<div class="field">
+<label for="lx-passdate">Ngày trúng tuyển （合格日）<span class="opt"> — mặt sau</span></label>
+<input type="date" id="lx-passdate" />
+</div>
+</div>
+<div class="field">
+<label for="lx-restrict">Điều kiện hạn chế （制限条件）<span class="opt"> — nếu có</span></label>
+<input type="text" id="lx-restrict" placeholder="Mã điều kiện hạn chế in trên GPLX (nếu có)" />
+</div>
+</fieldset>
+</form>
+
+<!-- ========== FORM: GIẤY ĐĂNG KÝ XE ========== -->
+<form id="form-vehiclereg" autocomplete="off" hidden>
+<fieldset>
+<legend>Chủ xe &amp; biển số</legend>
+<div class="field name-pair">
+<label for="vr-owner">Tên chủ xe （所有者）</label>
+<input type="text" id="vr-owner" class="vn-name" placeholder="Họ và tên chủ xe / tên tổ chức" />
+<label class="kana-label" for="vr-ownerkana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="vr-ownerkana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="field">
+<label for="vr-addr">Địa chỉ （住所）</label>
+<input type="text" id="vr-addr" placeholder="Địa chỉ chủ xe" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="vr-ownerid">Số định danh / mã số doanh nghiệp （識別番号）</label>
+<input type="text" id="vr-ownerid" placeholder="Số định danh cá nhân hoặc mã số DN" />
+</div>
+<div class="field">
+<label for="vr-plate">Biển số đăng ký （ナンバープレート）</label>
+<input type="text" id="vr-plate" placeholder="Ví dụ: 29A-123.45" />
+</div>
+</div>
+</fieldset>
+<fieldset>
+<legend>Thông tin xe</legend>
+<div class="grid2">
+<div class="field">
+<label for="vr-brand">Nhãn hiệu （メーカー）</label>
+<input type="text" id="vr-brand" placeholder="Ví dụ: Toyota" />
+</div>
+<div class="field">
+<label for="vr-model">Số loại （型式）</label>
+<input type="text" id="vr-model" placeholder="Số loại / mã kiểu xe" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="vr-type">Loại xe （車種）</label>
+<input type="text" id="vr-type" placeholder="Ví dụ: Ô tô con — 乗用車" />
+</div>
+<div class="field">
+<label for="vr-color">Màu sơn （色）</label>
+<input type="text" id="vr-color" placeholder="Màu sơn" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="vr-engine">Số máy （エンジン番号）</label>
+<input type="text" id="vr-engine" placeholder="Số máy" />
+</div>
+<div class="field">
+<label for="vr-vin">Số khung （車台番号）</label>
+<input type="text" id="vr-vin" placeholder="Số khung" />
+</div>
+</div>
+<div class="grid3">
+<div class="field">
+<label for="vr-capacity">Dung tích xi lanh / công suất （排気量・出力）</label>
+<input type="text" id="vr-capacity" placeholder="Ví dụ: 1496 cm³" />
+</div>
+<div class="field">
+<label for="vr-year">Năm sản xuất （製造年）</label>
+<input type="text" id="vr-year" placeholder="Ví dụ: 2020" />
+</div>
+<div class="field">
+<label for="vr-origin">Nước sản xuất （製造国）</label>
+<input type="text" id="vr-origin" placeholder="Nước sản xuất" />
+</div>
+</div>
+<div class="field">
+<label for="vr-seats">Số chỗ ngồi / tải trọng （定員・積載量）<span class="opt"> — với ô tô</span></label>
+<input type="text" id="vr-seats" placeholder="Ví dụ: 5 chỗ ngồi" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Đăng ký &amp; cơ quan cấp</legend>
+<div class="grid2">
+<div class="field">
+<label for="vr-firstdate">Ngày đăng ký lần đầu （初回登録日）</label>
+<input type="date" id="vr-firstdate" />
+</div>
+<div class="field">
+<label for="vr-issuedate">Ngày cấp （発行日）</label>
+<input type="date" id="vr-issuedate" />
+</div>
+</div>
+<div class="field">
+<label for="vr-issuer">Cơ quan cấp （発行機関）</label>
+<input type="text" id="vr-issuer" placeholder="Ví dụ: Phòng Cảnh sát giao thông — 交通警察" />
+</div>
+<div class="field name-pair">
+<label for="vr-signname">Người ký — họ và tên （署名者）</label>
+<input type="text" id="vr-signname" class="vn-name" placeholder="Họ và tên người ký" />
+<label class="kana-label" for="vr-signkana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="vr-signkana" class="kana" placeholder="カタカナ" />
+</div>
+</fieldset>
+</form>
+
 
 <!-- ========== NGƯỜI DỊCH (tuỳ chọn) ========== -->
 <form id="form-translator" autocomplete="off">
@@ -4906,6 +6442,7 @@ h += line('生年月日', dv("bc-dob"));
 h += line('出生所', v("bc-birthplace"));
 h += '<p class="flex-line"><span class="seg">民族：' + ethOr("bc-ethnic", "キン族") + '</span>' +
 '<span class="seg">国籍：ベトナム</span></p>';
+h += line('個人識別番号', v("bc-idno"));
 h += '<p class="sec-h">親の基礎情報</p>';
 h += '<table class="tbl"><tr><th class="rowh"></th><th>父</th><th>母</th></tr>' +
 prow('氏名', renderName("bc-f-name", "bc-f-kana"), renderName("bc-m-name", "bc-m-kana")) +
@@ -4944,6 +6481,7 @@ function renderMarriage() {
 var mv = val("mc-variant") || "normal";
 if (mv === "parallel") return renderMarriageParallel();
 if (mv === "embassy") return renderMarriageEmbassy();
+if (mv === "extract") return renderMarriageExtract();
 var h = '';
 h += headStd('独立 - 自由 - 幸福');
 h += '<p class="right-line">番号：' + v("mc-no") + '</p>';
@@ -4969,6 +6507,7 @@ return h + translatorBlock();
 
 /* ================= 3) 卒業証明書 ================= */
 function renderUni() {
+if ((val("du-variant") || "post2020") === "post2020") return renderUni2020();
 var h = '';
 h += '<div class="doc-head"><p class="rep">ベトナム社会主義共和国</p></div>';
 h += '<p class="center-line">学長</p>';
@@ -4997,6 +6536,29 @@ h += '<p style="margin-top:26px">番号：' + v("du-no") + '</p>';
 h += '<p>' + (val("du-degree") === "工学士"? '学位記を供与する書籍に記入する号': '登録番号') + '：' + v("du-regno") + '</p>';
 return h + translatorBlock();
 }
+/* ================= 3b) 学位記（2020年以降・通達27/2019） ================= */
+function renderUni2020() {
+var h = '';
+h += headStd('独立－自由－幸福');
+h += '<p class="center-line school">' + v("du-school") + '</p>';
+h += '<h1 class="doc-title">' + esc(val("du-degree") || "学士号") + '</h1>';
+h += '<p class="fixed-line">下記の者に対し、' + esc(val("du-degree") || "学士号") + 'を授与する。</p>';
+h += line('氏名', renderName("du-name", "du-kana"));
+h += line('生年月日', dv("du-dob"));
+h += line('専攻', v("du-major"));
+if (val("du-grade")) h += line('卒業格付け', v("du-grade"));
+h += '<div class="right-sign">' +
+'<p class="place-date">' + (val("du-place")? esc(val("du-place")): BLANK) + '、' + jpDate("du-issuedate") + '</p>' +
+'<p class="role">' + esc(val("du-signrole") || "学長") + '</p>' +
+'<p class="note">（署名および印鑑）</p>' +
+'<p>' + v("du-signtitle") + '</p>' +
+'<p class="nm">' + renderName("du-signname", "du-signkana") + '</p>' +
+'</div>';
+h += '<p style="margin-top:26px">番号：' + v("du-no") + '</p>';
+h += '<p>登録番号：' + v("du-regno") + '</p>';
+return h + translatorBlock();
+}
+
 
 /* ================= 4) 高校卒業証明書 ================= */
 function renderHs() {
@@ -5158,6 +6720,7 @@ function renderIdcard() {
 var iv = val("id-variant") || "cccd";
 if (iv === "old") return renderIdOld();
 if (iv === "new") return renderIdNew();
+if (iv === "cc2024") return renderId2024();
 var eth = mapEthnic(val("id-ethnic"));
 if (eth === "キン族") eth = "キン";
 var h = '';
@@ -5184,12 +6747,39 @@ h += '<div class="right-sign">' +
 return h + translatorBlock();
 }
 
+/* ================= 7b) 身分証（2024年・根拠法2023） ================= */
+function renderId2024() {
+var h = '';
+h += headStd('独立－自由－幸福');
+h += '<h1 class="doc-title">身分証</h1>';
+h += '<p class="sec-h">表面</p>';
+h += line('個人識別番号', v("cc24-no"));
+h += line('出生時の氏名', renderName("cc24-name", "cc24-kana"));
+h += '<p class="flex-line"><span class="seg">生年月日：' + dv("cc24-dob") + '</span>' +
+'<span class="seg">性別：' + v("cc24-gender") + '</span>' +
+'<span class="seg">国籍：ベトナム</span></p>';
+h += '<p class="sec-h" style="margin-top:22px">裏面</p>';
+h += line('居住地', v("cc24-addr"));
+h += line('出生登録地', v("cc24-birthreg"));
+h += '<p class="flex-line"><span class="seg">発行日：' + dv("cc24-issuedate") + '</span>' +
+'<span class="seg">有効期限：' + dv("cc24-expiry") + '</span></p>';
+h += line('発行機関', '公安省');
+h += '<p class="doc-note">裏面には電子チップとQRコードが印刷されている。券面に指紋および個人識別特徴の記載はない。</p>';
+return h + translatorBlock();
+}
+
 /* ================= 8) パスポート ================= */
 function renderPassport() {
+if ((val("pp-variant") || "current") === "v2022") return renderPassport2022();
 var h = '';
 h += '<h1 class="doc-title">旅券</h1>';
 h += '<div class="pp-head"><span>タイプ：P</span><span>コード：VNM</span><span>番号：' + v("pp-no") + '</span></div>';
+if (val("pp-surname") || val("pp-givenname")) {
+h += line('姓', val("pp-surname")? esc(val("pp-surname")): BLANK);
+h += line('名', val("pp-givenname")? esc(val("pp-givenname")): BLANK);
+} else {
 h += line('氏名', renderName("pp-name", "pp-kana"));
+}
 h += '<p class="flex-line"><span class="seg">国籍：ベトナム</span>' +
 '<span class="seg">性別：' + v("pp-gender") + '</span></p>';
 h += '<p class="flex-line"><span class="seg">生年月日：' + dv("pp-dob") + '</span>' +
@@ -5200,6 +6790,35 @@ h += '<p class="flex-line"><span class="seg">発効日：' + dv("pp-issued") + '
 h += line('発行機関', '入出管理局');
 h += '<p class="mrz">' + (val("pp-mrz1")? esc(val("pp-mrz1")): BLANK) + '<br />' +
 (val("pp-mrz2")? esc(val("pp-mrz2")): BLANK) + '</p>';
+h += '<div style="text-align:center;margin-top:26px">' +
+'<p style="font-weight:700;margin:0">ベトナム社会主義共和国</p>' +
+'<p style="margin:0">旅券発行機関</p>' +
+'<p style="margin:0">入出管理局</p>' +
+'<p style="margin:0">局長</p>' +
+'<p style="margin:0">サイン・印済み</p>' +
+'</div>';
+h += '<hr class="divider" />';
+h += '<p>旅券主サイン</p>';
+return h + translatorBlock();
+}
+
+
+/* ================= 8b) パスポート（2022年7〜12月様式） ================= */
+function renderPassport2022() {
+var h = '';
+h += '<h1 class="doc-title">旅券</h1>';
+h += '<div class="pp-head"><span>タイプ：P</span><span>コード：VNM</span><span>番号：' + v("pq-no") + '</span></div>';
+h += line('氏名', renderName("pq-name", "pq-kana"));
+h += '<p class="flex-line"><span class="seg">国籍：ベトナム</span>' +
+'<span class="seg">性別：' + v("pq-gender") + '</span></p>';
+h += line('生年月日', dv("pq-dob"));
+h += line('個人識別番号', v("pq-idno"));
+h += '<p class="flex-line"><span class="seg">発効日：' + dv("pq-issued") + '</span>' +
+'<span class="seg">有効期限：' + dv("pq-expiry") + '</span></p>';
+h += line('発行機関', '入出管理局');
+h += '<p class="mrz">' + (val("pq-mrz1")? esc(val("pq-mrz1")): BLANK) + '<br />' +
+(val("pq-mrz2")? esc(val("pq-mrz2")): BLANK) + '</p>';
+h += '<p class="doc-note">注：本様式は2022年7月から12月に発行されたもので、出生地の記載がない。</p>';
 h += '<div style="text-align:center;margin-top:26px">' +
 '<p style="font-weight:700;margin:0">ベトナム社会主義共和国</p>' +
 '<p style="margin:0">旅券発行機関</p>' +
@@ -5384,6 +7003,7 @@ h += '<p class="flex-line"><span class="seg">性別：' + v("bx-gender") + '</sp
 '<span class="seg">国籍：ベトナム</span></p>';
 h += line('出生地', v("bx-birthplace"));
 h += line('本籍', v("bx-hometown"));
+h += line('個人識別番号', v("bx-idno"));
 h += pblock('父', 'f');
 h += pblock('母', 'm');
 h += '<p class="flex-line" style="margin-top:14px"><span class="seg">登録地：' + v("bx-regplace") + '</span>' +
@@ -5395,6 +7015,39 @@ h += '<div class="right-sign">' +
 '<p class="note">（署名・押印）</p>' +
 '<p>' + (val("bx-signtitle")? esc(val("bx-signtitle")): '副委員会') + '</p>' +
 '<p class="nm">' + renderName("bx-signname", "bx-signkana") + '</p>' +
+'</div>';
+return h + translatorBlock();
+}
+
+/* ================= A4) 結婚の摘録（写し） ================= */
+function renderMarriageExtract() {
+function sblock(title, p) {
+var h = '<p class="sec-h">' + title + '</p>';
+h += line('氏名', renderName("mx-" + p + "-name", "mx-" + p + "-kana"));
+h += line('生年月日', dv("mx-" + p + "-dob"));
+h += '<p class="flex-line"><span class="seg">民族：' + ethOr("mx-" + p + "-ethnic", "キン族") + '</span>' +
+'<span class="seg">国籍：ベトナム</span></p>';
+h += line('居住地', v("mx-" + p + "-addr"));
+h += line('本人確認書類', v("mx-" + p + "-id"));
+return h;
+}
+var h = '';
+h += '<div class="head-row"><div class="head-left">' +
+'<p class="org">' + (val("mx-committee")? esc(val("mx-committee")): BLANK) + '人民委員会</p>' +
+'</div>' +
+'<div class="head-right"><p>摘録番号：' + v("mx-no") + '</p></div></div>';
+h += headStd('独立-自由-幸福');
+h += '<p class="right-line">' + (val("mx-place")? esc(val("mx-place")): BLANK) + '、' + jpDate("mx-date") + '</p>';
+h += '<h1 class="doc-title" style="letter-spacing:0.1em;text-indent:0.1em">結婚の摘録（写し）</h1>';
+h += '<p class="doc-note">本摘録は結婚登録簿から写したものである。</p>';
+h += sblock('妻', 'w');
+h += sblock('夫', 'h');
+h += '<p class="flex-line" style="margin-top:14px"><span class="seg">登録地：' + v("mx-regplace") + '</span>' +
+'<span class="seg">登録日：' + dv("mx-regdate") + '</span></p>';
+h += '<div class="right-sign">' +
+'<p class="role">摘録署名者</p>' +
+'<p class="note">（署名・押印）</p>' +
+'<p class="nm">' + renderName("mx-signname", "mx-signkana") + '</p>' +
 '</div>';
 return h + translatorBlock();
 }
@@ -5687,7 +7340,7 @@ h += line('在留所', v("ms-addr"));
 h += '<p class="doc-note">' + (val("ms-res-province")? esc(val("ms-res-province")): BLANK) + '省で' +
 jpDate("ms-from") + 'から' + jpDate("ms-to") +
 'まで居住中には、婚姻状態：地方で誰ともまだ結婚登録をしていません。</p>';
-h += '<p class="doc-note">この証明書は有効期限が付与日から6ヶ月であり、' +
+h += '<p class="doc-note">この証明書は、婚姻状態が変更するまで、または発行日から6か月間のいずれか早い時点まで有効であり、' +
 renderName("ms-sp-name", "ms-sp-kana") + '氏（生年月日：' + dv("ms-sp-dob") + '、居住地：' + v("ms-sp-addr") +
 '）との結婚登録の手続きを行うために、使用されます。</p>';
 h += '<div class="right-sign">' +
@@ -5701,6 +7354,7 @@ return h + translatorBlock();
 
 /* ================= B4) 出生証明書（病院・証生） ================= */
 function renderHospitalBirth() {
+if ((val("hb-variant") || "new2025") === "new2025") return renderHospitalBirth2025();
 var h = '';
 h += '<div class="head-row"><div class="head-left">' +
 '<p>' + v("hb-bureau") + '</p>' +
@@ -5755,6 +7409,44 @@ h += '<div class="right-sign">' +
 return h + translatorBlock();
 }
 
+
+/* ================= B4b) 出生証明書（2025年新様式・通達22/2025） ================= */
+function renderHospitalBirth2025() {
+var h = '';
+h += '<div class="head-row"><div class="head-left">' +
+'<p class="org">' + v("hn-facility") + '</p>' +
+'</div>' +
+'<div class="head-right" style="text-align:center">' +
+'<p class="rep" style="font-weight:700">ベトナム社会主義共和国</p>' +
+'<p>独立－自由－幸福</p>' +
+'</div></div>';
+h += '<h1 class="doc-title">出生証明書</h1>';
+h += '<p class="center-line">（様式第01号 — 2025年保健省通達第22/2025/TT-BYT号）</p>';
+h += '<p class="flex-line"><span class="seg">発行種別：' + v("hn-issue") + '</span>' +
+'<span class="seg">GCSコード：' + v("hn-code") + '</span></p>';
+h += '<p class="sec-h">母</p>';
+h += line('出生時の氏名', renderName("hn-m-name", "hn-m-kana"));
+h += '<p class="flex-line"><span class="seg">生年月日：' + dv("hn-m-dob") + '</span>' +
+'<span class="seg">民族：' + ethOr("hn-m-ethnic", "キン族") + '</span></p>';
+h += line('個人識別番号/旅券番号', v("hn-m-id"));
+h += line('居住地', v("hn-m-addr"));
+h += line('社会保険コード/健康保険証番号', v("hn-insurance"));
+h += '<p class="sec-h">出生</p>';
+h += '<p class="flex-line"><span class="seg">出産日時：' + cell(fmtDateTime(val("hn-birthtime"))) + '</span>' +
+'<span class="seg">出産場所：' + (val("hn-birthplace")? esc(val("hn-birthplace")): v("hn-facility")) + '</span></p>';
+h += '<p class="flex-line"><span class="seg">今回の出産児数：' + v("hn-count") + '</span>' +
+'<span class="seg">子の性別：' + v("hn-c-gender") + '</span>' +
+'<span class="seg">体重（グラム）：' + v("hn-c-weight") + '</span></p>';
+h += line('命名予定', v("hn-c-planname"));
+if (val("hn-note")) h += line('備考', v("hn-note"));
+h += '<div class="sign-row">' +
+signBox('子の親族', '（署名、氏名記入）', renderName("hn-relative-name", "hn-relative-kana")) +
+signBox('分娩介助者', '（署名、氏名記入）', renderName("hn-midwife-name", "hn-midwife-kana")) +
+signBox((val("hn-rep-title")? esc(val("hn-rep-title")): '医療機関代表'), '（署名、氏名記入、押印）', renderName("hn-rep-name", "hn-rep-kana")) +
+'</div>';
+return h + translatorBlock();
+}
+
 /* ================= B5) 住民票（CT07） ================= */
 function renderResidence() {
 var members = dynRows("rs-members", ["rsj-name", "rsj-dob", "rsj-gender", "rsj-id", "rsj-relation"]);
@@ -5764,7 +7456,7 @@ var h = '';
 h += '<p class="line"><span class="lb">市公安（1）：</span>' + v("rs-citypolice") + '</p>';
 h += '<p class="line"><span class="lb">区公安（2）：</span>' + v("rs-districtpolice") + '</p>';
 h += headStd('独立－自由－幸福');
-h += '<p class="center-line">2021年5月15日付56/2021/TT-BCA通達に基づく発行した書式CT07</p>';
+h += '<p class="center-line">通達66/2023/TT-BCA（2024年1月1日施行）に基づく様式CT07</p>';
 h += '<p class="right-line">番号：' + v("rs-no") + '</p>';
 h += '<p class="right-line">' + jpDate("rs-issuedate") + '</p>';
 h += '<h1 class="doc-title">住民票</h1>';
@@ -5806,7 +7498,7 @@ h += '<hr class="divider" />';
 h += '<p class="doc-note small">(1) 市公安の名称を記入する。</p>';
 h += '<p class="doc-note small">(2) 証明する区公安の名称を記入する。</p>';
 h += '<p class="doc-note small">(3) その他の証明内容を記入する。ない場合は「なし」と記入する。</p>';
-h += '<p class="doc-note small">(4) この写しの有効期間は、居住に関する法律第19条の規定に基づく。</p>';
+h += '<p class="doc-note small">(4) この証明書の有効期間は発行日から1年間である（通達66/2023/TT-BCA）。記載内容に変更があった場合は、その時点で失効する。</p>';
 return h + translatorBlock();
 }
 
@@ -5870,6 +7562,7 @@ return h + translatorBlock();
 
 /* ================= B8) 扶養証明書 ================= */
 function renderSupport() {
+if ((val("sp-variant") || "cert") === "tax20") return renderSupportTax();
 var deps = dynRows("sp-deps", ["spj-name", "spj-relation", "spj-dob", "spj-addr"]);
 var h = '';
 h += '<h1 class="doc-title">扶養証明書</h1>';
@@ -5890,6 +7583,52 @@ h += '<div class="sign-row">' +
 '<p class="role">申請者</p><p class="note">（署名、氏名記入）</p>' +
 '<p class="nm">' + renderName("sp-name", "sp-kana") + '</p></div>' +
 signBox('Xác nhận của chính quyền<br />人民委員会主席', '（署名、押印）', renderName("sp-chair-name", "sp-chair-kana")) +
+'</div>';
+return h + translatorBlock();
+}
+
+
+/* ================= B8b) 扶養者登録申告書（様式20-ĐK-TCT） ================= */
+function renderSupportTax() {
+var deps1 = dynRows("tx-deps1", ["txj1-name", "txj1-dob", "txj1-taxcode", "txj1-nation", "txj1-idtype", "txj1-idno", "txj1-iddate", "txj1-idplace", "txj1-permaddr", "txj1-curaddr", "txj1-relation"]);
+var deps2 = dynRows("tx-deps2", ["txj2-name", "txj2-taxcode", "txj2-dob", "txj2-bcno", "txj2-bcdate", "txj2-bccountry", "txj2-bcprovince", "txj2-bcdistrict", "txj2-bccommune", "txj2-nation", "txj2-relation"]);
+var h = '';
+h += headStd('独立－自由－幸福');
+h += '<p class="right-line">様式第20-ĐK-TCT号（通達105/2020/TT-BTC）</p>';
+h += '<h1 class="doc-title" style="letter-spacing:0.06em;text-indent:0.06em;font-size:19px">扶養者登録のための税務申告書</h1>';
+h += '<p class="line"><span class="lb">登録種別：</span>' + v("tx-regtype") + '</p>';
+h += line('1. 所得者の氏名', renderName("tx-name", "tx-kana"));
+h += line('2. 納税者番号', v("tx-taxcode"));
+h += line('3. 扶養者コード通知先住所', v("tx-notify-addr"));
+h += line('4. 家族控除の登録先', v("tx-regplace"));
+h += line('5. 支払機関の納税者番号', v("tx-payer-taxcode"));
+h += '<p class="sec-h">表I. 身分証・旅券による扶養者</p>';
+h += '<table class="tbl"><tr><th style="width:5%">No</th><th>氏名</th><th style="width:11%">生年月日</th><th style="width:11%">納税者番号</th><th style="width:8%">国籍</th><th>身分証の種類・番号・発行日・発行地</th><th>常住地 / 現在の住所</th><th style="width:9%">続柄</th></tr>';
+deps1.forEach(function (d, i) {
+var idtxt = [d["txj1-idtype"], d["txj1-idno"], d["txj1-iddate"]? fmtDate(d["txj1-iddate"]): "", d["txj1-idplace"]].filter(Boolean).join('、');
+var addrtxt = [d["txj1-permaddr"], d["txj1-curaddr"]].filter(Boolean).join(' / ');
+h += '<tr><td style="text-align:center">' + (i + 1) + '</td><td>' + cell(d["txj1-name"]) + '</td>' +
+'<td>' + cell(fmtDate(d["txj1-dob"])) + '</td><td>' + cell(d["txj1-taxcode"]) + '</td>' +
+'<td>' + cell(mapNation(d["txj1-nation"]) || d["txj1-nation"]) + '</td><td>' + cell(idtxt) + '</td>' +
+'<td>' + cell(addrtxt) + '</td><td>' + (d["txj1-relation"]? esc(mapRelation(d["txj1-relation"]) || d["txj1-relation"]): BLANK) + '</td></tr>';
+});
+h += '</table>';
+h += '<p class="sec-h">表II. 出生届による扶養者</p>';
+h += '<table class="tbl"><tr><th style="width:5%">No</th><th>氏名</th><th style="width:11%">納税者番号</th><th style="width:11%">生年月日</th><th>出生届の情報（番号・発行日・登録地）</th><th style="width:8%">国籍</th><th style="width:9%">続柄</th></tr>';
+deps2.forEach(function (d, i) {
+var bctxt = [d["txj2-bcno"], d["txj2-bcdate"]? fmtDate(d["txj2-bcdate"]): "", [d["txj2-bccountry"], d["txj2-bcprovince"], d["txj2-bcdistrict"], d["txj2-bccommune"]].filter(Boolean).join('、')].filter(Boolean).join('、');
+h += '<tr><td style="text-align:center">' + (i + 1) + '</td><td>' + cell(d["txj2-name"]) + '</td>' +
+'<td>' + cell(d["txj2-taxcode"]) + '</td><td>' + cell(fmtDate(d["txj2-dob"])) + '</td>' +
+'<td>' + cell(bctxt) + '</td><td>' + cell(mapNation(d["txj2-nation"]) || d["txj2-nation"]) + '</td>' +
+'<td>' + (d["txj2-relation"]? esc(mapRelation(d["txj2-relation"]) || d["txj2-relation"]): BLANK) + '</td></tr>';
+});
+h += '</table>';
+h += '<p class="doc-note">上記の内容が事実であることを誓約し、相違がある場合は責任を負います。</p>';
+h += '<div class="right-sign">' +
+'<p class="place-date">' + jpDate("tx-date") + '</p>' +
+'<p class="role">申告者</p>' +
+'<p class="note">（署名、氏名記入）</p>' +
+'<p class="nm">' + renderName("tx-name", "tx-kana") + '</p>' +
 '</div>';
 return h + translatorBlock();
 }
@@ -6055,6 +7794,7 @@ return h + translatorBlock();
 
 /* ================= B11) 土地及び建物所有権証明書 ================= */
 function renderLand() {
+if ((val("ld-variant") || "current2024") === "current2024") return renderLand2024();
 var owners = [];
 if (val("ld-o1-name") || val("ld-o1-kana")) owners.push(renderName("ld-o1-name", "ld-o1-kana"));
 if (val("ld-o2-name") || val("ld-o2-kana")) owners.push(renderName("ld-o2-name", "ld-o2-kana"));
@@ -6097,9 +7837,53 @@ signBox('人民委員会代表 委員長', '（署名・印済み）', renderNam
 return h + translatorBlock();
 }
 
+
+/* ================= B11b) 土地使用権証明書（2024年新様式・04/ĐK-GCN） ================= */
+function renderLand2024() {
+var h = '';
+h += headStd('独立－自由－幸福');
+h += '<h1 class="doc-title" style="letter-spacing:0.02em;text-indent:0.02em;font-size:19px">土地使用権及び土地付属資産所有権証明書</h1>';
+h += '<p class="flex-line"><span class="seg">証明書コード：' + v("ln-certcode") + '</span>' +
+'<span class="seg">通し番号：' + v("ln-seri") + '</span></p>';
+h += '<p class="doc-note">詳細情報はQRコードに表示される（QRコードは原本に印刷）。</p>';
+h += '<p class="sec-h">1. 土地使用者・土地付属資産の所有者</p>';
+h += line('氏名', renderName("ln-o-name", "ln-o-kana"));
+h += line('身分証明書', v("ln-o-id"));
+h += line('住所', v("ln-o-addr"));
+h += '<p class="sec-h">2. 土地情報</p>';
+h += '<p class="flex-line"><span class="seg">土地番号：' + v("ln-plotno") + '</span>' +
+'<span class="seg">地図番号：' + v("ln-mapno") + '</span></p>';
+h += line('土地の住所', v("ln-addr"));
+h += '<p class="flex-line"><span class="seg">面積：' + v("ln-area") + '</span>' +
+'<span class="seg">利用形態：' + v("ln-useform") + '</span></p>';
+h += line('利用目的', v("ln-purpose"));
+h += '<p class="flex-line"><span class="seg">利用期限：' + v("ln-term") + '</span>' +
+'<span class="seg">取得経緯：' + v("ln-origin") + '</span></p>';
+h += '<p class="sec-h">3. 土地付属資産の情報</p>';
+h += line('資産の種類', v("ln-asset-type"));
+h += '<p class="flex-line"><span class="seg">建築面積：' + v("ln-asset-buildarea") + '</span>' +
+'<span class="seg">延床面積：' + v("ln-asset-floorarea") + '</span>' +
+'<span class="seg">等級：' + v("ln-asset-grade") + '</span></p>';
+h += line('所有期限', v("ln-asset-term"));
+h += '<div class="right-sign">' +
+'<p class="place-date">' + (val("ln-place")? esc(val("ln-place")): BLANK) + '、' + jpDate("ln-issuedate") + '</p>' +
+'<p class="role">' + (val("ln-signorg")? esc(val("ln-signorg")): BLANK) + '</p>' +
+'<p class="note">（署名・押印）</p>' +
+'<p class="nm">' + renderName("ln-signname", "ln-signkana") + '</p>' +
+'</div>';
+h += '<hr class="divider" />';
+h += '<p class="sec-h">4. 土地・資産の図面</p>';
+h += '<p class="doc-note">図面（土地の形状、北南の方向、各辺の長さ、頂点座標の一覧）は原本2ページ目に記載されている。</p>';
+h += '<p class="sec-h">5. 備考</p>';
+h += '<p class="line">' + v("ln-note") + '</p>';
+h += '<p class="sec-h">6. 証明書発行後の変更</p>';
+h += '<p class="doc-note">発行後の変更内容は原本に記録される。</p>';
+h += '<p style="margin-top:20px">登録簿番号：' + v("ln-regno") + '</p>';
+return h + translatorBlock();
+}
+
 /* ================= B12) 営業登録証明書 ================= */
 function renderCompany() {
-var inds = dynRows("cp-inds", ["cpj-name", "cpj-code", "cpj-detail"]);
 function personBlock(p) {
 var h = '';
 h += '<p class="flex-line"><span class="seg">氏名：' + renderName("cp-" + p + "-name", "cp-" + p + "-kana") + '</span>' +
@@ -6145,29 +7929,299 @@ h += '<p class="flex-line"><span class="seg">Tel：' + v("cp-tel") + '</span>' +
 '<span class="seg">Fax：' + v("cp-fax") + '</span>' +
 '<span class="seg">Email：' + v("cp-email") + '</span>' +
 '<span class="seg">ウェブサイト：' + v("cp-web") + '</span></p>';
-h += '<p class="num-sec">3. 事業分野</p>';
-h += '<table class="tbl"><tr><th style="width:9%">順序数</th><th>事業名</th><th style="width:16%">事業コード</th><th>具体的</th></tr>';
-inds.forEach(function (r, i) {
-h += '<tr><td style="text-align:center">' + (i + 1) + '</td><td>' + cell(r["cpj-name"]) + '</td>' +
-'<td>' + cell(r["cpj-code"]) + '</td><td>' + cell(r["cpj-detail"]) + '</td></tr>';
-});
-h += '</table>';
-h += '<p class="num-sec">4. 投資本（文字で）</p>';
+h += '<p class="num-sec">3. 定款資本・投資資本（文字で）</p>';
 h += '<p class="line">' + v("cp-capital-words") + '</p>';
-h += '<p class="num-sec">5. 法定本</p>';
+h += '<p class="num-sec">4. 法定本</p>';
 h += '<p class="line">' + v("cp-legal-capital") + '</p>';
-h += '<p class="num-sec">6. 所有者に関する情報</p>';
+h += '<p class="num-sec">5. 所有者に関する情報</p>';
 h += personBlock('o');
-h += '<p class="num-sec">7. 法律に関する会社の代表者</p>';
+h += '<p class="num-sec">6. 法律に関する会社の代表者</p>';
 h += '<p class="line">職名：' + v("cp-r-title") + '</p>';
 h += personBlock('r');
-h += '<p class="num-sec">8. 支店の情報</p>';
+h += '<p class="num-sec">7. 支店の情報</p>';
 h += '<p class="line">' + v("cp-branch") + '</p>';
-h += '<p class="num-sec">9. 代表の事務所の情報</p>';
+h += '<p class="num-sec">8. 代表の事務所の情報</p>';
 h += '<p class="line">' + v("cp-reoffice") + '</p>';
-h += '<p class="num-sec">10. 営業住所の情報</p>';
+h += '<p class="num-sec">9. 営業住所の情報</p>';
 h += '<p class="line">' + v("cp-bizaddr") + '</p>';
 h += rightSign('経営登録部の長部', '（署名、押印）', renderName("cp-signname", "cp-signkana"));
+return h + translatorBlock();
+}
+
+/* ================= C1) 死亡の摘録 / 死亡証明書 ================= */
+function renderDeath() {
+if ((val("dt-variant") || "extract") === "legacy") return renderDeathLegacy();
+var h = '';
+h += '<div class="head-row"><div class="head-left">' +
+'<p class="org">' + (val("dt-committee")? esc(val("dt-committee")): BLANK) + '人民委員会</p>' +
+'</div>' +
+'<div class="head-right"><p>番号：' + v("dt-no") + '</p></div></div>';
+h += headStd('独立-自由-幸福');
+h += '<p class="right-line">' + (val("dt-place")? esc(val("dt-place")): BLANK) + '、' + jpDate("dt-date") + '</p>';
+h += '<h1 class="doc-title" style="letter-spacing:0.14em;text-indent:0.14em">死亡の摘録' + esc(val("dt-copytype") || "（本正）") + '</h1>';
+h += line('氏名', renderName("dt-name", "dt-kana"));
+h += '<p class="flex-line"><span class="seg">生年：' + v("dt-birthyear") + '</span>' +
+'<span class="seg">個人識別番号：' + v("dt-idno") + '</span></p>';
+if (val("dt-nation")) h += line('国籍', cell(mapNation(val("dt-nation")) || val("dt-nation")));
+h += line('死亡日時', cell(fmtDateTime(val("dt-deathtime"))));
+h += line('死亡場所', v("dt-deathplace"));
+h += line('死因', v("dt-cause"));
+h += '<p class="flex-line"><span class="seg">登録地：' + v("dt-regplace") + '</span>' +
+'<span class="seg">登録日：' + dv("dt-regdate") + '</span></p>';
+if (val("dt-note")) h += line('備考', v("dt-note"));
+h += '<div class="right-sign">' +
+'<p class="role">摘録署名者</p>' +
+'<p class="note">（署名・押印）</p>' +
+'<p class="nm">' + renderName("dt-signname", "dt-signkana") + '</p>' +
+'</div>';
+return h + translatorBlock();
+}
+function renderDeathLegacy() {
+var h = '';
+h += headStd('独立-自由-幸福');
+h += '<h1 class="doc-title" style="letter-spacing:0.14em;text-indent:0.14em">死亡証明書（写し）</h1>';
+h += '<p class="doc-note">死亡登録簿から写したものである（様式TP/HT-2010-KT.1.a）。</p>';
+h += line('氏名', renderName("dl-name", "dl-kana"));
+h += '<p class="flex-line"><span class="seg">性別：' + v("dl-gender") + '</span>' +
+'<span class="seg">生年月日：' + dv("dl-dob") + '</span></p>';
+h += '<p class="flex-line"><span class="seg">民族：' + ethOr("dl-ethnic", "キン族") + '</span>' +
+'<span class="seg">国籍：' + (val("dl-nation")? esc(mapNation(val("dl-nation")) || val("dl-nation")): 'ベトナム') + '</span></p>';
+h += line('最終の常住地・一時滞在地', v("dl-lastaddr"));
+h += line('身分証番号', v("dl-idno"));
+h += line('死亡日時', cell(fmtDateTime(val("dl-deathtime"))));
+h += line('死亡場所', v("dl-deathplace"));
+h += line('死因', v("dl-cause"));
+h += '<p class="line"><span class="lb">死亡届出書：</span>' + v("dl-baotu") +
+'、発行機関：' + v("dl-baotu-issuer") + '、発行日：' + dv("dl-baotu-date") + '</p>';
+h += '<p class="flex-line"><span class="seg">登録地：' + v("dl-regplace") + '</span>' +
+'<span class="seg">登録日：' + dv("dl-regdate") + '</span></p>';
+if (val("dl-note")) h += line('備考', v("dl-note"));
+h += '<div class="sign-row">' +
+signBox('実施者', '（署名）', renderName("dl-exec-name", "dl-exec-kana")) +
+signBox('死亡証明書署名者', '（署名・押印）', renderName("dl-signer-name", "dl-signer-kana")) +
+'</div>';
+if (val("dl-copydate") || val("dl-copysign-name")) {
+h += '<p class="line" style="margin-top:16px"><span class="lb">写しの作成日：</span>' + dv("dl-copydate") + '</p>';
+h += '<div class="right-sign">' +
+'<p class="role">写し署名者</p>' +
+'<p class="note">（署名・押印）</p>' +
+'<p class="nm">' + renderName("dl-copysign-name", "dl-copysign-kana") + '</p>' +
+'</div>';
+}
+return h + translatorBlock();
+}
+
+/* ================= C2) 犯罪経歴証明書 ================= */
+function renderCriminal() {
+var so2 = (val("ll-variant") || "so1") === "so2";
+var h = '';
+h += '<div class="head-row"><div class="head-left">' +
+'<p class="org">' + v("ll-office") + '</p>' +
+'</div>' +
+'<div class="head-right"><p>番号：' + v("ll-no") + '</p></div></div>';
+h += headStd('独立-自由-幸福');
+h += '<h1 class="doc-title" style="letter-spacing:0.08em;text-indent:0.08em;font-size:20px">犯罪経歴証明書（第' + (so2? '2': '1') + '号）</h1>';
+h += line('氏名', renderName("ll-name", "ll-kana"));
+h += '<p class="flex-line"><span class="seg">性別：' + v("ll-gender") + '</span>' +
+'<span class="seg">生年月日：' + dv("ll-dob") + '</span></p>';
+h += '<p class="flex-line"><span class="seg">出生地：' + v("ll-birthplace") + '</span>' +
+'<span class="seg">国籍：' + (val("ll-nation")? esc(mapNation(val("ll-nation")) || val("ll-nation")): 'ベトナム') + '</span></p>';
+h += line('居住地', v("ll-addr"));
+h += '<p class="flex-line"><span class="seg">身分証番号：' + v("ll-idno") + '</span>' +
+'<span class="seg">発行日：' + dv("ll-iddate") + '</span>' +
+'<span class="seg">発行地：' + v("ll-idplace") + '</span></p>';
+if (so2) {
+h += '<p class="sec-h">家族関係</p>';
+h += line('父の氏名', renderName("ll-f-name", "ll-f-kana"));
+h += line('母の氏名', renderName("ll-m-name", "ll-m-kana"));
+h += line('配偶者の氏名', renderName("ll-s-name", "ll-s-kana"));
+h += '<p class="sec-h">居住経歴</p>';
+h += '<p class="line">' + v("ll-history") + '</p>';
+}
+h += '<p class="sec-h">前科</p>';
+if (val("ll-record")) {
+h += '<p class="line">' + esc(val("ll-record")) + '</p>';
+} else if (so2) {
+h += '<p class="line">前科はない（消滅した前科を含む）。</p>';
+} else {
+h += '<p class="line">消されていない前科はない。</p>';
+}
+if (so2 || val("ll-ban")) {
+h += '<p class="sec-h">職務就任の禁止等</p>';
+h += '<p class="line">' + (val("ll-ban")? esc(val("ll-ban")): '該当する禁止情報はない。') + '</p>';
+}
+h += '<div class="right-sign">' +
+'<p class="place-date">' + jpDate("ll-issuedate") + '</p>' +
+'<p class="role">司法局長</p>' +
+'<p class="note">（署名・押印）</p>' +
+'<p class="nm">' + renderName("ll-signname", "ll-signkana") + '</p>' +
+'</div>';
+return h + translatorBlock();
+}
+
+/* ================= C3) 委任状 ================= */
+function renderPoa() {
+function pblock(title, p) {
+var h = '<p class="sec-h">' + title + '</p>';
+h += line('氏名', renderName("po-" + p + "-name", "po-" + p + "-kana"));
+h += '<p class="flex-line"><span class="seg">生年月日：' + dv("po-" + p + "-dob") + '</span>' +
+'<span class="seg">電話：' + v("po-" + p + "-phone") + '</span></p>';
+h += '<p class="flex-line"><span class="seg">身分証番号：' + v("po-" + p + "-idno") + '</span>' +
+'<span class="seg">発行日：' + dv("po-" + p + "-iddate") + '</span>' +
+'<span class="seg">発行地：' + v("po-" + p + "-idplace") + '</span></p>';
+h += line('居住地', v("po-" + p + "-addr"));
+return h;
+}
+var h = '';
+h += headStd('独立-自由-幸福');
+h += '<h1 class="doc-title" style="letter-spacing:0.2em;text-indent:0.2em">委任状</h1>';
+h += '<p class="right-line">' + (val("po-place")? esc(val("po-place")): BLANK) + '、' + jpDate("po-date") + '</p>';
+h += pblock('委任者', 'g');
+h += pblock('受任者', 'a');
+h += '<p class="sec-h">委任内容</p>';
+h += '<p class="line">' + v("po-content") + '</p>';
+h += line('委任期間', val("po-term")? esc(val("po-term")): '1年間（民法第563条による）');
+if (val("po-fee")) h += line('報酬', v("po-fee"));
+h += '<p class="doc-note">両当事者は、本委任状の内容が真実であり、合意に基づくものであることを誓約する。</p>';
+h += '<div class="sign-row">' +
+signBox('委任者', '（署名または拇印）', renderName("po-g-name", "po-g-kana")) +
+signBox('受任者', '（署名または拇印）', renderName("po-a-name", "po-a-kana")) +
+'</div>';
+if ((val("po-notary") || "yes") === "yes") {
+h += '<hr class="divider" />';
+h += '<p class="sec-h">公証人の証書</p>';
+h += '<p class="flex-line"><span class="seg">公証番号：' + v("po-notary-no") + '</span>' +
+'<span class="seg">冊号：' + v("po-notary-book") + '</span>' +
+'<span class="seg">日付：' + dv("po-notary-date") + '</span></p>';
+h += '<div class="right-sign">' +
+'<p class="role">公証人</p>' +
+'<p class="note">（署名・押印）</p>' +
+'<p class="nm">' + renderName("po-notary-name", "po-notary-kana") + '</p>' +
+'</div>';
+} else {
+h += '<p class="doc-note">注：本書は公証・認証を受けていないため、用途によっては効力が限定される場合がある。</p>';
+}
+return h + translatorBlock();
+}
+
+/* ================= C4) 中学校卒業証明書 ================= */
+function renderThcs() {
+var h = '';
+h += headStd('独立・自由・幸福');
+h += '<p class="center-line">' + v("tc-authority") + '</p>';
+h += '<h1 class="doc-title" style="letter-spacing:0.1em;text-indent:0.1em">中学校卒業証明書</h1>';
+h += line('氏名', renderName("tc-name", "tc-kana"));
+h += '<p class="flex-line"><span class="seg">生年月日：' + dv("tc-dob") + '</span>' +
+'<span class="seg">出生地：' + v("tc-birthplace") + '</span></p>';
+h += '<p class="flex-line"><span class="seg">性別：' + v("tc-gender") + '</span>' +
+'<span class="seg">民族：' + ethOr("tc-ethnic", "キン族") + '</span></p>';
+h += '<p class="line">' + (val("tc-school")? esc(val("tc-school")): BLANK) + '中学校の生徒</p>';
+h += '<p class="flex-line"><span class="seg">卒業年：' + (val("tc-gradyear")? esc(val("tc-gradyear")) + '年': BLANK) + '</span>' +
+'<span class="seg">卒業格付け：' + v("tc-grade") + '</span></p>';
+h += '<div class="right-sign">' +
+'<p class="place-date">' + (val("tc-place")? esc(val("tc-place")): BLANK) + '、' + jpDate("tc-issuedate") + '</p>' +
+'<p class="role">教育訓練室長</p>' +
+'<p class="note">（署名・押印）</p>' +
+'<p class="nm">' + renderName("tc-signname", "tc-signkana") + '</p>' +
+'</div>';
+h += '<p style="margin-top:26px">番号：' + v("tc-no") + '</p>';
+h += '<p>登録番号：' + v("tc-regno") + '</p>';
+return h + translatorBlock();
+}
+
+/* ================= C5) 専門学校卒業証明書 ================= */
+function renderCollege() {
+var h = '';
+h += headStd('独立・自由・幸福');
+h += '<p class="center-line school">' + v("cd-school") + '</p>';
+h += '<h1 class="doc-title" style="letter-spacing:0.06em;text-indent:0.06em;font-size:19px">' + esc(val("cd-degree") || "専門学校卒業証書（高等課程）") + '</h1>';
+h += '<p class="fixed-line">下記の者に対し、卒業証書を授与する。</p>';
+h += line('氏名', renderName("cd-name", "cd-kana"));
+h += line('生年月日', dv("cd-dob"));
+h += line('訓練職種', v("cd-major"));
+h += '<p class="flex-line"><span class="seg">課程：' + v("cd-course") + '</span>' +
+'<span class="seg">卒業格付け：' + v("cd-grade") + '</span></p>';
+h += '<div class="right-sign">' +
+'<p class="place-date">' + (val("cd-place")? esc(val("cd-place")): BLANK) + '、' + jpDate("cd-issuedate") + '</p>' +
+'<p class="role">校長</p>' +
+'<p class="note">（署名および印鑑）</p>' +
+'<p class="nm">' + renderName("cd-signname", "cd-signkana") + '</p>' +
+'</div>';
+h += '<p style="margin-top:26px">番号：' + v("cd-no") + '</p>';
+h += '<p>登録番号：' + v("cd-regno") + '</p>';
+return h + translatorBlock();
+}
+
+/* ================= C6) 修士号・博士号 ================= */
+function renderGrad() {
+var h = '';
+h += headStd('独立－自由－幸福');
+h += '<p class="center-line school">' + v("dg-school") + '</p>';
+h += '<h1 class="doc-title">' + esc(val("dg-degree") || "修士号") + '</h1>';
+h += '<p class="fixed-line">下記の者に対し、' + esc(val("dg-degree") || "修士号") + 'を授与する。</p>';
+h += line('氏名', renderName("dg-name", "dg-kana"));
+h += line('生年月日', dv("dg-dob"));
+h += line('専攻', v("dg-major"));
+if (val("dg-grade")) h += line('卒業格付け', v("dg-grade"));
+h += '<div class="right-sign">' +
+'<p class="place-date">' + (val("dg-place")? esc(val("dg-place")): BLANK) + '、' + jpDate("dg-issuedate") + '</p>' +
+'<p class="role">' + esc(val("dg-signrole") || "学長") + '</p>' +
+'<p class="note">（署名および印鑑）</p>' +
+'<p>' + v("dg-signtitle") + '</p>' +
+'<p class="nm">' + renderName("dg-signname", "dg-signkana") + '</p>' +
+'</div>';
+h += '<p style="margin-top:26px">番号：' + v("dg-no") + '</p>';
+h += '<p>登録番号：' + v("dg-regno") + '</p>';
+return h + translatorBlock();
+}
+
+/* ================= C7) 運転免許証 ================= */
+function renderLicense() {
+var h = '';
+h += '<h1 class="doc-title" style="letter-spacing:0.14em;text-indent:0.14em">運転免許証</h1>';
+h += line('番号', v("lx-no"));
+h += line('氏名', renderName("lx-name", "lx-kana"));
+h += '<p class="flex-line"><span class="seg">生年月日：' + dv("lx-dob") + '</span>' +
+'<span class="seg">国籍：' + (val("lx-nation")? esc(mapNation(val("lx-nation")) || val("lx-nation")): 'ベトナム') + '</span></p>';
+h += line('居住地', v("lx-addr"));
+h += '<p class="flex-line"><span class="seg">等級：' + v("lx-class") + '</span>' +
+'<span class="seg">発行日：' + dv("lx-issuedate") + '</span>' +
+'<span class="seg">有効期限：' + dv("lx-expiry") + '</span></p>';
+h += line('発行機関', val("lx-issuer")? esc(val("lx-issuer")): '公安');
+if (val("lx-restrict")) h += line('制限条件', v("lx-restrict"));
+h += '<p class="sec-h" style="margin-top:22px">裏面</p>';
+h += '<p class="line"><span class="lb">運転可能な車両：</span>等級' + v("lx-class") + 'に対応する車両（二輪・四輪の別は原本の等級表による）</p>';
+h += line('合格日', dv("lx-passdate"));
+h += '<p class="doc-note">裏面にはQRコードが印刷され、交通警察の免許データベースと連携している。</p>';
+return h + translatorBlock();
+}
+
+/* ================= C8) 車両登録証明書 ================= */
+function renderVehicleReg() {
+var h = '';
+h += headStd('独立-自由-幸福');
+h += '<h1 class="doc-title" style="letter-spacing:0.08em;text-indent:0.08em">車両登録証明書</h1>';
+h += line('所有者', renderName("vr-owner", "vr-ownerkana"));
+h += line('住所', v("vr-addr"));
+h += '<p class="flex-line"><span class="seg">識別番号：' + v("vr-ownerid") + '</span>' +
+'<span class="seg">ナンバープレート：' + v("vr-plate") + '</span></p>';
+h += '<p class="flex-line"><span class="seg">メーカー：' + v("vr-brand") + '</span>' +
+'<span class="seg">型式：' + v("vr-model") + '</span></p>';
+h += '<p class="flex-line"><span class="seg">車種：' + v("vr-type") + '</span>' +
+'<span class="seg">色：' + v("vr-color") + '</span></p>';
+h += '<p class="flex-line"><span class="seg">エンジン番号：' + v("vr-engine") + '</span>' +
+'<span class="seg">車台番号：' + v("vr-vin") + '</span></p>';
+h += '<p class="flex-line"><span class="seg">排気量・出力：' + v("vr-capacity") + '</span>' +
+'<span class="seg">製造年：' + (val("vr-year")? esc(val("vr-year")) + '年': BLANK) + '</span>' +
+'<span class="seg">製造国：' + v("vr-origin") + '</span></p>';
+if (val("vr-seats")) h += line('定員・積載量', v("vr-seats"));
+h += '<p class="flex-line"><span class="seg">初回登録日：' + dv("vr-firstdate") + '</span>' +
+'<span class="seg">発行日：' + dv("vr-issuedate") + '</span></p>';
+h += '<div class="right-sign">' +
+'<p class="role">' + (val("vr-issuer")? esc(val("vr-issuer")): BLANK) + '</p>' +
+'<p class="note">（署名・押印）</p>' +
+'<p class="nm">' + renderName("vr-signname", "vr-signkana") + '</p>' +
+'</div>';
 return h + translatorBlock();
 }
 
@@ -6180,11 +8234,15 @@ transcript: renderTranscript, schoolrecord: renderSchoolrecord,
 maritalstatus: renderMaritalStatus, hospitalbirth: renderHospitalBirth,
 residence: renderResidence, income: renderIncome, employment: renderEmployment,
 support: renderSupport, resume: renderResume, health: renderHealth,
-land: renderLand, company: renderCompany
+land: renderLand, company: renderCompany,
+death: renderDeath, criminal: renderCriminal, poa: renderPoa,
+thcs: renderThcs, college: renderCollege, grad: renderGrad,
+license: renderLicense, vehiclereg: renderVehicleReg
 };
 var TYPES = ["birth", "marriage", "uni", "hs", "household", "business", "idcard", "passport", "bank",
 "transcript", "schoolrecord", "maritalstatus", "hospitalbirth", "residence", "income", "employment",
-"support", "resume", "health", "land", "company"];
+"support", "resume", "health", "land", "company",
+"death", "criminal", "poa", "thcs", "college", "grad", "license", "vehiclereg"];
 function render() {
 $("paper").innerHTML = RENDERERS[currentType]();
 fitPaper();
@@ -6369,6 +8427,54 @@ return '<div class="member-block">' +
 '</div>' +
 '</div>';
 }
+function txDep1Html() {
+return '<div class="member-block">' +
+'<div class="member-head"><span class="mt">Người phụ thuộc (Bảng I)</span><button type="button" class="btn-small dyn-remove">Xoá người này</button></div>' +
+'<div class="grid2">' +
+'<div class="field"><label>Họ và tên （氏名）</label><input type="text" class="txj1-name" placeholder="Họ và tên (tiếng Việt)" /></div>' +
+'<div class="field"><label>Ngày sinh</label><input type="date" class="txj1-dob" /></div>' +
+'</div>' +
+'<div class="grid3">' +
+'<div class="field"><label>Mã số thuế (nếu có) （納税者番号）</label><input type="text" class="txj1-taxcode" /></div>' +
+'<div class="field"><label>Quốc tịch （国籍）</label><input type="text" class="txj1-nation" placeholder="Việt Nam" /></div>' +
+'<div class="field"><label>Quan hệ với người nộp thuế （続柄）</label><input type="text" class="txj1-relation" placeholder="Ví dụ: Cha / Mẹ / Con" /></div>' +
+'</div>' +
+'<div class="grid3">' +
+'<div class="field"><label>Loại giấy tờ （書類の種類）</label><input type="text" class="txj1-idtype" placeholder="CCCD / Hộ chiếu" /></div>' +
+'<div class="field"><label>Số giấy tờ （番号）</label><input type="text" class="txj1-idno" /></div>' +
+'<div class="field"><label>Ngày cấp</label><input type="date" class="txj1-iddate" /></div>' +
+'</div>' +
+'<div class="grid3">' +
+'<div class="field"><label>Nơi cấp （発行地）</label><input type="text" class="txj1-idplace" /></div>' +
+'<div class="field"><label>Địa chỉ thường trú （常住地）</label><input type="text" class="txj1-permaddr" /></div>' +
+'<div class="field"><label>Địa chỉ hiện tại （現住所）</label><input type="text" class="txj1-curaddr" /></div>' +
+'</div>' +
+'</div>';
+}
+function txDep2Html() {
+return '<div class="member-block">' +
+'<div class="member-head"><span class="mt">Người phụ thuộc (Bảng II)</span><button type="button" class="btn-small dyn-remove">Xoá người này</button></div>' +
+'<div class="grid2">' +
+'<div class="field"><label>Họ và tên （氏名）</label><input type="text" class="txj2-name" placeholder="Họ và tên (tiếng Việt)" /></div>' +
+'<div class="field"><label>Ngày sinh</label><input type="date" class="txj2-dob" /></div>' +
+'</div>' +
+'<div class="grid2">' +
+'<div class="field"><label>Mã số thuế (nếu có) （納税者番号）</label><input type="text" class="txj2-taxcode" /></div>' +
+'<div class="field"><label>Quốc tịch （国籍）</label><input type="text" class="txj2-nation" placeholder="Việt Nam" /></div>' +
+'</div>' +
+'<div class="grid3">' +
+'<div class="field"><label>Số giấy khai sinh （出生届番号）</label><input type="text" class="txj2-bcno" /></div>' +
+'<div class="field"><label>Ngày cấp giấy khai sinh</label><input type="date" class="txj2-bcdate" /></div>' +
+'<div class="field"><label>Quan hệ （続柄）</label><input type="text" class="txj2-relation" placeholder="Ví dụ: Con" /></div>' +
+'</div>' +
+'<div class="grid4">' +
+'<div class="field"><label>Nơi đăng ký — quốc gia （国）</label><input type="text" class="txj2-bccountry" placeholder="Việt Nam" /></div>' +
+'<div class="field"><label>Tỉnh / thành phố （省）</label><input type="text" class="txj2-bcprovince" /></div>' +
+'<div class="field"><label>Quận / huyện （県）</label><input type="text" class="txj2-bcdistrict" /></div>' +
+'<div class="field"><label>Xã / phường （社）</label><input type="text" class="txj2-bccommune" /></div>' +
+'</div>' +
+'</div>';
+}
 function cpIndHtml() {
 return '<div class="member-block">' +
 '<div class="member-head"><span class="mt">Ngành nghề</span><button type="button" class="btn-small dyn-remove">Xoá ngành</button></div>' +
@@ -6419,7 +8525,8 @@ fillDyn("rs-members", function () { return rsMemberHtml(); }, 1);
 fillDyn("sp-deps", function () { return spDepHtml(); }, 1);
 fillDyn("cv-children", function (n) { return cvChildHtml(n); }, 5);
 fillDyn("cv-history", function () { return cvHistoryHtml(); }, 1);
-fillDyn("cp-inds", function () { return cpIndHtml(); }, 1);
+fillDyn("tx-deps1", function () { return txDep1Html(); }, 1);
+fillDyn("tx-deps2", function () { return txDep2Html(); }, 1);
 var proc = $("sr-process");
 if (proc) {
 proc.innerHTML = "";
@@ -6444,7 +8551,8 @@ if (document.querySelectorAll("#sp-deps .member-block").length >= 7) return;
 addDyn("sp-deps", spDepHtml()); render();
 });
 $("btnAddCvRow").addEventListener("click", function () { addDyn("cv-history", cvHistoryHtml()); render(); });
-$("btnAddCpInd").addEventListener("click", function () { addDyn("cp-inds", cpIndHtml()); render(); });
+$("btnAddTxDep1").addEventListener("click", function () { addDyn("tx-deps1", txDep1Html()); render(); });
+$("btnAddTxDep2").addEventListener("click", function () { addDyn("tx-deps2", txDep2Html()); render(); });
 document.addEventListener("click", function (e) {
 if (e.target && e.target.classList && e.target.classList.contains("dyn-remove")) {
 var block = e.target.closest(".member-block");

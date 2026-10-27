@@ -913,14 +913,14 @@
                 <option value="main">Giấy khai sinh (bản chính)</option>
                 <option value="extract">Trích lục khai sinh</option>
                 <option value="ks1975">Giấy khai sinh — Mẫu 1975–1980</option>
-                <option value="ksht3p3">Giấy khai sinh — Form HT3/P3 (trước 1990)</option>
-                <option value="kstpht2">Giấy khai sinh — Form TP/HT2 (khoảng 1990)</option>
-                <option value="ksht2p3">Giấy khai sinh — Form HT2/P3 (sau 1990)</option>
-                <option value="ks1999">Giấy khai sinh — Form TP/HT-1999-A.2 (1999, bản sao)</option>
-                <option value="ks2006">Giấy khai sinh — Form BTP/HT-2006-KS.1 (2006, bản chính)</option>
-                <option value="ks2010">Giấy khai sinh — Form TP/HT-2010-KS.1 (bản chính)</option>
-                <option value="ks2010a">Giấy khai sinh — Form TP/HT-2010-KS.1a (bản sao)</option>
-                <option value="ks2013a">Giấy khai sinh — Form TP/HT-2013-KS.1a (bản sao)</option>
+                <option value="ksht3p3">Giấy khai sinh — Mẫu HT3/P3 (trước 1990)</option>
+                <option value="kstpht2">Giấy khai sinh — Mẫu TP/HT 2 (khoảng 1990)</option>
+                <option value="ksht2p3">Giấy khai sinh — Mẫu HT2/P3 (sau 1990)</option>
+                <option value="ks1999">Giấy khai sinh — Mẫu TP/HT-1999-A.2.a (1999, bản sao)</option>
+                <option value="ks2006">Giấy khai sinh — Mẫu BTP/HT-2006-KS.1 (2006, bản chính)</option>
+                <option value="ks2010">Giấy khai sinh — Mẫu TP/HT-2010-KS.1 (bản chính)</option>
+                <option value="ks2010a">Giấy khai sinh — Mẫu TP/HT-2010-KS.1a (bản sao)</option>
+                <option value="ks2013a">Giấy khai sinh — Mẫu TP/HT-2013-KS.1a (bản sao)</option>
                 <option value="ks2015">Giấy khai sinh — Thông tư 15/2015/TT-BTP (bản chính)</option>
                 <option value="ks2015tl">Trích lục khai sinh — Thông tư 15/2015/TT-BTP (bản sao)</option>
               </select>
@@ -1560,7 +1560,7 @@
 <input type="text" id="ko-dobwords" placeholder="Ngày sinh viết bằng chữ trên giấy gốc (nếu có)" />
 </div>
 <div class="field">
-<label for="ko-birthtime">Giờ sinh （出生時刻）<span class="opt"> — chỉ Form HT3/P3</span></label>
+<label for="ko-birthtime">Giờ sinh （出生時刻）<span class="opt"> — chỉ Mẫu HT3/P3</span></label>
 <input type="text" id="ko-birthtime" placeholder="Ví dụ: 3:50" />
 </div>
 </div>
@@ -1570,11 +1570,11 @@
 </div>
 <div class="grid2">
 <div class="field">
-<label for="ko-ethnic">Dân tộc （民族）<span class="opt"> — chỉ Form TP/HT2</span></label>
+<label for="ko-ethnic">Dân tộc （民族）<span class="opt"> — chỉ Mẫu TP/HT 2</span></label>
 <input type="text" id="ko-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
 </div>
 <div class="field">
-<label for="ko-nat">Quốc tịch （国籍）<span class="opt"> — chỉ Form TP/HT2</span></label>
+<label for="ko-nat">Quốc tịch （国籍）<span class="opt"> — chỉ Mẫu TP/HT 2</span></label>
 <input type="text" id="ko-nat" placeholder="Để trống = ベトナム" />
 </div>
 </div>
@@ -1673,7 +1673,7 @@
 <input type="date" id="ko-regdate" />
 </div>
 <div class="field">
-<label for="ko-certdate">Ngày chứng thực sao y （認証日）<span class="opt"> — chỉ Form TP/HT-1999-A.2</span></label>
+<label for="ko-certdate">Ngày chứng thực sao y （認証日）<span class="opt"> — chỉ Mẫu TP/HT-1999-A.2.a</span></label>
 <input type="date" id="ko-certdate" />
 </div>
 </div>
@@ -8406,11 +8406,11 @@ h += '<div class="head-row"><div class="head-left">' +
 '<p>省：' + v("ko-province") + '</p>' +
 '</div>' +
 '<div class="head-right">' +
+'<p>様式：HT3/P3</p>' +
 '<p>番号：' + v("ko-no") + '</p>' +
 '<p>巻号：' + v("ko-book") + '</p>' +
 '</div></div>';
 h += headStd('独立-自由-幸福');
-h += '<p class="right-line">Form HT3/P3</p>';
 return h;
 }
 if (bv === "kstpht2") {
@@ -8421,11 +8421,11 @@ h += '<div class="head-row"><div class="head-left">' +
 '<p>省：' + v("ko-province") + '</p>' +
 '</div>' +
 '<div class="head-right">' +
+'<p>様式：TP/HT 2</p>' +
 '<p>番号：' + v("ko-no") + '</p>' +
 '<p>巻号：' + v("ko-book") + '</p>' +
 '</div></div>';
 h += headStd('独立-自由-幸福');
-h += '<p class="right-line">Form TP/HT 2</p>';
 return h;
 }
 h += '<div class="head-row"><div class="head-left">' +
@@ -8435,12 +8435,11 @@ h += '<div class="head-row"><div class="head-left">' +
 '<p>市：' + v("ko-province") + '</p>' +
 '</div>' +
 '<div class="head-right">' +
+((bv === "ksht2p3")? '<p>様式：HT2/P3</p>': (bv === "ks1999")? '<p>様式：TP/HT-1999-A.2.a</p>': '') +
 '<p>番号：' + v("ko-no") + '</p>' +
 '<p>巻号：' + v("ko-book") + '</p>' +
 '</div></div>';
 h += headStd('独立-自由-幸福');
-if (bv === "ksht2p3") h += '<p class="right-line">HT2/P3</p>';
-if (bv === "ks1999") h += '<p class="right-line">TP/HT-1999-A.2</p>';
 return h;
 }
 function renderBirthOldTable(bv) {
@@ -8524,11 +8523,15 @@ return h;
 var isCopy = (bv === "ks2010a" || bv === "ks2013a");
 var code = { ks2006: "BTP/HT-2006-KS.1", ks2010: "TP/HT-2010-KS.1", ks2010a: "TP/HT-2010-KS.1a", ks2013a: "TP/HT-2013-KS.1a" }[bv];
 var h = '';
+h += '<div class="head-row"><div class="head-left"></div>' +
+'<div class="head-right">' +
+'<p>様式：' + code + '</p>' +
+'<p>番号：' + v("kb-no") + '</p>' +
+'<p>巻号：' + v("kb-book") + '</p>' +
+'</div></div>';
 h += headStd('独立-自由-幸福');
 h += '<h1 class="doc-title">出生証明書</h1>';
 h += '<p class="doc-sub">（' + (isCopy? '写し': '原本') + '）</p>';
-h += '<p class="flex-line"><span class="seg">番号：' + v("kb-no") + '</span>' +
-'<span class="seg">巻号：' + v("kb-book") + '</span></p>';
 h += '<p class="flex-line"><span class="seg">氏名：' + renderName("kb-name", "kb-kana") + '</span>' +
 '<span class="seg">性別：' + v("kb-gender") + '</span></p>';
 h += line('生年月日', dv("kb-dob"));
@@ -8556,7 +8559,6 @@ h += '<div class="right-sign">' +
 '<p class="nm">' + renderName("kb-copy-name", "kb-copy-kana") + '</p>' +
 '</div>';
 }
-h += '<p class="doc-note small" style="margin-top:20px">' + code + '</p>';
 return h + translatorBlock();
 }
 

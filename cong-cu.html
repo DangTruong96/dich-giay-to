@@ -6607,31 +6607,31 @@ In / Lưu PDF
       }
 
       /* ================= Value translation (offline, deterministic) ================= */
-      /* 63 provinces/cities -> standard Japanese renderings (suffix included) */
+      /* 63 provinces/cities -> original Latin name + Japanese administrative suffix (published-specimen style) */
       var PROVINCES = {
-        "an giang": "アンザン省", "ba ria vung tau": "バリア・ブンタウ省",
-        "bac giang": "バクザン省", "bac kan": "バッカン省", "bac lieu": "バクリエウ省",
-        "bac ninh": "バクニン省", "ben tre": "ベンチェ省", "binh dinh": "ビンディン省",
-        "binh duong": "ビンズオン省", "binh phuoc": "ビンフオック省", "binh thuan": "ビントゥアン省",
-        "ca mau": "カマウ省", "can tho": "カントー市", "cao bang": "カオバン省",
-        "da nang": "ダナン市", "dak lak": "ダクラク省", "dak nong": "ダクノン省",
-        "dien bien": "ディエンビエン省", "dong nai": "ドンナイ省", "dong thap": "ドンタップ省",
-        "gia lai": "ザーライ省", "ha giang": "ハザン省", "ha nam": "ハナム省",
-        "ha noi": "ハノイ", "ha tinh": "ハティン省", "hai duong": "ハイズオン省",
-        "hai phong": "ハイフォン市", "hau giang": "ハウザン省", "hoa binh": "ホアビン省",
-        "ho chi minh": "ホーチミン市", "sai gon": "ホーチミン市",
-        "hung yen": "フンイエン省", "khanh hoa": "カインホア省", "kien giang": "キエンザン省",
-        "kon tum": "コントゥム省", "lai chau": "ライチャウ省", "lam dong": "ラムドン省",
-        "lang son": "ランソン省", "lao cai": "ラオカイ省", "long an": "ロンアン省",
-        "nam dinh": "ナムディン省", "nghe an": "ゲアン省", "ninh binh": "ニンビン省",
-        "ninh thuan": "ニントゥアン省", "phu tho": "フートー省", "phu yen": "フーイエン省",
-        "quang binh": "クアンビン省", "quang nam": "クアンナム省", "quang ngai": "クアンガイ省",
-        "quang ninh": "クアンニン省", "quang tri": "クアンチ省", "soc trang": "ソクチャン省",
-        "son la": "ソンラ省", "tay ninh": "タイニン省", "thai binh": "タイビン省",
-        "thai nguyen": "タイグエン省", "thanh hoa": "タインホア省",
-        "thua thien hue": "トゥアティエン・フエ省", "hue": "フエ市",
-        "tien giang": "ティエンザン省", "tra vinh": "チャヴィン省", "tuyen quang": "トゥエンクアン省",
-        "vinh long": "ヴィンロン省", "vinh phuc": "ヴィンフック省", "yen bai": "イエンバイ省"
+        "an giang": "AN GIANG省", "ba ria vung tau": "BA RIA VUNG TAU省",
+        "bac giang": "BAC GIANG省", "bac kan": "BAC KAN省", "bac lieu": "BAC LIEU省",
+        "bac ninh": "BAC NINH省", "ben tre": "BEN TRE省", "binh dinh": "BINH DINH省",
+        "binh duong": "BINH DUONG省", "binh phuoc": "BINH PHUOC省", "binh thuan": "BINH THUAN省",
+        "ca mau": "CA MAU省", "can tho": "CAN THO市", "cao bang": "CAO BANG省",
+        "da nang": "DA NANG市", "dak lak": "DAK LAK省", "dak nong": "DAK NONG省",
+        "dien bien": "DIEN BIEN省", "dong nai": "DONG NAI省", "dong thap": "DONG THAP省",
+        "gia lai": "GIA LAI省", "ha giang": "HA GIANG省", "ha nam": "HA NAM省",
+        "ha noi": "HA NOI", "ha tinh": "HA TINH省", "hai duong": "HAI DUONG省",
+        "hai phong": "HAI PHONG市", "hau giang": "HAU GIANG省", "hoa binh": "HOA BINH省",
+        "ho chi minh": "HO CHI MINH市", "sai gon": "HO CHI MINH市",
+        "hung yen": "HUNG YEN省", "khanh hoa": "KHANH HOA省", "kien giang": "KIEN GIANG省",
+        "kon tum": "KON TUM省", "lai chau": "LAI CHAU省", "lam dong": "LAM DONG省",
+        "lang son": "LANG SON省", "lao cai": "LAO CAI省", "long an": "LONG AN省",
+        "nam dinh": "NAM DINH省", "nghe an": "NGHE AN省", "ninh binh": "NINH BINH省",
+        "ninh thuan": "NINH THUAN省", "phu tho": "PHU THO省", "phu yen": "PHU YEN省",
+        "quang binh": "QUANG BINH省", "quang nam": "QUANG NAM省", "quang ngai": "QUANG NGAI省",
+        "quang ninh": "QUANG NINH省", "quang tri": "QUANG TRI省", "soc trang": "SOC TRANG省",
+        "son la": "SON LA省", "tay ninh": "TAY NINH省", "thai binh": "THAI BINH省",
+        "thai nguyen": "THAI NGUYEN省", "thanh hoa": "THANH HOA省",
+        "thua thien hue": "THUA THIEN HUE省", "hue": "HUE市",
+        "tien giang": "TIEN GIANG省", "tra vinh": "TRA VINH省", "tuyen quang": "TUYEN QUANG省",
+        "vinh long": "VINH LONG省", "vinh phuc": "VINH PHUC省", "yen bai": "YEN BAI省"
       };
 
       function hasJapanese(s) { return /[\u3040-\u30ff\u4e00-\u9fff\uff66-\uff9f]/.test(s); }
@@ -6642,29 +6642,36 @@ In / Lưu PDF
           return syllableKana(tok);
         }).join("・");
       }
-      function provOrKana(name, suffix) {
+      /* Place names stay in the original Latin, as in published JP translations
+         of VN civil documents (HA NOI, CAU GIAY, DICH VONG); only the
+         administrative unit is translated. Input reaching here is already
+         diacritic-stripped + lowercased by the translatePlace* normalizers. */
+      function placeLatin(name) {
+        return name.split(/\s+/).filter(Boolean).map(function (tok) { return tok.toUpperCase(); }).join(" ");
+      }
+      function provOrLatin(name, suffix) {
         name = name.trim();
         if (PROVINCES[name]) return PROVINCES[name];
-        return placeKana(name) + suffix;
+        return placeLatin(name) + suffix;
       }
       function translatePlaceCore(seg) {
         if (PROVINCES[seg]) return PROVINCES[seg];
         var m;
-        if ((m = seg.match(/^tinh\s+(.+)$/))) return provOrKana(m[1], "省");
-        if ((m = seg.match(/^(?:thanh pho|tp\.?)\s+(.+)$/))) return provOrKana(m[1], "市");
-        if ((m = seg.match(/^thi xa\s+(.+)$/))) return placeKana(m[1]) + "市";
-        if ((m = seg.match(/^thi tran\s+(.+)$/))) return placeKana(m[1]) + "町";
-        if ((m = seg.match(/^quan\s+(.+)$/))) return placeKana(m[1]) + "区";
-        if ((m = seg.match(/^huyen\s+(.+)$/))) return placeKana(m[1]) + "郡";
-        if ((m = seg.match(/^phuong\s+(.+)$/))) return placeKana(m[1]) + "町";
-        if ((m = seg.match(/^xa\s+(.+)$/))) return placeKana(m[1]) + "町";
-        if ((m = seg.match(/^(?:thon|ap|ban)\s+(.+)$/))) return placeKana(m[1]) + "村";
-        if ((m = seg.match(/^khu pho\s+(.+)$/))) return placeKana(m[1]) + "町";
-        if ((m = seg.match(/^to dan pho\s+(.+)$/))) return placeKana(m[1]) + "町内";
-        if ((m = seg.match(/^duong\s+(.+)$/))) return placeKana(m[1]) + "通り";
-        if ((m = seg.match(/^pho\s+(.+)$/))) return placeKana(m[1]) + "通り";
-        if ((m = seg.match(/^so\s+(.+)$/))) return placeKana(m[1]) + "番地";
-        return placeKana(seg);
+        if ((m = seg.match(/^tinh\s+(.+)$/))) return provOrLatin(m[1], "省");
+        if ((m = seg.match(/^(?:thanh pho|tp\.?)\s+(.+)$/))) return provOrLatin(m[1], "市");
+        if ((m = seg.match(/^thi xa\s+(.+)$/))) return placeLatin(m[1]) + "市";
+        if ((m = seg.match(/^thi tran\s+(.+)$/))) return placeLatin(m[1]) + "町";
+        if ((m = seg.match(/^quan\s+(.+)$/))) return placeLatin(m[1]) + "区";
+        if ((m = seg.match(/^huyen\s+(.+)$/))) return placeLatin(m[1]) + "郡";
+        if ((m = seg.match(/^phuong\s+(.+)$/))) return placeLatin(m[1]) + "町";
+        if ((m = seg.match(/^xa\s+(.+)$/))) return placeLatin(m[1]) + "町";
+        if ((m = seg.match(/^(?:thon|ap|ban)\s+(.+)$/))) return placeLatin(m[1]) + "村";
+        if ((m = seg.match(/^khu pho\s+(.+)$/))) return placeLatin(m[1]) + "町";
+        if ((m = seg.match(/^to dan pho\s+(.+)$/))) return placeLatin(m[1]) + "町内";
+        if ((m = seg.match(/^duong\s+(.+)$/))) return placeLatin(m[1]) + "通り";
+        if ((m = seg.match(/^pho\s+(.+)$/))) return placeLatin(m[1]) + "通り";
+        if ((m = seg.match(/^so\s+(.+)$/))) return placeLatin(m[1]) + "番地";
+        return placeLatin(seg);
       }
       function translatePlaceSegment(seg) {
         seg = seg.trim().replace(/\.+$/, "");
@@ -6697,16 +6704,16 @@ In / Lưu PDF
       }
 
       /* Bare-name mode: for component fields whose renderer appends its own unit suffix
-         (e.g. 町：X, X省, X人民委員会) — translate the name only, no unit suffix. */
+         (e.g. 町：X, X省, X人民委員会) — keep the name in Latin only, no unit suffix. */
       function translatePlaceCoreBare(seg) {
         if (PROVINCES[seg]) return PROVINCES[seg].replace(/(省|市|県)$/, "");
         var m;
         if ((m = seg.match(/^(?:tinh|thanh pho|tp\.?|thi xa|thi tran|quan|huyen|phuong|xa|thon|ap|ban|khu pho|to dan pho|duong|pho|so)\s+(.+)$/))) {
           var nm = m[1].trim();
           if (PROVINCES[nm]) return PROVINCES[nm].replace(/(省|市|県)$/, "");
-          return placeKana(nm);
+          return placeLatin(nm);
         }
-        return placeKana(seg);
+        return placeLatin(seg);
       }
       function translatePlaceBare(raw) {
         if (!raw) return raw;
@@ -6725,7 +6732,7 @@ In / Lưu PDF
         return out.join("、");
       }
       var PLACE_BARE_IDS = {};
-      ("bc-town bc-ward hk-street hk-ward hk-district ms-province ms-district ms-commune cp-province").split(" ").forEach(function (id) { PLACE_BARE_IDS[id] = true; });
+      ("bc-town bc-ward bc-city hk-street hk-ward hk-district ms-province ms-district ms-commune cp-province").split(" ").forEach(function (id) { PLACE_BARE_IDS[id] = true; });
 
       /* Fields whose entered value is a place / address (rendered in Japanese) */
       var PLACE_IDS = {};

@@ -7952,7 +7952,12 @@ Tải file PDF
           if (t === "nghin" || t === "ngan") { if (section === 0 && digit < 0) digit = 1; flush(1000); seen = true; continue; }
           if (t === "trieu") { if (section === 0 && digit < 0) digit = 1; flush(1000000); seen = true; continue; }
           if (t === "ty") { if (section === 0 && digit < 0) digit = 1; flush(1000000000); seen = true; continue; }
-          if (Object.prototype.hasOwnProperty.call(VN_NUM, t)) { digit = VN_NUM[t]; seen = true; continue; }
+          if (Object.prototype.hasOwnProperty.call(VN_NUM, t)) {
+            /* Hai chữ số đứng liền nhau = dạng rút gọn lược "mươi": "chín ba" = 93
+               (chín mươi ba). Chữ số đang chờ là hàng chục, không ghi đè nó. */
+            if (digit >= 0) { section += digit * 10; digit = -1; }
+            digit = VN_NUM[t]; seen = true; continue;
+          }
           return null;
         }
         return seen ? total + section + (digit >= 0 ? digit : 0) : null;

@@ -912,6 +912,17 @@
                 <option value="rereg">Đăng ký lại khai sinh</option>
                 <option value="main">Giấy khai sinh (bản chính)</option>
                 <option value="extract">Trích lục khai sinh</option>
+                <option value="ks1975">Giấy khai sinh — Mẫu 1975–1980</option>
+                <option value="ksht3p3">Giấy khai sinh — Form HT3/P3 (trước 1990)</option>
+                <option value="kstpht2">Giấy khai sinh — Form TP/HT2 (khoảng 1990)</option>
+                <option value="ksht2p3">Giấy khai sinh — Form HT2/P3 (sau 1990)</option>
+                <option value="ks1999">Giấy khai sinh — Form TP/HT-1999-A.2 (1999, bản sao)</option>
+                <option value="ks2006">Giấy khai sinh — Form BTP/HT-2006-KS.1 (2006, bản chính)</option>
+                <option value="ks2010">Giấy khai sinh — Form TP/HT-2010-KS.1 (bản chính)</option>
+                <option value="ks2010a">Giấy khai sinh — Form TP/HT-2010-KS.1a (bản sao)</option>
+                <option value="ks2013a">Giấy khai sinh — Form TP/HT-2013-KS.1a (bản sao)</option>
+                <option value="ks2015">Giấy khai sinh — Thông tư 15/2015/TT-BTP (bản chính)</option>
+                <option value="ks2015tl">Trích lục khai sinh — Thông tư 15/2015/TT-BTP (bản sao)</option>
               </select>
             </div>
           </fieldset>
@@ -1485,6 +1496,672 @@
 <input type="text" id="bx-signname" class="vn-name" placeholder="Họ và tên người ký" />
 <label class="kana-label" for="bx-signkana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
 <input type="text" id="bx-signkana" class="kana" placeholder="カタカナ" />
+</div>
+</fieldset>
+</div>
+
+<div class="vpart" data-scope="bcv" data-show="ks1975 ksht3p3 kstpht2 ksht2p3 ks1999" hidden>
+<fieldset>
+<legend>Cơ quan cấp （人民委員会）— mẫu cũ</legend>
+<div class="field">
+<label for="ko-committee">Tên Ủy ban nhân dân</label>
+<input type="text" id="ko-committee" placeholder="Ví dụ: Ủy ban nhân dân phường Thắng Tam" />
+</div>
+<div class="grid3">
+<div class="field">
+<label for="ko-ward">Phường / xã （町）</label>
+<input type="text" id="ko-ward" placeholder="Tên phường / xã" />
+</div>
+<div class="field">
+<label for="ko-district">Quận / huyện （区・郡）</label>
+<input type="text" id="ko-district" placeholder="Tên quận / huyện" />
+</div>
+<div class="field">
+<label for="ko-province">Tỉnh / TP （省・市）</label>
+<input type="text" id="ko-province" placeholder="Tên tỉnh / thành phố" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ko-no">Số （番号）</label>
+<input type="text" id="ko-no" placeholder="Số trên giấy gốc" />
+</div>
+<div class="field">
+<label for="ko-book">Quyển số （巻号）</label>
+<input type="text" id="ko-book" placeholder="Quyển số trên giấy gốc" />
+</div>
+</div>
+</fieldset>
+<fieldset>
+<legend>Người được khai sinh — mẫu cũ</legend>
+<div class="field name-pair">
+<label for="ko-name">Họ và tên</label>
+<input type="text" id="ko-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="ko-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ko-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ko-gender">Giới tính</label>
+<select id="ko-gender">
+<option value="">— Chưa chọn —</option>
+<option value="男">Nam</option>
+<option value="女">Nữ</option>
+</select>
+</div>
+<div class="field">
+<label for="ko-dob">Ngày sinh</label>
+<input type="date" id="ko-dob" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ko-dobwords">Ngày sinh viết bằng chữ （字で書く）<span class="opt"> — mẫu 1975–1980 / HT2/P3</span></label>
+<input type="text" id="ko-dobwords" placeholder="Ngày sinh viết bằng chữ trên giấy gốc (nếu có)" />
+</div>
+<div class="field">
+<label for="ko-birthtime">Giờ sinh （出生時刻）<span class="opt"> — chỉ Form HT3/P3</span></label>
+<input type="text" id="ko-birthtime" placeholder="Ví dụ: 3:50" />
+</div>
+</div>
+<div class="field">
+<label for="ko-birthplace">Nơi sinh （出生所）</label>
+<input type="text" id="ko-birthplace" placeholder="Nơi sinh của trẻ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ko-ethnic">Dân tộc （民族）<span class="opt"> — chỉ Form TP/HT2</span></label>
+<input type="text" id="ko-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+<div class="field">
+<label for="ko-nat">Quốc tịch （国籍）<span class="opt"> — chỉ Form TP/HT2</span></label>
+<input type="text" id="ko-nat" placeholder="Để trống = ベトナム" />
+</div>
+</div>
+</fieldset>
+<fieldset>
+<legend>Cha （父）— mẫu cũ</legend>
+<div class="field name-pair">
+<label for="ko-f-name">Họ và tên cha</label>
+<input type="text" id="ko-f-name" class="vn-name" placeholder="Họ và tên đầy đủ của cha" />
+<label class="kana-label" for="ko-f-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ko-f-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ko-f-age">Tuổi / năm sinh của cha （年齢・生年）</label>
+<input type="text" id="ko-f-age" placeholder="Ví dụ: 1961 hoặc 25 tuổi" />
+</div>
+<div class="field">
+<label for="ko-f-ethnic">Dân tộc của cha</label>
+<input type="text" id="ko-f-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ko-f-nat">Quốc tịch của cha</label>
+<input type="text" id="ko-f-nat" placeholder="Để trống = ベトナム" />
+</div>
+<div class="field">
+<label for="ko-f-job">Nghề nghiệp của cha （職業）</label>
+<input type="text" id="ko-f-job" placeholder="Nghề nghiệp của cha" />
+</div>
+</div>
+<div class="field">
+<label for="ko-f-addr">Nơi cư trú / hộ khẩu thường trú của cha （居住地・常住地）</label>
+<input type="text" id="ko-f-addr" placeholder="Nơi cư trú của cha" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Mẹ （母）— mẫu cũ</legend>
+<div class="field name-pair">
+<label for="ko-m-name">Họ và tên mẹ</label>
+<input type="text" id="ko-m-name" class="vn-name" placeholder="Họ và tên đầy đủ của mẹ" />
+<label class="kana-label" for="ko-m-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ko-m-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ko-m-age">Tuổi / năm sinh của mẹ （年齢・生年）</label>
+<input type="text" id="ko-m-age" placeholder="Ví dụ: 1962 hoặc 24 tuổi" />
+</div>
+<div class="field">
+<label for="ko-m-ethnic">Dân tộc của mẹ</label>
+<input type="text" id="ko-m-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ko-m-nat">Quốc tịch của mẹ</label>
+<input type="text" id="ko-m-nat" placeholder="Để trống = ベトナム" />
+</div>
+<div class="field">
+<label for="ko-m-job">Nghề nghiệp của mẹ （職業）</label>
+<input type="text" id="ko-m-job" placeholder="Nghề nghiệp của mẹ" />
+</div>
+</div>
+<div class="field">
+<label for="ko-m-addr">Nơi cư trú / hộ khẩu thường trú của mẹ （居住地・常住地）</label>
+<input type="text" id="ko-m-addr" placeholder="Nơi cư trú của mẹ" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Người khai &amp; người ký — mẫu cũ</legend>
+<div class="field name-pair">
+<label for="ko-a-name">Họ và tên người khai</label>
+<input type="text" id="ko-a-name" class="vn-name" placeholder="Họ và tên người khai" />
+<label class="kana-label" for="ko-a-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ko-a-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ko-a-age">Tuổi của người khai （年齢）</label>
+<input type="text" id="ko-a-age" placeholder="Ví dụ: 1961 hoặc 25" />
+</div>
+<div class="field">
+<label for="ko-a-id">Số CMND của người khai （身分証明書番号）</label>
+<input type="text" id="ko-a-id" placeholder="Số CMND trên giấy gốc" />
+</div>
+</div>
+<div class="field">
+<label for="ko-a-addr">Nơi đăng ký hộ khẩu / nơi thường trú của người khai （登録地・常住地）</label>
+<input type="text" id="ko-a-addr" placeholder="Nơi đăng ký / thường trú của người khai" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ko-regdate">Ngày đăng ký</label>
+<input type="date" id="ko-regdate" />
+</div>
+<div class="field">
+<label for="ko-certdate">Ngày chứng thực sao y （認証日）<span class="opt"> — chỉ Form TP/HT-1999-A.2</span></label>
+<input type="date" id="ko-certdate" />
+</div>
+</div>
+<div class="field">
+<label for="ko-signtitle">Chức vụ người ký （職務）</label>
+<input type="text" id="ko-signtitle" placeholder="Ví dụ: Chủ tịch UBND / Phó chủ tịch UBND" />
+</div>
+<div class="field name-pair">
+<label for="ko-sign-name">Họ và tên người ký</label>
+<input type="text" id="ko-sign-name" class="vn-name" placeholder="Họ và tên người ký trên giấy" />
+<label class="kana-label" for="ko-sign-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ko-sign-kana" class="kana" placeholder="カタカナ" />
+</div>
+</fieldset>
+</div>
+
+<div class="vpart" data-scope="bcv" data-show="ks2006 ks2010 ks2010a ks2013a" hidden>
+<fieldset>
+<legend>Người được khai sinh — mẫu 2006 / 2010</legend>
+<div class="grid2">
+<div class="field">
+<label for="kb-no">Số （番号）</label>
+<input type="text" id="kb-no" placeholder="Số trên giấy gốc" />
+</div>
+<div class="field">
+<label for="kb-book">Quyển số （巻号）</label>
+<input type="text" id="kb-book" placeholder="Quyển số trên giấy gốc" />
+</div>
+</div>
+<div class="field name-pair">
+<label for="kb-name">Họ và tên</label>
+<input type="text" id="kb-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="kb-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="kb-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="kb-gender">Giới tính</label>
+<select id="kb-gender">
+<option value="">— Chưa chọn —</option>
+<option value="男">Nam</option>
+<option value="女">Nữ</option>
+</select>
+</div>
+<div class="field">
+<label for="kb-dob">Ngày sinh</label>
+<input type="date" id="kb-dob" />
+</div>
+</div>
+<div class="field">
+<label for="kb-dobwords">Ngày sinh viết bằng chữ （字で書く）</label>
+<input type="text" id="kb-dobwords" placeholder="Ngày sinh viết bằng chữ trên giấy gốc" />
+</div>
+<div class="field">
+<label for="kb-birthplace">Nơi sinh （出生地）</label>
+<input type="text" id="kb-birthplace" placeholder="Nơi sinh của trẻ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="kb-ethnic">Dân tộc （民族）</label>
+<input type="text" id="kb-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+<div class="field">
+<label for="kb-nat">Quốc tịch （国籍）</label>
+<input type="text" id="kb-nat" placeholder="Để trống = ベトナム" />
+</div>
+</div>
+</fieldset>
+<fieldset>
+<legend>Cha （父）— mẫu 2006 / 2010</legend>
+<div class="field name-pair">
+<label for="kb-f-name">Họ và tên cha</label>
+<input type="text" id="kb-f-name" class="vn-name" placeholder="Họ và tên đầy đủ của cha" />
+<label class="kana-label" for="kb-f-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="kb-f-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid3">
+<div class="field">
+<label for="kb-f-ethnic">Dân tộc của cha</label>
+<input type="text" id="kb-f-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+<div class="field">
+<label for="kb-f-nat">Quốc tịch của cha</label>
+<input type="text" id="kb-f-nat" placeholder="Để trống = ベトナム" />
+</div>
+<div class="field">
+<label for="kb-f-year">Năm sinh của cha （生年）</label>
+<input type="text" id="kb-f-year" placeholder="Ví dụ: 1986" />
+</div>
+</div>
+<div class="field">
+<label for="kb-f-addr">Nơi thường trú của cha （常住地）</label>
+<input type="text" id="kb-f-addr" placeholder="Địa chỉ thường trú của cha" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Mẹ （母）— mẫu 2006 / 2010</legend>
+<div class="field name-pair">
+<label for="kb-m-name">Họ và tên mẹ</label>
+<input type="text" id="kb-m-name" class="vn-name" placeholder="Họ và tên đầy đủ của mẹ" />
+<label class="kana-label" for="kb-m-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="kb-m-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid3">
+<div class="field">
+<label for="kb-m-ethnic">Dân tộc của mẹ</label>
+<input type="text" id="kb-m-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+<div class="field">
+<label for="kb-m-nat">Quốc tịch của mẹ</label>
+<input type="text" id="kb-m-nat" placeholder="Để trống = ベトナム" />
+</div>
+<div class="field">
+<label for="kb-m-year">Năm sinh của mẹ （生年）</label>
+<input type="text" id="kb-m-year" placeholder="Ví dụ: 1990" />
+</div>
+</div>
+<div class="field">
+<label for="kb-m-addr">Nơi thường trú của mẹ （常住地）</label>
+<input type="text" id="kb-m-addr" placeholder="Địa chỉ thường trú của mẹ" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Đăng ký &amp; người ký — mẫu 2006 / 2010</legend>
+<div class="grid2">
+<div class="field">
+<label for="kb-regplace">Nơi đăng ký khai sinh （出生登録地）</label>
+<input type="text" id="kb-regplace" placeholder="Nơi đăng ký trên giấy gốc" />
+</div>
+<div class="field">
+<label for="kb-regdate">Ngày đăng ký</label>
+<input type="date" id="kb-regdate" />
+</div>
+</div>
+<div class="field">
+<label for="kb-note">Ghi chú （備考）</label>
+<input type="text" id="kb-note" placeholder="Ghi chú trên giấy gốc (nếu có)" />
+</div>
+<div class="grid2">
+<div class="field name-pair">
+<label for="kb-a-name">Người khai — họ và tên</label>
+<input type="text" id="kb-a-name" class="vn-name" placeholder="Họ và tên người khai sinh" />
+<label class="kana-label" for="kb-a-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="kb-a-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="field">
+<label for="kb-a-relation">Quan hệ với người được khai sinh （本人との関係）</label>
+<input type="text" id="kb-a-relation" placeholder="Ví dụ: Cha / Mẹ" />
+</div>
+</div>
+<div class="field name-pair">
+<label for="kb-reg-name">Người ghi sổ / cán bộ đăng ký （戸籍登録担当者）</label>
+<input type="text" id="kb-reg-name" class="vn-name" placeholder="Họ và tên người ghi sổ" />
+<label class="kana-label" for="kb-reg-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="kb-reg-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="field name-pair">
+<label for="kb-sign-name">Người ký giấy khai sinh — Chủ tịch （主席）</label>
+<input type="text" id="kb-sign-name" class="vn-name" placeholder="Họ và tên chủ tịch ký giấy" />
+<label class="kana-label" for="kb-sign-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="kb-sign-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="field name-pair">
+<label for="kb-copy-name">Người ký bản sao — Phó chủ tịch （副主席）<span class="opt"> — chỉ bản sao KS.1a</span></label>
+<input type="text" id="kb-copy-name" class="vn-name" placeholder="Họ và tên phó chủ tịch ký bản sao" />
+<label class="kana-label" for="kb-copy-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="kb-copy-kana" class="kana" placeholder="カタカナ" />
+</div>
+</fieldset>
+</div>
+
+<div class="vpart" data-scope="bcv" data-show="ks2015" hidden>
+<fieldset>
+<legend>Người được khai sinh — mẫu 2015 (bản chính)</legend>
+<div class="grid2">
+<div class="field">
+<label for="k15-no">Số （番号）</label>
+<input type="text" id="k15-no" placeholder="Số trên giấy gốc" />
+</div>
+<div class="field">
+<label for="k15-book">Quyển số （巻号）</label>
+<input type="text" id="k15-book" placeholder="Quyển số trên giấy gốc" />
+</div>
+</div>
+<div class="field name-pair">
+<label for="k15-name">Họ và tên</label>
+<input type="text" id="k15-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="k15-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="k15-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="k15-dob">Ngày sinh</label>
+<input type="date" id="k15-dob" />
+</div>
+<div class="field">
+<label for="k15-dobwords">Ngày sinh viết bằng chữ （字で書く）</label>
+<input type="text" id="k15-dobwords" placeholder="Ngày sinh viết bằng chữ trên giấy gốc" />
+</div>
+</div>
+<div class="grid3">
+<div class="field">
+<label for="k15-gender">Giới tính</label>
+<select id="k15-gender">
+<option value="">— Chưa chọn —</option>
+<option value="男">Nam</option>
+<option value="女">Nữ</option>
+</select>
+</div>
+<div class="field">
+<label for="k15-ethnic">Dân tộc （民族）</label>
+<input type="text" id="k15-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+<div class="field">
+<label for="k15-nat">Quốc tịch （国籍）</label>
+<input type="text" id="k15-nat" placeholder="Để trống = ベトナム" />
+</div>
+</div>
+<div class="field">
+<label for="k15-birthplace">Nơi sinh （出生地）</label>
+<input type="text" id="k15-birthplace" placeholder="Nơi sinh của trẻ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="k15-hometown">Quê quán （本籍）</label>
+<input type="text" id="k15-hometown" placeholder="Quê quán của trẻ" />
+</div>
+<div class="field">
+<label for="k15-idno">Số CMND / CCCD （身分証明書番号）<span class="opt"> — nếu có</span></label>
+<input type="text" id="k15-idno" placeholder="Số CMND / CCCD (nếu có)" />
+</div>
+</div>
+</fieldset>
+<fieldset>
+<legend>Mẹ （母）— mẫu 2015</legend>
+<div class="field name-pair">
+<label for="k15-m-name">Họ và tên mẹ</label>
+<input type="text" id="k15-m-name" class="vn-name" placeholder="Họ và tên đầy đủ của mẹ" />
+<label class="kana-label" for="k15-m-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="k15-m-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid3">
+<div class="field">
+<label for="k15-m-year">Năm sinh của mẹ （生年）</label>
+<input type="text" id="k15-m-year" placeholder="Ví dụ: 1990" />
+</div>
+<div class="field">
+<label for="k15-m-ethnic">Dân tộc của mẹ</label>
+<input type="text" id="k15-m-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+<div class="field">
+<label for="k15-m-nat">Quốc tịch của mẹ</label>
+<input type="text" id="k15-m-nat" placeholder="Để trống = ベトナム" />
+</div>
+</div>
+<div class="field">
+<label for="k15-m-addr">Nơi cư trú của mẹ （居住地）</label>
+<input type="text" id="k15-m-addr" placeholder="Nơi cư trú của mẹ" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Cha （父）— mẫu 2015</legend>
+<div class="field name-pair">
+<label for="k15-f-name">Họ và tên cha</label>
+<input type="text" id="k15-f-name" class="vn-name" placeholder="Họ và tên đầy đủ của cha" />
+<label class="kana-label" for="k15-f-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="k15-f-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid3">
+<div class="field">
+<label for="k15-f-year">Năm sinh của cha （生年）</label>
+<input type="text" id="k15-f-year" placeholder="Ví dụ: 1986" />
+</div>
+<div class="field">
+<label for="k15-f-ethnic">Dân tộc của cha</label>
+<input type="text" id="k15-f-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+<div class="field">
+<label for="k15-f-nat">Quốc tịch của cha</label>
+<input type="text" id="k15-f-nat" placeholder="Để trống = ベトナム" />
+</div>
+</div>
+<div class="field">
+<label for="k15-f-addr">Nơi cư trú của cha （居住地）</label>
+<input type="text" id="k15-f-addr" placeholder="Nơi cư trú của cha" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Người đi khai sinh &amp; người ký — mẫu 2015</legend>
+<div class="field name-pair">
+<label for="k15-a-name">Người đi khai sinh — họ và tên</label>
+<input type="text" id="k15-a-name" class="vn-name" placeholder="Họ và tên người đi khai sinh" />
+<label class="kana-label" for="k15-a-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="k15-a-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="k15-a-id">Giấy tờ tùy thân của người đi khai sinh （身分証明書）</label>
+<input type="text" id="k15-a-id" placeholder="Số giấy tờ tùy thân" />
+</div>
+<div class="field">
+<label for="k15-a-relation">Quan hệ với người được khai sinh （本人との関係）</label>
+<input type="text" id="k15-a-relation" placeholder="Ví dụ: Cha / Mẹ" />
+</div>
+</div>
+<div class="grid2">
+<div class="field">
+<label for="k15-regplace">Nơi đăng ký khai sinh （出生登録地）</label>
+<input type="text" id="k15-regplace" placeholder="Nơi đăng ký trên giấy gốc" />
+</div>
+<div class="field">
+<label for="k15-regdate">Ngày đăng ký</label>
+<input type="date" id="k15-regdate" />
+</div>
+</div>
+<div class="field name-pair">
+<label for="k15-off-name">Công chức tư pháp — hộ tịch （司法・戸籍担当公務員）</label>
+<input type="text" id="k15-off-name" class="vn-name" placeholder="Họ và tên công chức tư pháp — hộ tịch" />
+<label class="kana-label" for="k15-off-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="k15-off-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="field name-pair">
+<label for="k15-chair-name">Chủ tịch UBND （人民委員会主席）</label>
+<input type="text" id="k15-chair-name" class="vn-name" placeholder="Họ và tên chủ tịch ký giấy" />
+<label class="kana-label" for="k15-chair-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="k15-chair-kana" class="kana" placeholder="カタカナ" />
+</div>
+</fieldset>
+</div>
+
+<div class="vpart" data-scope="bcv" data-show="ks2015tl" hidden>
+<fieldset>
+<legend>Thông tin bản trích lục — mẫu 2015</legend>
+<div class="grid2">
+<div class="field">
+<label for="ktl-city">Tỉnh / TP cấp trích lục （省・市）</label>
+<input type="text" id="ktl-city" placeholder="Ví dụ: Hồ Chí Minh" />
+</div>
+<div class="field">
+<label for="ktl-committee">Tên Ủy ban nhân dân (quận / huyện)</label>
+<input type="text" id="ktl-committee" placeholder="Ví dụ: Ủy ban nhân dân Quận 1" />
+</div>
+</div>
+<div class="grid3">
+<div class="field">
+<label for="ktl-no">Số trích lục （号： ___/TLKS-BS)</label>
+<input type="text" id="ktl-no" placeholder="Ví dụ: 1000/TLKS-BS" />
+</div>
+<div class="field">
+<label for="ktl-place">Nơi cấp trích lục</label>
+<input type="text" id="ktl-place" placeholder="Tên quận / huyện nơi cấp" />
+</div>
+<div class="field">
+<label for="ktl-date">Ngày cấp trích lục</label>
+<input type="date" id="ktl-date" />
+</div>
+</div>
+</fieldset>
+<fieldset>
+<legend>Người được khai sinh — trích lục 2015</legend>
+<div class="field name-pair">
+<label for="ktl-name">Họ và tên</label>
+<input type="text" id="ktl-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="ktl-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ktl-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ktl-dob">Ngày sinh</label>
+<input type="date" id="ktl-dob" />
+</div>
+<div class="field">
+<label for="ktl-dobwords">Ngày sinh viết bằng chữ （字で書く）</label>
+<input type="text" id="ktl-dobwords" placeholder="Ngày sinh viết bằng chữ trên giấy gốc" />
+</div>
+</div>
+<div class="grid3">
+<div class="field">
+<label for="ktl-gender">Giới tính</label>
+<select id="ktl-gender">
+<option value="">— Chưa chọn —</option>
+<option value="男">Nam</option>
+<option value="女">Nữ</option>
+</select>
+</div>
+<div class="field">
+<label for="ktl-ethnic">Dân tộc （民族）</label>
+<input type="text" id="ktl-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+<div class="field">
+<label for="ktl-nat">Quốc tịch （国籍）</label>
+<input type="text" id="ktl-nat" placeholder="Để trống = ベトナム" />
+</div>
+</div>
+<div class="field">
+<label for="ktl-birthplace">Nơi sinh （出生地）</label>
+<input type="text" id="ktl-birthplace" placeholder="Nơi sinh của trẻ" />
+</div>
+<div class="grid2">
+<div class="field">
+<label for="ktl-hometown">Quê quán （本籍）</label>
+<input type="text" id="ktl-hometown" placeholder="Quê quán của trẻ" />
+</div>
+<div class="field">
+<label for="ktl-idno">Số CMND （身分証明書番号）</label>
+<input type="text" id="ktl-idno" placeholder="Số CMND trên giấy gốc" />
+</div>
+</div>
+</fieldset>
+<fieldset>
+<legend>Mẹ （母）— trích lục 2015</legend>
+<div class="field name-pair">
+<label for="ktl-m-name">Họ và tên mẹ</label>
+<input type="text" id="ktl-m-name" class="vn-name" placeholder="Họ và tên đầy đủ của mẹ" />
+<label class="kana-label" for="ktl-m-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ktl-m-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid3">
+<div class="field">
+<label for="ktl-m-year">Năm sinh của mẹ （生年）</label>
+<input type="text" id="ktl-m-year" placeholder="Ví dụ: 1953" />
+</div>
+<div class="field">
+<label for="ktl-m-ethnic">Dân tộc của mẹ</label>
+<input type="text" id="ktl-m-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+<div class="field">
+<label for="ktl-m-nat">Quốc tịch của mẹ</label>
+<input type="text" id="ktl-m-nat" placeholder="Để trống = ベトナム" />
+</div>
+</div>
+<div class="field">
+<label for="ktl-m-addr">Địa chỉ thường trú của mẹ （常住地）</label>
+<input type="text" id="ktl-m-addr" placeholder="Địa chỉ thường trú của mẹ" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Cha （父）— trích lục 2015</legend>
+<div class="field name-pair">
+<label for="ktl-f-name">Họ và tên cha</label>
+<input type="text" id="ktl-f-name" class="vn-name" placeholder="Họ và tên đầy đủ của cha" />
+<label class="kana-label" for="ktl-f-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ktl-f-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid3">
+<div class="field">
+<label for="ktl-f-year">Năm sinh của cha （生年）</label>
+<input type="text" id="ktl-f-year" placeholder="Ví dụ: 1945" />
+</div>
+<div class="field">
+<label for="ktl-f-ethnic">Dân tộc của cha</label>
+<input type="text" id="ktl-f-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
+</div>
+<div class="field">
+<label for="ktl-f-nat">Quốc tịch của cha</label>
+<input type="text" id="ktl-f-nat" placeholder="Để trống = ベトナム" />
+</div>
+</div>
+<div class="field">
+<label for="ktl-f-addr">Địa chỉ thường trú của cha （常住地）</label>
+<input type="text" id="ktl-f-addr" placeholder="Địa chỉ thường trú của cha" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Đăng ký gốc &amp; xác nhận trích lục — mẫu 2015</legend>
+<div class="grid3">
+<div class="field">
+<label for="ktl-regplace">Đăng ký tại （登録地）</label>
+<input type="text" id="ktl-regplace" placeholder="Nơi đăng ký trong sổ gốc" />
+</div>
+<div class="field">
+<label for="ktl-regno">Số đăng ký gốc （号）</label>
+<input type="text" id="ktl-regno" placeholder="Số đăng ký gốc" />
+</div>
+<div class="field">
+<label for="ktl-regdate">Ngày đăng ký gốc</label>
+<input type="date" id="ktl-regdate" />
+</div>
+</div>
+<div class="field">
+<label for="ktl-note">Ghi chú （備考）</label>
+<input type="text" id="ktl-note" placeholder="Để trống = Trích từ Sổ đăng ký khai sinh" />
+</div>
+<div class="field name-pair">
+<label for="ktl-sign-name">Trưởng phòng Tư pháp — họ và tên （司法室長）</label>
+<input type="text" id="ktl-sign-name" class="vn-name" placeholder="Họ và tên trưởng phòng tư pháp ký xác nhận" />
+<label class="kana-label" for="ktl-sign-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="ktl-sign-kana" class="kana" placeholder="カタカナ" />
 </div>
 </fieldset>
 </div>
@@ -4871,7 +5548,7 @@
 <legend>Thông tin đăng ký</legend>
 <div class="field">
 <label for="cp-province">Tỉnh / thành phố （省）— Sở Kế hoạch và Đầu tư</label>
-<input type="text" id="cp-province" placeholder="Ví dụ: Hà Nội — ハノイ" />
+<input type="text" id="cp-province" placeholder="Ví dụ: Hà Nội" />
 </div>
 <div class="grid2">
 <div class="field">
@@ -6607,81 +7284,113 @@ In / Lưu PDF
       }
 
       /* ================= Value translation (offline, deterministic) ================= */
-      /* 63 provinces/cities -> original Latin name + Japanese administrative suffix (published-specimen style) */
-      var PROVINCES = {
-        "an giang": "AN GIANG省", "ba ria vung tau": "BA RIA VUNG TAU省",
-        "bac giang": "BAC GIANG省", "bac kan": "BAC KAN省", "bac lieu": "BAC LIEU省",
-        "bac ninh": "BAC NINH省", "ben tre": "BEN TRE省", "binh dinh": "BINH DINH省",
-        "binh duong": "BINH DUONG省", "binh phuoc": "BINH PHUOC省", "binh thuan": "BINH THUAN省",
-        "ca mau": "CA MAU省", "can tho": "CAN THO市", "cao bang": "CAO BANG省",
-        "da nang": "DA NANG市", "dak lak": "DAK LAK省", "dak nong": "DAK NONG省",
-        "dien bien": "DIEN BIEN省", "dong nai": "DONG NAI省", "dong thap": "DONG THAP省",
-        "gia lai": "GIA LAI省", "ha giang": "HA GIANG省", "ha nam": "HA NAM省",
-        "ha noi": "HA NOI", "ha tinh": "HA TINH省", "hai duong": "HAI DUONG省",
-        "hai phong": "HAI PHONG市", "hau giang": "HAU GIANG省", "hoa binh": "HOA BINH省",
-        "ho chi minh": "HO CHI MINH市", "sai gon": "HO CHI MINH市",
-        "hung yen": "HUNG YEN省", "khanh hoa": "KHANH HOA省", "kien giang": "KIEN GIANG省",
-        "kon tum": "KON TUM省", "lai chau": "LAI CHAU省", "lam dong": "LAM DONG省",
-        "lang son": "LANG SON省", "lao cai": "LAO CAI省", "long an": "LONG AN省",
-        "nam dinh": "NAM DINH省", "nghe an": "NGHE AN省", "ninh binh": "NINH BINH省",
-        "ninh thuan": "NINH THUAN省", "phu tho": "PHU THO省", "phu yen": "PHU YEN省",
-        "quang binh": "QUANG BINH省", "quang nam": "QUANG NAM省", "quang ngai": "QUANG NGAI省",
-        "quang ninh": "QUANG NINH省", "quang tri": "QUANG TRI省", "soc trang": "SOC TRANG省",
-        "son la": "SON LA省", "tay ninh": "TAY NINH省", "thai binh": "THAI BINH省",
-        "thai nguyen": "THAI NGUYEN省", "thanh hoa": "THANH HOA省",
-        "thua thien hue": "THUA THIEN HUE省", "hue": "HUE市",
-        "tien giang": "TIEN GIANG省", "tra vinh": "TRA VINH省", "tuyen quang": "TUYEN QUANG省",
-        "vinh long": "VINH LONG省", "vinh phuc": "VINH PHUC省", "yen bai": "YEN BAI省"
-      };
+      /* Per real translated samples: place NAMES stay in Latin letters, stripped
+         of Vietnamese diacritics and UPPERCASED (AN HAO, HOAI AN, BINH DINH…) —
+         only the administrative level is rendered in Japanese (tỉnh→省,
+         thành phố/thị xã→市, quận→区, huyện→郡, phường/xã/thị trấn→町,
+         thôn/ấp/bản→村, khu phố→町, tổ dân phố→町内, đường/phố→通り, số→番地). */
+      var ADMIN_PREFIXES = [
+        ["thanh pho", "市"], ["thi tran", "町"], ["thi xa", "市"],
+        ["khu pho", "町"], ["to dan pho", "町内"],
+        ["tinh", "省"], ["tp", "市"], ["quan", "区"], ["huyen", "郡"],
+        ["phuong", "町"], ["xa", "町"], ["thon", "村"], ["ap", "村"], ["ban", "村"],
+        ["duong", "通り"], ["pho", "通り"], ["so", "番地"]
+      ];
+      /* Admin words that open a new segment when an address is typed without commas */
+      var ADMIN_SPLITTERS = ["thi tran", "thi xa", "thanh pho", "khu pho", "to dan pho",
+        "tinh", "quan", "huyen", "phuong", "xa", "thon", "ap", "ban"];
+
+      /* Place names are NOT kept as typed: strip Vietnamese diacritics and
+         UPPERCASE the whole Latin name (HA NOI, AN HAO, BINH DINH…).
+         Only the administrative level is rendered in Japanese. */
+      function latinUpper(s) {
+        return stripVN(String(s || "")).replace(/\s+/g, " ").trim().toUpperCase();
+      }
+      function provKey(s) {
+        return latinUpper(s).replace(/[-–—.,]/g, " ").replace(/\s+/g, " ").trim();
+      }
+      /* 63 provinces / centrally-run cities (keys are provKey form) */
+      var PROVINCE_NAMES = {};
+      ("AN GIANG|BA RIA VUNG TAU|BAC GIANG|BAC KAN|BAC LIEU|BAC NINH|BEN TRE|BINH DINH|BINH DUONG|BINH PHUOC|BINH THUAN|CA MAU|CAN THO|CAO BANG|DA NANG|DAK LAK|DAK NONG|DIEN BIEN|DONG NAI|DONG THAP|GIA LAI|HA GIANG|HA NAM|HA NOI|HA TINH|HAI DUONG|HAI PHONG|HAU GIANG|HO CHI MINH|HOA BINH|HUE|THUA THIEN HUE|HUNG YEN|KHANH HOA|KIEN GIANG|KON TUM|LAI CHAU|LAM DONG|LANG SON|LAO CAI|LONG AN|NAM DINH|NGHE AN|NINH BINH|NINH THUAN|PHU THO|PHU YEN|QUANG BINH|QUANG NAM|QUANG NGAI|QUANG NINH|QUANG TRI|SOC TRANG|SON LA|TAY NINH|THAI BINH|THAI NGUYEN|THANH HOA|TIEN GIANG|TRA VINH|TUYEN QUANG|VINH LONG|VINH PHUC|YEN BAI").split("|").forEach(function (k) { PROVINCE_NAMES[k] = true; });
+      var CENTRAL_CITIES = { "CAN THO": true, "DA NANG": true, "HAI PHONG": true, "HO CHI MINH": true, "HUE": true, "THUA THIEN HUE": true };
+      /* Returns {name, suffix} when the (diacritic-stripped, uppercased) name is a
+         province / centrally-run city, otherwise null. HA NOI takes no suffix;
+         SAI GON is normalised to HO CHI MINH市. */
+      function provinceSuffix(key) {
+        if (key === "SAI GON" || key === "HCM" || key === "TP HCM" || key === "THANH PHO HO CHI MINH") return { name: "HO CHI MINH", suffix: "市" };
+        if (key === "HA NOI") return { name: "HA NOI", suffix: "" };
+        if (CENTRAL_CITIES[key]) return { name: key, suffix: "市" };
+        if (PROVINCE_NAMES[key]) return { name: key, suffix: "省" };
+        return null;
+      }
+      function barePlaceName(rawName) {
+        var key = provKey(rawName);
+        if (key === "SAI GON" || key === "HCM" || key === "TP HCM" || key === "THANH PHO HO CHI MINH") return "HO CHI MINH";
+        return latinUpper(rawName);
+      }
 
       function hasJapanese(s) { return /[\u3040-\u30ff\u4e00-\u9fff\uff66-\uff9f]/.test(s); }
 
-      function placeKana(name) {
-        return name.split(/\s+/).filter(Boolean).map(function (tok) {
-          if (/^[\d][\d\/\-.]*$/.test(tok)) return tok;
-          return syllableKana(tok);
-        }).join("・");
+      function normTok(t) { return stripVN(t).toLowerCase().replace(/\.+$/, ""); }
+      function matchAdminWords(normToks, list) {
+        for (var i = 0; i < list.length; i++) {
+          var words = list[i].split(" ");
+          if (normToks.length < words.length) continue;
+          var ok = true;
+          for (var j = 0; j < words.length; j++) if (normToks[j] !== words[j]) { ok = false; break; }
+          if (ok) return words.length;
+        }
+        return 0;
       }
-      /* Place names stay in the original Latin, as in published JP translations
-         of VN civil documents (HA NOI, CAU GIAY, DICH VONG); only the
-         administrative unit is translated. Input reaching here is already
-         diacritic-stripped + lowercased by the translatePlace* normalizers. */
-      function placeLatin(name) {
-        return name.split(/\s+/).filter(Boolean).map(function (tok) { return tok.toUpperCase(); }).join(" ");
+      /* True while the tokens so far are only an admin prefix still waiting for its
+         name — the next token belongs to that name even if it reads like an admin
+         word itself (e.g. huyện Tịnh Biên, where Tịnh normalizes to "tinh"). */
+      function isAwaitingName(normToks) {
+        if (!normToks.length) return false;
+        for (var i = 0; i < ADMIN_PREFIXES.length; i++) {
+          var words = ADMIN_PREFIXES[i][0].split(" ");
+          if (normToks.length > words.length) continue;
+          var ok = true;
+          for (var j = 0; j < normToks.length; j++) if (normToks[j] !== words[j]) { ok = false; break; }
+          if (ok) return true;
+        }
+        return false;
       }
-      function provOrLatin(name, suffix) {
-        name = name.trim();
-        if (PROVINCES[name]) return PROVINCES[name];
-        return placeLatin(name) + suffix;
+      /* Split one raw segment into { name (Latin, as typed), suffix (Japanese unit) } */
+      function splitPlacePrefix(rawSeg) {
+        var rawToks = rawSeg.trim().split(/\s+/).filter(Boolean);
+        var normToks = rawToks.map(normTok);
+        for (var i = 0; i < ADMIN_PREFIXES.length; i++) {
+          var words = ADMIN_PREFIXES[i][0].split(" ");
+          if (normToks.length <= words.length) continue;
+          var ok = true;
+          for (var j = 0; j < words.length; j++) if (normToks[j] !== words[j]) { ok = false; break; }
+          if (ok) return { name: rawToks.slice(words.length).join(" "), suffix: ADMIN_PREFIXES[i][1] };
+        }
+        return { name: rawToks.join(" "), suffix: "" };
       }
-      function translatePlaceCore(seg) {
-        if (PROVINCES[seg]) return PROVINCES[seg];
-        var m;
-        if ((m = seg.match(/^tinh\s+(.+)$/))) return provOrLatin(m[1], "省");
-        if ((m = seg.match(/^(?:thanh pho|tp\.?)\s+(.+)$/))) return provOrLatin(m[1], "市");
-        if ((m = seg.match(/^thi xa\s+(.+)$/))) return placeLatin(m[1]) + "市";
-        if ((m = seg.match(/^thi tran\s+(.+)$/))) return placeLatin(m[1]) + "町";
-        if ((m = seg.match(/^quan\s+(.+)$/))) return placeLatin(m[1]) + "区";
-        if ((m = seg.match(/^huyen\s+(.+)$/))) return placeLatin(m[1]) + "郡";
-        if ((m = seg.match(/^phuong\s+(.+)$/))) return placeLatin(m[1]) + "町";
-        if ((m = seg.match(/^xa\s+(.+)$/))) return placeLatin(m[1]) + "町";
-        if ((m = seg.match(/^(?:thon|ap|ban)\s+(.+)$/))) return placeLatin(m[1]) + "村";
-        if ((m = seg.match(/^khu pho\s+(.+)$/))) return placeLatin(m[1]) + "町";
-        if ((m = seg.match(/^to dan pho\s+(.+)$/))) return placeLatin(m[1]) + "町内";
-        if ((m = seg.match(/^duong\s+(.+)$/))) return placeLatin(m[1]) + "通り";
-        if ((m = seg.match(/^pho\s+(.+)$/))) return placeLatin(m[1]) + "通り";
-        if ((m = seg.match(/^so\s+(.+)$/))) return placeLatin(m[1]) + "番地";
-        return placeLatin(seg);
+      function translatePlaceCore(rawSeg) {
+        var p = splitPlacePrefix(rawSeg);
+        var prov = provinceSuffix(provKey(p.name));
+        if (prov && (!p.suffix || p.suffix === "省" || p.suffix === "市")) {
+          return prov.name + prov.suffix;
+        }
+        var upper = latinUpper(p.name);
+        return p.suffix ? upper + p.suffix : upper;
       }
-      function translatePlaceSegment(seg) {
-        seg = seg.trim().replace(/\.+$/, "");
+      function translatePlaceSegment(rawSeg) {
+        var seg = rawSeg.trim();
         if (!seg) return "";
         if (/^[\d\s\/\-.]+$/.test(seg)) return seg.replace(/\s+/g, "");
-        var ubnd = false, rest = seg;
-        if (rest === "ubnd") return "人民委員会";
-        if (rest.indexOf("ubnd ") === 0) { ubnd = true; rest = rest.slice(5).trim(); }
-        else if (rest.indexOf("uy ban nhan dan ") === 0) { ubnd = true; rest = rest.slice(16).trim(); }
-        var body = translatePlaceCore(rest);
+        var rawToks = seg.split(/\s+/).filter(Boolean);
+        var normJoined = rawToks.map(normTok).join(" ");
+        if (normJoined === "ubnd" || normJoined === "uy ban nhan dan") return "人民委員会";
+        var ubnd = false, cut = 0;
+        if (normJoined.indexOf("ubnd ") === 0) { ubnd = true; cut = 1; }
+        else if (normJoined.indexOf("uy ban nhan dan ") === 0) { ubnd = true; cut = 4; }
+        if (cut) seg = rawToks.slice(cut).join(" ");
+        if (!seg) return ubnd ? "人民委員会" : "";
+        var body = translatePlaceCore(seg);
         return ubnd ? body + "人民委員会" : body;
       }
       function translatePlace(raw) {
@@ -6690,53 +7399,60 @@ In / Lưu PDF
         if (!s) return s;
         if (hasJapanese(s)) return s;
         if (!/[a-zA-Z\u00C0-\u024F\u1E00-\u1EFF]/.test(s)) return s;
-        var norm = stripVN(s).toLowerCase().replace(/\s*-\s*/g, " ").replace(/\s+/g, " ").trim();
-        if (norm === "ubnd" || norm === "uy ban nhan dan") return "人民委員会";
-        var ubndPrefix = false;
-        if (norm.indexOf("ubnd ") === 0) { ubndPrefix = true; norm = norm.slice(5).trim(); }
-        else if (norm.indexOf("uy ban nhan dan ") === 0) { ubndPrefix = true; norm = norm.slice(16).trim(); }
-        norm = norm.replace(/[,;]+/g, ",");
-        norm = norm.replace(/\s+(?=(?:tinh|thanh pho|thi xa|thi tran|quan|huyen|phuong|xa|thon|ap|khu pho|to dan pho)\b)/g, ",");
-        norm = norm.replace(/(\d)\s+(?=duong\b)/g, "$1,");
-        var out = norm.split(",").map(translatePlaceSegment).filter(Boolean);
-        if (ubndPrefix && out.length) out[0] = out[0] + "人民委員会";
-        return out.join("、");
+        var segs = [];
+        s.split(/[,;]+/).forEach(function (chunk) {
+          var toks = chunk.trim().split(/\s+/).filter(Boolean);
+          if (!toks.length) return;
+          /* A leading UBND / Ủy ban nhân dân belongs to the unit that follows it */
+          var ubnd = false, cut = 0;
+          var normJoined = toks.map(normTok).join(" ");
+          if (normJoined.indexOf("ubnd ") === 0) { ubnd = true; cut = 1; }
+          else if (normJoined.indexOf("uy ban nhan dan ") === 0) { ubnd = true; cut = 4; }
+          if (cut) toks = toks.slice(cut);
+          if (!toks.length) { if (ubnd) segs.push({ text: "人民委員会", ubnd: false }); return; }
+          var first = segs.length, cur = [];
+          toks.forEach(function (tok, idx) {
+            var opens = false;
+            if (cur.length && !isAwaitingName(cur.map(normTok))) {
+              if (matchAdminWords(toks.slice(idx).map(normTok), ADMIN_SPLITTERS)) opens = true;
+              else if (normTok(tok) === "duong" && /^[\d]/.test(cur[cur.length - 1])) opens = true;
+            }
+            if (opens) { segs.push({ text: cur.join(" "), ubnd: false }); cur = []; }
+            cur.push(tok);
+          });
+          if (cur.length) segs.push({ text: cur.join(" "), ubnd: false });
+          if (ubnd && segs.length > first) segs[first].ubnd = true;
+        });
+        return segs.map(function (seg) {
+          var out = translatePlaceSegment(seg.text);
+          return seg.ubnd && out ? out + "人民委員会" : out;
+        }).filter(Boolean).join("、");
       }
 
       /* Bare-name mode: for component fields whose renderer appends its own unit suffix
-         (e.g. 町：X, X省, X人民委員会) — keep the name in Latin only, no unit suffix. */
-      function translatePlaceCoreBare(seg) {
-        if (PROVINCES[seg]) return PROVINCES[seg].replace(/(省|市|県)$/, "");
-        var m;
-        if ((m = seg.match(/^(?:tinh|thanh pho|tp\.?|thi xa|thi tran|quan|huyen|phuong|xa|thon|ap|ban|khu pho|to dan pho|duong|pho|so)\s+(.+)$/))) {
-          var nm = m[1].trim();
-          if (PROVINCES[nm]) return PROVINCES[nm].replace(/(省|市|県)$/, "");
-          return placeLatin(nm);
-        }
-        return placeLatin(seg);
-      }
+         (e.g. 町：X, X省, X人民委員会) — keep the Latin name only, no unit suffix. */
       function translatePlaceBare(raw) {
         if (!raw) return raw;
         var s = String(raw).trim();
         if (!s) return s;
         if (hasJapanese(s)) return s;
         if (!/[a-zA-Z\u00C0-\u024F\u1E00-\u1EFF]/.test(s)) return s;
-        var norm = stripVN(s).toLowerCase().replace(/\s*-\s*/g, " ").replace(/\s+/g, " ").trim();
-        norm = norm.replace(/[,;]+/g, ",");
-        var out = norm.split(",").map(function (seg) {
-          seg = seg.trim().replace(/\.+$/, "");
+        var out = s.split(/[,;]+/).map(function (seg) {
+          seg = seg.trim();
           if (!seg) return "";
           if (/^[\d\s\/\-.]+$/.test(seg)) return seg.replace(/\s+/g, "");
-          return translatePlaceCoreBare(seg);
+          return barePlaceName(splitPlacePrefix(seg).name);
         }).filter(Boolean);
         return out.join("、");
       }
       var PLACE_BARE_IDS = {};
-      ("bc-town bc-ward bc-city hk-street hk-ward hk-district ms-province ms-district ms-commune cp-province").split(" ").forEach(function (id) { PLACE_BARE_IDS[id] = true; });
+      ("bc-town bc-ward bc-city ko-ward ko-district ko-province ktl-city hk-street hk-ward hk-district ms-province ms-district ms-commune ms-res-province cp-province").split(" ").forEach(function (id) { PLACE_BARE_IDS[id] = true; });
 
       /* Fields whose entered value is a place / address (rendered in Japanese) */
       var PLACE_IDS = {};
-      ("bc-birthplace bc-f-addr bc-m-addr bc-a-addr br-origin br-f-origin br-f-addr br-m-origin br-m-addr " +
+      ("bc-birthplace bc-f-addr bc-m-addr bc-a-addr ko-birthplace ko-f-addr ko-m-addr ko-a-addr kb-birthplace kb-f-addr kb-m-addr kb-regplace " +
+       "k15-birthplace k15-hometown k15-f-addr k15-m-addr k15-regplace ktl-birthplace ktl-hometown ktl-f-addr ktl-m-addr ktl-regplace ktl-place " +
+       "br-origin br-f-origin br-f-addr br-m-origin br-m-addr " +
        "bm-birthplace bm-hometown bm-f-addr bm-m-addr bm-regplace bx-birthplace bx-hometown bx-f-hkaddr bx-m-hkaddr bx-regplace bx-place " +
        "mc-w-addr mc-h-addr mc-office mp-w-addr mp-h-addr me-w-birthplace me-w-addr me-h-birthplace me-h-addr " +
        "mx-w-addr mx-h-addr mx-regplace mx-place du-birthplace du-place hs-birthplace hk-resaddr " +
@@ -6945,7 +7661,7 @@ In / Lưu PDF
       }
 
       /* ===== Convert job / religion text inputs into smart selects ===== */
-      var JOB_FIELD_IDS = ["bc-f-job", "bc-m-job", "me-w-job", "me-h-job", "sr-f-job", "sr-m-job", "sr-g-job", "cv-job", "cv-f-job", "cv-m-job", "cv-s-job"];
+      var JOB_FIELD_IDS = ["bc-f-job", "bc-m-job", "ko-f-job", "ko-m-job", "me-w-job", "me-h-job", "sr-f-job", "sr-m-job", "sr-g-job", "cv-job", "cv-f-job", "cv-m-job", "cv-s-job"];
       var RELIGION_FIELD_IDS = ["id-religion", "io-religion", "rs-religion", "cv-religion"];
       function convertSmartField(input, kind, options) {
         if (!input || input.tagName === "SELECT") return;
@@ -7023,6 +7739,10 @@ function ethOr(id, def) {
 var x = mapEthnic(val(id));
 return x? esc(x): def;
 }
+function natOr(id) {
+var x = val(id);
+return x? esc(mapNation(x)): 'ベトナム';
+}
 function line(label, valueHtml) {
 return '<p class="line"><span class="lb">' + label + '：</span>' + valueHtml + '</p>';
 }
@@ -7068,6 +7788,10 @@ var bv = val("bc-variant") || "normal";
 if (bv === "rereg") return renderBirthRereg();
 if (bv === "main") return renderBirthMain();
 if (bv === "extract") return renderBirthExtract();
+if (bv === "ks1975" || bv === "ksht3p3" || bv === "kstpht2" || bv === "ksht2p3" || bv === "ks1999") return renderBirthOldTable(bv);
+if (bv === "ks2006" || bv === "ks2010" || bv === "ks2010a" || bv === "ks2013a") return renderBirthSeq(bv);
+if (bv === "ks2015") return renderBirth2015();
+if (bv === "ks2015tl") return renderBirth2015Extract();
 function prow(label, fId, mId) {
 return '<tr><th class="rowh">' + label + '</th><td>' + fId + '</td><td>' + mId + '</td></tr>';
 }
@@ -7667,6 +8391,256 @@ h += '<div class="right-sign">' +
 '<p class="note">（署名・押印）</p>' +
 '<p>' + (val("bx-signtitle")? esc(val("bx-signtitle")): '副委員会') + '</p>' +
 '<p class="nm">' + renderName("bx-signname", "bx-signkana") + '</p>' +
+'</div>';
+return h + translatorBlock();
+}
+
+/* ================= A1-old) 出生証明書（旧様式・父母表型 1975〜1999） ================= */
+function koHead(bv) {
+var h = '';
+if (bv === "ksht3p3") {
+h += '<div class="head-row"><div class="head-left">' +
+'<p class="org">' + (val("ko-committee")? esc(val("ko-committee")): BLANK) + '人民委員会</p>' +
+'<p>町：' + v("ko-ward") + '</p>' +
+'<p>区：' + v("ko-district") + '</p>' +
+'<p>省：' + v("ko-province") + '</p>' +
+'</div>' +
+'<div class="head-right">' +
+'<p>番号：' + v("ko-no") + '</p>' +
+'<p>巻号：' + v("ko-book") + '</p>' +
+'</div></div>';
+h += headStd('独立-自由-幸福');
+h += '<p class="right-line">Form HT3/P3</p>';
+return h;
+}
+if (bv === "kstpht2") {
+h += '<div class="head-row"><div class="head-left">' +
+'<p class="org">' + (val("ko-committee")? esc(val("ko-committee")): BLANK) + '人民委員会</p>' +
+'<p>町：' + v("ko-ward") + '</p>' +
+'<p>郡：' + v("ko-district") + '</p>' +
+'<p>省：' + v("ko-province") + '</p>' +
+'</div>' +
+'<div class="head-right">' +
+'<p>番号：' + v("ko-no") + '</p>' +
+'<p>巻号：' + v("ko-book") + '</p>' +
+'</div></div>';
+h += headStd('独立-自由-幸福');
+h += '<p class="right-line">Form TP/HT 2</p>';
+return h;
+}
+h += '<div class="head-row"><div class="head-left">' +
+'<p class="org">' + (val("ko-committee")? esc(val("ko-committee")): BLANK) + '人民委員会</p>' +
+'<p>町：' + v("ko-ward") + '</p>' +
+'<p>区：' + v("ko-district") + '</p>' +
+'<p>市：' + v("ko-province") + '</p>' +
+'</div>' +
+'<div class="head-right">' +
+'<p>番号：' + v("ko-no") + '</p>' +
+'<p>巻号：' + v("ko-book") + '</p>' +
+'</div></div>';
+h += headStd('独立-自由-幸福');
+if (bv === "ksht2p3") h += '<p class="right-line">HT2/P3</p>';
+if (bv === "ks1999") h += '<p class="right-line">TP/HT-1999-A.2</p>';
+return h;
+}
+function renderBirthOldTable(bv) {
+function prow(label, f, m) {
+return '<tr><th class="rowh">' + label + '</th><td>' + f + '</td><td>' + m + '</td></tr>';
+}
+var motherFirst = (bv === "kstpht2");
+var F = motherFirst? "m": "f", M = motherFirst? "f": "m";
+var h = koHead(bv);
+if (bv === "ks1999") {
+h += '<h1 class="doc-title">出生証明書</h1>';
+h += '<p class="doc-sub">（写し）</p>';
+} else if (bv === "ks1975") {
+h += '<h1 class="doc-title">出生証明書</h1>';
+h += '<p class="doc-sub">（原本）</p>';
+} else {
+h += '<h1 class="doc-title">出生証明書</h1>';
+}
+h += '<p class="flex-line"><span class="seg">氏名：' + renderName("ko-name", "ko-kana") + '</span>' +
+'<span class="seg">性別：' + v("ko-gender") + '</span></p>';
+var dobHtml = dv("ko-dob");
+if (val("ko-birthtime")) dobHtml += '（' + esc(val("ko-birthtime")) + '）';
+h += line('生年月日', dobHtml);
+if (val("ko-dobwords")) h += line('生年月日（字で書く）', v("ko-dobwords"));
+h += line('出生所', v("ko-birthplace"));
+if (bv === "kstpht2") {
+h += '<p class="flex-line"><span class="seg">民族：' + ethOr("ko-ethnic", "キン族") + '</span>' +
+'<span class="seg">国籍：' + natOr("ko-nat") + '</span></p>';
+}
+h += '<p class="sec-h">親の基礎情報</p>';
+h += '<table class="tbl"><tr><th class="rowh"></th><th>' + (motherFirst? '母': '父') + '</th><th>' + (motherFirst? '父': '母') + '</th></tr>' +
+prow('氏名', renderName("ko-" + F + "-name", "ko-" + F + "-kana"), renderName("ko-" + M + "-name", "ko-" + M + "-kana")) +
+prow('年齢', v("ko-" + F + "-age"), v("ko-" + M + "-age")) +
+prow('民族', ethOr("ko-" + F + "-ethnic", BLANK), ethOr("ko-" + M + "-ethnic", BLANK)) +
+prow('国籍', natOr("ko-" + F + "-nat"), natOr("ko-" + M + "-nat")) +
+prow('職業', v("ko-" + F + "-job"), v("ko-" + M + "-job")) +
+prow('居住地', v("ko-" + F + "-addr"), v("ko-" + M + "-addr")) +
+'</table>';
+h += '<p class="sec-h">申告者</p>';
+h += line('氏名', renderName("ko-a-name", "ko-a-kana"));
+h += line('年齢', v("ko-a-age"));
+h += line('登録地・常住地', v("ko-a-addr"));
+h += line('身分証明書番号', v("ko-a-id"));
+h += '<p class="date-right">' + jpDate("ko-regdate") + '</p>';
+var signTitle = val("ko-signtitle")? esc(val("ko-signtitle")): ((bv === "ksht3p3")? '人民委員会主席': '人民委員会副主席');
+if (bv === "kstpht2") {
+h += '<div class="sign-row">' +
+signBox('申告者', '（署名）', renderName("ko-a-name", "ko-a-kana")) +
+signBox(signTitle, '（署名・押印）', renderName("ko-sign-name", "ko-sign-kana")) +
+'</div>';
+} else {
+h += '<div class="right-sign">' +
+'<p class="role">' + signTitle + '</p>' +
+'<p class="note">（署名・押印）</p>' +
+'<p class="nm">' + renderName("ko-sign-name", "ko-sign-kana") + '</p>' +
+'</div>';
+}
+if (bv === "ks1999") {
+h += '<div class="cert">' +
+'<p>原本と相違ないことを証明する。</p>' +
+'<p class="date-right">' + jpDate("ko-certdate") + '</p>' +
+'<div class="right-sign" style="margin-top:6px">' +
+'<p class="note">（署名・印）</p>' +
+'<p class="nm">' + renderName("ko-sign-name", "ko-sign-kana") + '</p>' +
+'</div></div>';
+}
+return h + translatorBlock();
+}
+
+/* ================= A1-old2) 出生証明書（2006 / 2010様式・連続型） ================= */
+function renderBirthSeq(bv) {
+function pblock(title, p) {
+var h = '<p class="sec-h">' + title + '</p>';
+h += line('氏名', renderName("kb-" + p + "-name", "kb-" + p + "-kana"));
+h += '<p class="flex-line"><span class="seg">民族：' + ethOr("kb-" + p + "-ethnic", "キン族") + '</span>' +
+'<span class="seg">国籍：' + natOr("kb-" + p + "-nat") + '</span>' +
+'<span class="seg">生年：' + v("kb-" + p + "-year") + '</span></p>';
+h += line('常住地', v("kb-" + p + "-addr"));
+return h;
+}
+var isCopy = (bv === "ks2010a" || bv === "ks2013a");
+var code = { ks2006: "BTP/HT-2006-KS.1", ks2010: "TP/HT-2010-KS.1", ks2010a: "TP/HT-2010-KS.1a", ks2013a: "TP/HT-2013-KS.1a" }[bv];
+var h = '';
+h += headStd('独立-自由-幸福');
+h += '<h1 class="doc-title">出生証明書</h1>';
+h += '<p class="doc-sub">（' + (isCopy? '写し': '原本') + '）</p>';
+h += '<p class="flex-line"><span class="seg">番号：' + v("kb-no") + '</span>' +
+'<span class="seg">巻号：' + v("kb-book") + '</span></p>';
+h += '<p class="flex-line"><span class="seg">氏名：' + renderName("kb-name", "kb-kana") + '</span>' +
+'<span class="seg">性別：' + v("kb-gender") + '</span></p>';
+h += line('生年月日', dv("kb-dob"));
+h += line('生年月日（字で書く）', v("kb-dobwords"));
+h += line('出生地', v("kb-birthplace"));
+h += '<p class="flex-line"><span class="seg">民族：' + ethOr("kb-ethnic", "キン族") + '</span>' +
+'<span class="seg">国籍：' + natOr("kb-nat") + '</span></p>';
+h += pblock('父', 'f');
+h += pblock('母', 'm');
+h += line('出生登録地', v("kb-regplace"));
+h += line('登録日', dv("kb-regdate"));
+if (val("kb-note")) h += line('備考', v("kb-note"));
+h += '<p class="sec-h">出生申告者</p>';
+h += line('氏名', renderName("kb-a-name", "kb-a-kana"));
+h += line('本人との関係', cell(mapRelation(val("kb-a-relation"))));
+h += '<div class="sign-row">' +
+signBox('戸籍登録担当者', '（署名、氏名明記）', renderName("kb-reg-name", "kb-reg-kana")) +
+signBox('出生証明書署名者・主席', '（署名、氏名明記、押印）', renderName("kb-sign-name", "kb-sign-kana")) +
+'</div>';
+if (isCopy) {
+h += '<p class="doc-note" style="margin-top:18px">出生登録簿からの写し</p>';
+h += '<div class="right-sign">' +
+'<p class="role">出生証明書（写し）署名者・副主席</p>' +
+'<p class="note">（署名、氏名明記、押印）</p>' +
+'<p class="nm">' + renderName("kb-copy-name", "kb-copy-kana") + '</p>' +
+'</div>';
+}
+h += '<p class="doc-note small" style="margin-top:20px">' + code + '</p>';
+return h + translatorBlock();
+}
+
+/* ================= A1-2015) 出生届（通達15/2015・原本） ================= */
+function renderBirth2015() {
+function pblock(title, p) {
+var h = '<p class="sec-h">' + title + '</p>';
+h += line('氏名', renderName("k15-" + p + "-name", "k15-" + p + "-kana"));
+h += '<p class="flex-line"><span class="seg">生年：' + v("k15-" + p + "-year") + '</span>' +
+'<span class="seg">民族：' + ethOr("k15-" + p + "-ethnic", "キン族") + '</span>' +
+'<span class="seg">国籍：' + natOr("k15-" + p + "-nat") + '</span></p>';
+h += line('居住地', v("k15-" + p + "-addr"));
+return h;
+}
+var h = '';
+h += headStd('独立-自由-幸福');
+h += '<p class="flex-line"><span class="seg">番号：' + v("k15-no") + '</span>' +
+'<span class="seg">巻号：' + v("k15-book") + '</span></p>';
+h += '<h1 class="doc-title">出生届</h1>';
+h += line('氏名', renderName("k15-name", "k15-kana"));
+h += line('生年月日', dv("k15-dob"));
+h += line('生年月日（字で書く）', v("k15-dobwords"));
+h += '<p class="flex-line"><span class="seg">性別：' + v("k15-gender") + '</span>' +
+'<span class="seg">民族：' + ethOr("k15-ethnic", "キン族") + '</span>' +
+'<span class="seg">国籍：' + natOr("k15-nat") + '</span></p>';
+h += line('出生地', v("k15-birthplace"));
+h += line('本籍', v("k15-hometown"));
+h += line('身分証明書番号', v("k15-idno"));
+h += pblock('母', 'm');
+h += pblock('父', 'f');
+h += '<p class="sec-h">出生申告者</p>';
+h += line('氏名', renderName("k15-a-name", "k15-a-kana"));
+h += line('身分証明書', v("k15-a-id"));
+h += line('本人との関係', cell(mapRelation(val("k15-a-relation"))));
+h += line('出生登録地', v("k15-regplace"));
+h += line('登録日', dv("k15-regdate"));
+h += '<div class="sign-row">' +
+signBox('司法・戸籍担当公務員', '（署名、氏名明記）', renderName("k15-off-name", "k15-off-kana")) +
+signBox('人民委員会主席', '（署名、氏名明記、押印）', renderName("k15-chair-name", "k15-chair-kana")) +
+'</div>';
+return h + translatorBlock();
+}
+
+/* ================= A1-2015tl) 出生届摘録（写し）（通達15/2015） ================= */
+function renderBirth2015Extract() {
+function pblock(title, p) {
+var h = '<p class="sec-h">' + title + '</p>';
+h += line('氏名', renderName("ktl-" + p + "-name", "ktl-" + p + "-kana"));
+h += '<p class="flex-line"><span class="seg">生年：' + v("ktl-" + p + "-year") + '</span>' +
+'<span class="seg">民族：' + ethOr("ktl-" + p + "-ethnic", "キン族") + '</span>' +
+'<span class="seg">国籍：' + natOr("ktl-" + p + "-nat") + '</span></p>';
+h += line('常住地', v("ktl-" + p + "-addr"));
+return h;
+}
+var h = '';
+h += '<div class="head-row"><div class="head-left">' +
+'<p>' + v("ktl-city") + '</p>' +
+'<p class="org">' + (val("ktl-committee")? esc(val("ktl-committee")): BLANK) + '人民委員会</p>' +
+'</div>' +
+'<div class="head-right"><p>号：' + v("ktl-no") + '</p></div></div>';
+h += headStd('独立-自由-幸福');
+h += '<p class="right-line">' + (val("ktl-place")? esc(val("ktl-place")): BLANK) + '、' + jpDate("ktl-date") + '</p>';
+h += '<h1 class="doc-title" style="letter-spacing:0.1em;text-indent:0.1em">出生届摘録（写し）</h1>';
+h += line('氏名', renderName("ktl-name", "ktl-kana"));
+var dobHtml = dv("ktl-dob");
+if (val("ktl-dobwords")) dobHtml += '（' + esc(val("ktl-dobwords")) + '）';
+h += line('生年月日', dobHtml);
+h += '<p class="flex-line"><span class="seg">性別：' + v("ktl-gender") + '</span>' +
+'<span class="seg">民族：' + ethOr("ktl-ethnic", "キン族") + '</span>' +
+'<span class="seg">国籍：' + natOr("ktl-nat") + '</span></p>';
+h += line('出生地', v("ktl-birthplace"));
+h += line('本籍', v("ktl-hometown"));
+h += line('身分証明書番号', v("ktl-idno"));
+h += pblock('母', 'm');
+h += pblock('父', 'f');
+h += '<p class="flex-line" style="margin-top:14px"><span class="seg">登録地：' + v("ktl-regplace") + '</span>' +
+'<span class="seg">号：' + v("ktl-regno") + '</span>' +
+'<span class="seg">日：' + dv("ktl-regdate") + '</span></p>';
+h += '<p class="doc-note">備考：' + (val("ktl-note")? esc(val("ktl-note")): '出生登録簿から摘録した。') + '</p>';
+h += '<p class="sec-h">摘録の確認</p>';
+h += '<div class="right-sign">' +
+'<p class="role">司法室長</p>' +
+'<p class="note">（署名・押印）</p>' +
+'<p class="nm">' + renderName("ktl-sign-name", "ktl-sign-kana") + '</p>' +
 '</div>';
 return h + translatorBlock();
 }
@@ -9542,6 +10516,14 @@ docSearchEl.focus();
 var COPY_PAIRS = [
 { to: "bc-m-addr", from: "bc-f-addr", label: "Giống của cha" },
 { to: "bc-f-addr", from: "bc-m-addr", label: "Giống của mẹ" },
+{ to: "ko-m-addr", from: "ko-f-addr", label: "Giống của cha" },
+{ to: "ko-f-addr", from: "ko-m-addr", label: "Giống của mẹ" },
+{ to: "kb-m-addr", from: "kb-f-addr", label: "Giống của cha" },
+{ to: "kb-f-addr", from: "kb-m-addr", label: "Giống của mẹ" },
+{ to: "k15-m-addr", from: "k15-f-addr", label: "Giống của cha" },
+{ to: "k15-f-addr", from: "k15-m-addr", label: "Giống của mẹ" },
+{ to: "ktl-m-addr", from: "ktl-f-addr", label: "Giống của cha" },
+{ to: "ktl-f-addr", from: "ktl-m-addr", label: "Giống của mẹ" },
 { to: "mc-h-addr", from: "mc-w-addr", label: "Giống vợ" },
 { to: "mc-w-addr", from: "mc-h-addr", label: "Giống chồng" },
 { to: "mp-h-addr", from: "mp-w-addr", label: "Giống vợ" },

@@ -649,6 +649,8 @@
       /* ---------- Mobile: bottom bar, view toggle, touch sizing ---------- */
       .mobile-bar { display: none; }
       @media screen and (max-width: 640px) {
+        html { scroll-padding-bottom: 110px; }
+        body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
         body:not(.pv-preview) .preview-wrap { display: none; }
         body.pv-preview .panel { display: none; }
         .panel input, .panel select, .panel textarea { font-size: 16px; }
@@ -667,6 +669,12 @@
           background: var(--surface);
           border-top: 1px solid var(--border);
           padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+          transform: translateY(110%);
+          transition: transform 0.25s ease;
+        }
+        .mobile-bar.bar-on { transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) {
+          .mobile-bar { transition: none; }
         }
         .mobile-bar .seg {
           display: flex;
@@ -7295,6 +7303,50 @@ In / Lưu PDF
           }
           return raw;
         }
+        if (typeof COMMITTEE_IDS !== "undefined" && COMMITTEE_IDS[id]) return mapCommitteeText(raw);
+        if (typeof ISSUER_IDS !== "undefined" && ISSUER_IDS[id]) return mapIssuerText(raw);
+        if (typeof DOBWORDS_IDS !== "undefined" && DOBWORDS_IDS[id]) return mapDobWords(raw);
+        if (typeof TITLE_IDS !== "undefined" && TITLE_IDS[id]) return mapTitleText(raw);
+        if (typeof MAJOR_IDS !== "undefined" && MAJOR_IDS[id]) return mapClosed(MAJOR_MAP, raw);
+        if (typeof AUTO_NAME_IDS !== "undefined" && AUTO_NAME_IDS[id]) return autoNameText(raw);
+        if (typeof ORG_SCHOOL_FULL !== "undefined" && ORG_SCHOOL_FULL[id]) return mapOrgSchool(raw, true);
+        if (typeof ORG_SCHOOL_BARE !== "undefined" && ORG_SCHOOL_BARE[id]) return mapOrgSchool(raw, false);
+        if (typeof ORG_COMPANY_IDS !== "undefined" && ORG_COMPANY_IDS[id]) return mapOrgCompany(raw);
+        if (typeof ORG_HOSPITAL_IDS !== "undefined" && ORG_HOSPITAL_IDS[id]) return mapOrgHospital(raw);
+        if (typeof EDU_FORM_IDS !== "undefined" && EDU_FORM_IDS[id]) return mapClosed(FORM_MAP, raw);
+        if (typeof EDU_GRADE_IDS !== "undefined" && EDU_GRADE_IDS[id]) return mapClosed(GRADE_MAP, raw);
+        if (typeof EDU_MORAL_IDS !== "undefined" && EDU_MORAL_IDS[id]) return mapClosed(MORAL_MAP, raw);
+        if (typeof LAND_PURP_IDS !== "undefined" && LAND_PURP_IDS[id]) return mapClosed(LAND_PURPOSE_MAP, raw);
+        if (id === "bk-bank") return mapOrgBank(raw);
+        if (id === "bk-branch") return mapOrgBranch(raw);
+        if (id === "bz-bizname") return mapOrgBiz(raw);
+        if (id === "cp-name-vn" || id === "cp-name-foreign" || id === "cp-name-short") return latinUpper(raw);
+        if (id === "cp-formline") return mapLegalFormText(raw);
+        if (id === "cp-ch1-label" || id === "cp-ch2-label") return mapChangeLabelText(raw);
+        if (id === "pp-surname" || id === "pp-givenname") return latinUpper(raw);
+        if (id === "bz-capword") return mapMoneyWords(raw, false);
+        if (id === "cp-capital-words") return mapMoneyWords(raw, true);
+        if (id === "hb-c-health" || id === "cv-health") return mapClosed(HEALTH_MAP, raw);
+        if (id === "bk-asof1" || id === "bk-asof2" || id === "bk-asof3") return mapDateText(raw);
+        if (id === "ln-asset-grade") return mapGradeLevelText(raw);
+        if (id === "vr-seats") return mapSeatsText(raw);
+        if (id === "vr-capacity") return raw.replace(/mã lực/gi, "馬力").replace(/phân khối/gi, "cc");
+        if (id === "hl-glass-type") return mapClosed(GLASS_MAP, raw);
+        if (id === "sr-martyr") return mapMartyrText(raw);
+        if (id === "sr-c-major") return mapSrMajorText(raw);
+        if (id === "sr-c-advanced") return mapSubjectText(raw);
+        if (id === "cv-culture") return mapClosed(EDU_LEVEL_MAP, raw);
+        if (id === "cv-language") return mapLangText(raw);
+        if (id === "cv-award" || id === "cv-discipline") return mapClosed(NONE_MAP, raw);
+        if (id === "ll-record") return mapClosed(LL_RECORD_MAP, raw);
+        if (id === "ll-ban") return mapClosed(LL_BAN_MAP, raw);
+        if (id === "vr-color") return mapColorText(raw);
+        if (id === "vr-type") return mapClosed(VEHICLE_TYPE_MAP, raw);
+        if (id === "ln-purpose") return mapClosed(LAND_PURPOSE_MAP, raw);
+        if (id === "ln-useform") return mapClosed(LN_USEFORM_MAP, raw);
+        if (id === "ln-term" || id === "ln-asset-term") return mapClosed(LN_TERM_MAP, raw);
+        if (id === "ln-asset-type") return mapClosed(ASSET_TYPE_MAP, raw);
+        if (id === "ko-birthtime") return mapTimeText(raw);
         if (typeof PLACE_BARE_IDS !== "undefined" && PLACE_BARE_IDS[id]) return translatePlaceBare(raw);
         if (typeof PLACE_IDS !== "undefined" && PLACE_IDS[id]) return translatePlace(raw);
         if (typeof HEALTH_IDS !== "undefined" && HEALTH_IDS[id]) return mapClosed(HEALTH_MAP, raw);
@@ -7326,13 +7378,28 @@ In / Lưu PDF
       var ETHNIC_MAP = {
         kinh: "キン族", tay: "タイ族", thai: "タイ族", muong: "ムオン族",
         khmer: "クメール族", hoa: "ホア族（華族）", nung: "ヌン族",
-        hmong: "モン族", "h'mong": "モン族", dao: "ザオ族", giay: "ザイ族",
-        tho: "トー族", san: "サン族"
+        hmong: "モン族", "h'mong": "モン族", mong: "モン族", dao: "ザオ族", giay: "ザイ族",
+        tho: "トー族", san: "サン族",
+        "gia rai": "ジャライ族", "e de": "エデ族", "ba na": "バナ族", "xo dang": "ソダン族",
+        "san chay": "サンチャイ族", "co ho": "コホ族", cham: "チャム族", "san diu": "サンジウ族",
+        hre: "フレ族", raglai: "ラグライ族", mnong: "ムノン族", xtieng: "スティエン族",
+        "bru van kieu": "ブル・ヴァンキエウ族", "bru": "ブル族", "van kieu": "ヴァンキエウ族",
+        "co tu": "コトゥ族", "gie trieng": "ゼー・チェン族", ma: "マー族", "kho mu": "クム族",
+        "khomu": "クム族", co: "コー族", "ta oi": "タオイ族", "cho ro": "チョロ族",
+        khang: "カン族", "xinh mun": "シンムン族", "ha nhi": "ハニ族", "chu ru": "チュル族",
+        lao: "ラオ族", "la chi": "ラチー族", "la ha": "ラハ族", "phu la": "フラ族",
+        "la hu": "ラフ族", lu: "ルー族", "lo lo": "ロロ族", chut: "チュット族",
+        mang: "マン族", "pa then": "パテン族", cong: "コン族", ngai: "ガイ族",
+        "si la": "シラ族", "pu peo": "プペオ族", "bo y": "ボイ族", "co lao": "コーラオ族",
+        "ro mam": "ロマム族", brau: "ブラウ族", "o du": "オドゥ族"
       };
       function mapEthnic(v) {
         if (!v) return "";
-        var key = stripVN(v).toLowerCase();
-        return ETHNIC_MAP[key] || v;
+        var key = stripVN(v).toLowerCase().replace(/\s+/g, " ").trim();
+        if (ETHNIC_MAP[key]) return ETHNIC_MAP[key];
+        /* Unlisted group: katakana transliteration + 族, never raw Vietnamese */
+        if (!hasJapanese(v)) return nameToKatakana(String(v).trim()) + "族";
+        return v;
       }
       var COUNTRY_MAP = {
         "viet nam": "ベトナム", "nhat ban": "日本", "nhat": "日本",
@@ -7364,7 +7431,17 @@ In / Lưu PDF
         "ba noi": "父方の祖母", "ba ngoai": "母方の祖母", ba: "祖母",
         "anh trai": "兄", anh: "兄", "chi gai": "姉", chi: "姉",
         "em trai": "弟", "em gai": "妹", co: "叔母", di: "叔母", bac: "伯父・伯母",
-        "chu": "叔父", "cau": "叔父"
+        "chu": "叔父", "cau": "叔父",
+        chong: "夫", vo: "妻", "vo chong": "配偶者",
+        con: "子", "con trai": "息子", "con gai": "娘", "con ruot": "実子",
+        "chau ruot": "姪・甥", "chau trai": "甥", "chau gai": "姪", chau: "姪・甥",
+        "cha vo": "義父", "bo vo": "義父", "cha chong": "義父", "bo chong": "義父",
+        "me vo": "義母", "me chong": "義母",
+        "con dau": "嫁", "con re": "婿", "anh re": "義兄", "chi dau": "義姉",
+        "em dau": "義妹", "em re": "義弟",
+        "anh ruot": "兄", "chi ruot": "姉", "em ruot": "弟・妹",
+        "cha me": "父母", "bo me": "父母", "ong ba": "祖父母",
+        "chu ho": "世帯主", "ban than": "本人", "nguoi than": "親族"
       };
       function mapRelation(v) {
         if (!v) return "";
@@ -7667,6 +7744,574 @@ In / Lưu PDF
         return map[key] || s;
       }
 
+      /* ===== Issuing authorities, committees, titles, organisations =====
+         Free-text fields whose typed Vietnamese used to leak verbatim into the
+         Japanese document (the reported 「発行機関：Bộ Công an」 bug class). Each
+         registry below routes its fields through a deterministic translator:
+         exact dictionary first, then structural patterns (org type + place),
+         so no Vietnamese diacritics survive for realistic inputs. */
+      function normKey(s) {
+        return stripVN(String(s || "")).toLowerCase().replace(/\s+/g, " ").replace(/[.,;:]+$/, "").trim();
+      }
+      /* Place segment keeping an explicit unit: province names take 省/市
+         (HA NOI included), lower units keep the suffix of their admin word. */
+      function placeWithUnit(rawSeg) {
+        var p = splitPlacePrefix(String(rawSeg || "").trim());
+        var prov = provinceSuffix(provKey(p.name));
+        if (prov && prov.suffix) return prov.name + prov.suffix;
+        var upper = latinUpper(p.name);
+        if (prov) return upper + (p.suffix || "市");
+        return p.suffix ? upper + p.suffix : upper;
+      }
+
+      var ISSUER_EXACT = {
+        "bo cong an": "公安省", "bo tu phap": "司法省", "bo y te": "保健省",
+        "bo giao duc va dao tao": "教育訓練省", "bo lao dong thuong binh va xa hoi": "労働・傷病兵・社会省",
+        "bo tai nguyen va moi truong": "資源環境省", "bo ke hoach va dau tu": "計画投資省",
+        "bo noi vu": "内務省", "bo tai chinh": "財政省", "bo xay dung": "建設省",
+        "cuc quan ly xuat nhap canh": "入出管理局",
+        "cuc canh sat quan ly hanh chinh ve trat tu xa hoi": "社会行政秩序管理局",
+        "cuc canh sat quan ly hanh chinh": "行政管理局",
+        "cuc canh sat dang ky quan ly cu tru va du lieu quoc gia ve dan cu": "住民登録・国家人口データ管理局",
+        "cuc canh sat giao thong": "交通警察局",
+        "cuc canh sat phong chay chua chay va cuu nan cuu ho": "消防・救難警察局",
+        "cuc canh sat": "警察局", "cong an": "公安",
+        "so tu phap": "司法局", "phong tu phap": "司法室",
+        "ubnd": "人民委員会", "uy ban nhan dan": "人民委員会"
+      };
+      var DEPT_JP = {
+        "tu phap": "司法", "y te": "保健", "giao duc va dao tao": "教育訓練",
+        "lao dong thuong binh va xa hoi": "労働・傷病兵・社会",
+        "tai nguyen va moi truong": "資源環境", "ke hoach va dau tu": "計画投資",
+        "tai chinh ke hoach": "財政・計画", "tai chinh": "財政", "noi vu": "内務",
+        "xay dung": "建設", "giao thong van tai": "交通運輸", "cong thuong": "商工",
+        "nong nghiep va phat trien nong thon": "農業・農村開発",
+        "van hoa the thao va du lich": "文化・スポーツ・観光",
+        "thong tin va truyen thong": "情報通信", "khoa hoc va cong nghe": "科学技術",
+        "dang ky kinh doanh": "事業登録", "canh sat giao thong": "交通警察",
+        "an ninh trat tu": "治安秩序"
+      };
+      function matchDept(toks) {
+        var keys = Object.keys(DEPT_JP).sort(function (a, b) { return b.split(" ").length - a.split(" ").length; });
+        for (var i = 0; i < keys.length; i++) {
+          var w = keys[i].split(" ");
+          if (toks.length < w.length) continue;
+          var ok = true;
+          for (var j = 0; j < w.length; j++) if (toks[j] !== w[j]) { ok = false; break; }
+          if (ok) return { jp: DEPT_JP[keys[i]], n: w.length };
+        }
+        return null;
+      }
+      function mapIssuerText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var key = normKey(s);
+        if (ISSUER_EXACT[key]) return ISSUER_EXACT[key];
+        var rawToks = s.split(/\s+/), keyToks = key.split(" ");
+        function rawRest(n) { return rawToks.slice(n).join(" "); }
+        function keyRest(n) { return keyToks.slice(n).join(" "); }
+        var m;
+        /* Person head: Giám đốc / Cục trưởng / Phó … + organisation */
+        m = key.match(/^(pho )?(giam doc|cuc truong) (.+)$/);
+        if (m) {
+          var org = mapIssuerText(rawRest(m[1] ? 3 : 2));
+          if (org && org !== rawRest(m[1] ? 3 : 2)) return (m[1] ? "副" : "") + org + "長";
+        }
+        /* Công an + place */
+        if (keyToks[0] === "cong" && keyToks[1] === "an" && keyToks.length > 2) {
+          return placeWithUnit(rawRest(2)) + "公安部";
+        }
+        /* Sở / Phòng + department + optional place */
+        if (keyToks[0] === "so" || keyToks[0] === "phong") {
+          var unit = keyToks[0] === "so" ? "局" : "室";
+          var d = matchDept(keyToks.slice(1));
+          if (d) {
+            var restN = 1 + d.n;
+            var rest = keyRest(restN);
+            if (!rest) return d.jp + unit;
+            return placeWithUnit(rawRest(restN)) + d.jp + unit;
+          }
+          if (keyToks[0] === "phong" && keyToks.length > 1) return placeWithUnit(rawRest(1)) + "室";
+          return s;
+        }
+        /* Văn phòng đăng ký đất đai */
+        m = key.match(/^(chi nhanh )?van phong dang ky dat dai( .+)?$/);
+        if (m) return (m[2] ? placeWithUnit(m[2].trim()) : "") + "土地登記所" + (m[1] ? "支所" : "");
+        /* Trung tâm y tế + place */
+        if (keyToks[0] === "trung" && keyToks[1] === "tam" && keyToks[2] === "y" && keyToks[3] === "te") {
+          return (keyToks.length > 4 ? placeWithUnit(rawRest(4)) : "") + "医療センター";
+        }
+        /* UBND + place → committee form */
+        if ((keyToks[0] === "ubnd") || (keyToks[0] === "uy" && keyToks[1] === "ban")) {
+          var bare = mapCommitteeText(s);
+          return bare ? bare + "人民委員会" : "人民委員会";
+        }
+        /* A bare place typed as the issuing locality （発行地） */
+        if (matchAdminWords(keyToks, ADMIN_SPLITTERS) || provinceSuffix(provKey(s))) return translatePlace(s);
+        return s;
+      }
+      var ISSUER_IDS = {};
+      ("nt-idplace ic-idorg bk-c-idorg bz-o-idorg bz-office ms-idplace cv-idplace ll-idplace ll-office " +
+       "po-g-idplace po-a-idplace cp-o-idplace cp-r-idplace me-w-pporg me-h-pporg dl-baotu-issuer " +
+       "ln-signorg lx-issuer vr-issuer tc-authority hs-authority hb-bureau rs-citypolice rs-districtpolice " +
+       "hk-police-city tp-ministry id-issuer hl-province").split(" ").forEach(function (id) { ISSUER_IDS[id] = true; });
+
+      /* Committee name fields: renderer appends 人民委員会 itself, so the value
+         must reduce to the bare Latin place name (LAM SON人民委員会). */
+      function mapCommitteeText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var keyToks = normKey(s).split(" "), rawToks = s.split(/\s+/);
+        var cut = 0;
+        if (keyToks[0] === "ubnd") cut = 1;
+        else if (keyToks[0] === "uy" && keyToks[1] === "ban" && keyToks[2] === "nhan" && keyToks[3] === "dan") cut = 4;
+        if (cut) s = rawToks.slice(cut).join(" ");
+        if (!s.trim()) return "";
+        return translatePlaceBare(s);
+      }
+      var COMMITTEE_IDS = {};
+      ("bc-committee bx-committee ko-committee ktl-committee mx-committee dt-committee nt-committee").split(" ").forEach(function (id) { COMMITTEE_IDS[id] = true; });
+
+      /* ===== Vietnamese number words → digits (dates written out, money) ===== */
+      var VN_NUM = { khong: 0, mot: 1, hai: 2, ba: 3, bon: 4, tu: 4, nam: 5, lam: 5, sau: 6, bay: 7, tam: 8, chin: 9 };
+      function parseVnWords(str) {
+        var toks = stripVN(String(str || "")).toLowerCase().replace(/[^a-z\s]/g, " ").split(/\s+/).filter(Boolean);
+        if (!toks.length) return null;
+        var total = 0, section = 0, digit = -1, seen = false;
+        function flush(mult) { total += (section + (digit >= 0 ? digit : 0)) * mult; section = 0; digit = -1; }
+        for (var i = 0; i < toks.length; i++) {
+          var t = toks[i];
+          if (t === "le" || t === "linh" || t === "chan") continue;
+          if (t === "muoi") { section += (digit >= 0 ? digit : 1) * 10; digit = -1; seen = true; continue; }
+          if (t === "tram") { section += (digit >= 0 ? digit : 1) * 100; digit = -1; seen = true; continue; }
+          if (t === "nghin" || t === "ngan") { if (section === 0 && digit < 0) digit = 1; flush(1000); seen = true; continue; }
+          if (t === "trieu") { if (section === 0 && digit < 0) digit = 1; flush(1000000); seen = true; continue; }
+          if (t === "ty") { if (section === 0 && digit < 0) digit = 1; flush(1000000000); seen = true; continue; }
+          if (Object.prototype.hasOwnProperty.call(VN_NUM, t)) { digit = VN_NUM[t]; seen = true; continue; }
+          return null;
+        }
+        return seen ? total + section + (digit >= 0 ? digit : 0) : null;
+      }
+      function mapDobWords(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var dm = s.match(/(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})/);
+        if (dm) return dm[3] + "年" + parseInt(dm[2], 10) + "月" + parseInt(dm[1], 10) + "日";
+        var toks = stripVN(s).toLowerCase().split(/\s+/).filter(Boolean);
+        var ti = toks.indexOf("thang");
+        if (ti < 0) return s;
+        var ni = -1;
+        for (var i = ti + 1; i < toks.length; i++) if (toks[i] === "nam") { ni = i; break; }
+        if (ni < 0) return s;
+        var dayToks = toks.slice(0, ti);
+        if (dayToks[0] === "ngay") dayToks.shift();
+        var d = parseVnWords(dayToks.join(" ")), mo = parseVnWords(toks.slice(ti + 1, ni).join(" ")), y = parseVnWords(toks.slice(ni + 1).join(" "));
+        if (d === null || mo === null || y === null || d < 1 || d > 31 || mo < 1 || mo > 12 || y < 100) return s;
+        return y + "年" + mo + "月" + d + "日";
+      }
+      var DOBWORDS_IDS = {};
+      ("bm-dobwords bx-dobwords ko-dobwords kb-dobwords k15-dobwords ktl-dobwords").split(" ").forEach(function (id) { DOBWORDS_IDS[id] = true; });
+      function mapMoneyWords(raw, withUnit) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s) || /\d/.test(s)) return s;
+        var n = parseVnWords(s.replace(/(đồng|dong|vnd|vnđ)\s*$/i, ""));
+        if (n === null) return s;
+        return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (withUnit ? "ドン" : "");
+      }
+      function mapTimeText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        return s.replace(/giờ/g, "時").replace(/phút/g, "分").replace(/giây/g, "秒")
+          .replace(/\bgio\b/gi, "時").replace(/\bphut\b/gi, "分").replace(/\bgiay\b/gi, "秒");
+      }
+
+      /* ===== Signer / job titles ===== */
+      var TITLE_EXACT = {
+        "chu tich ubnd": "人民委員会主席", "chu tich uy ban nhan dan": "人民委員会主席",
+        "pho chu tich ubnd": "人民委員会副主席", "pho chu tich uy ban nhan dan": "人民委員会副主席",
+        "chu tich": "主席", "pho chu tich": "副主席",
+        "hieu truong": "校長", "pho hieu truong": "副校長", "hieu truong truong dai hoc": "学長",
+        "giam doc benh vien": "院長", "pho giam doc benh vien": "副院長",
+        "giam doc": "所長", "pho giam doc": "副所長", "giam doc so": "局長",
+        "vien truong": "院長", "pho vien truong": "副院長",
+        "truong phong tu phap": "司法室長", "truong phong": "室長", "pho truong phong": "副室長",
+        "chanh van phong": "事務局長",
+        "truong cong an": "警察署長", "pho truong cong an": "副警察署長",
+        "cong chuc tu phap ho tich": "司法・戸籍職員", "can bo tu phap ho tich": "司法・戸籍職員",
+        "can bo tu phap": "司法職員", "tu phap ho tich": "司法・戸籍担当職員",
+        "ke toan truong": "会計主任", "bac si": "医師", "y si": "医師",
+        "nhan vien": "職員", "can bo": "職員", "cong chuc": "公務員"
+      };
+      function mapTitleText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var key = normKey(s);
+        if (TITLE_EXACT[key]) return TITLE_EXACT[key];
+        var heads = [["pho chu tich ubnd", "人民委員会副主席"], ["chu tich ubnd", "人民委員会主席"],
+          ["pho chu tich", "副主席"], ["chu tich", "主席"], ["giam doc benh vien", "院長"], ["giam doc", "所長"]];
+        for (var i = 0; i < heads.length; i++) {
+          if (key === heads[i][0] || key.indexOf(heads[i][0] + " ") === 0) return heads[i][1];
+        }
+        var job = mapJobText(s);
+        return job !== s ? job : s;
+      }
+      var TITLE_IDS = {};
+      ("mc-signer-title du-signtitle dg-signtitle bm-signtitle bx-signtitle ko-signtitle " +
+       "hb-maker-title hb-director-title hn-rep-title em-writertitle em-jobtitle cp-r-title").split(" ").forEach(function (id) { TITLE_IDS[id] = true; });
+
+      /* ===== Organisation / institution names =====
+         Proper nouns follow the same convention as place names: the proper
+         part stays Latin (diacritics stripped, uppercased); the institution
+         type / legal form is rendered in Japanese. */
+      function orgStripPrefix(s, pairs) {
+        var keyToks = normKey(s).split(" "), rawToks = s.split(/\s+/);
+        var sorted = pairs.slice().sort(function (a, b) { return b[0].split(" ").length - a[0].split(" ").length; });
+        for (var i = 0; i < sorted.length; i++) {
+          var w = sorted[i][0].split(" ");
+          if (keyToks.length < w.length) continue;
+          var ok = true;
+          for (var j = 0; j < w.length; j++) if (keyToks[j] !== w[j]) { ok = false; break; }
+          if (ok) return { rest: rawToks.slice(w.length).join(" "), jp: sorted[i][1] };
+        }
+        return null;
+      }
+      var SCHOOL_TYPES = [
+        ["truong dai hoc", "大学"], ["dai hoc", "大学"], ["hoc vien", "学院"],
+        ["truong cao dang", "短期大学"], ["cao dang", "短期大学"],
+        ["truong trung cap", "専門学校"], ["trung cap", "専門学校"],
+        ["truong trung hoc pho thong", "高等学校"], ["trung hoc pho thong", "高等学校"], ["thpt", "高等学校"],
+        ["truong trung hoc co so", "中学校"], ["trung hoc co so", "中学校"], ["thcs", "中学校"],
+        ["truong tieu hoc", "小学校"], ["tieu hoc", "小学校"],
+        ["truong mam non", "幼稚園"], ["mam non", "幼稚園"], ["truong", "学校"]
+      ];
+      function mapOrgSchool(raw, full) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var hit = orgStripPrefix(s, SCHOOL_TYPES);
+        if (hit) {
+          if (!hit.rest.trim()) return full ? hit.jp : s;
+          return latinUpper(hit.rest) + (full ? hit.jp : "");
+        }
+        return latinUpper(s);
+      }
+      var COMPANY_FORMS = [
+        ["cong ty co phan", "株式会社"], ["cong ty tnhh mot thanh vien", "有限会社"],
+        ["cong ty tnhh hai thanh vien tro len", "有限会社"], ["cong ty trach nhiem huu han", "有限会社"],
+        ["cong ty tnhh", "有限会社"], ["cong ty hop danh", "合資会社"],
+        ["doanh nghiep tu nhan", "個人事業"], ["cong ty", "会社"]
+      ];
+      function mapOrgCompany(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var hit = orgStripPrefix(s, COMPANY_FORMS);
+        if (hit && hit.rest.trim()) return latinUpper(hit.rest) + hit.jp;
+        return latinUpper(s);
+      }
+      function mapLegalFormText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var key = normKey(s);
+        var forms = { "cong ty co phan": "株式会社", "cong ty trach nhiem huu han": "有限会社", "cong ty tnhh": "有限会社",
+          "cong ty hop danh": "合資会社", "doanh nghiep tu nhan": "個人企業", "ho kinh doanh": "個人事業", "cong ty": "会社" };
+        return forms[key] || latinUpper(s);
+      }
+      function mapChangeLabelText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var key = normKey(s);
+        var m = key.match(/lan thu\s+(\S+)/) || key.match(/lan\s+(\d+)/);
+        if (m) {
+          var n = /^\d+$/.test(m[1]) ? parseInt(m[1], 10) : parseVnWords(m[1]);
+          if (n !== null && n !== undefined) return "第" + n + "回変更登録";
+        }
+        if (key.indexOf("thay doi") >= 0) return "変更登録";
+        return s;
+      }
+      var HOSPITAL_TYPES = [
+        ["benh vien da khoa", "病院"], ["benh vien", "病院"],
+        ["trung tam y te", "医療センター"], ["trung tam", "センター"],
+        ["phong kham da khoa", "診療所"], ["phong kham", "診療所"], ["tram y te", "保健ステーション"]
+      ];
+      function mapOrgHospital(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var hit = orgStripPrefix(s, HOSPITAL_TYPES);
+        if (hit) {
+          if (!hit.rest.trim()) return hit.jp;
+          return latinUpper(hit.rest) + hit.jp;
+        }
+        return latinUpper(s);
+      }
+      function mapOrgBank(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var hit = orgStripPrefix(s, [["ngan hang thuong mai co phan", ""], ["ngan hang tmcp", ""], ["ngan hang", ""]]);
+        var rest = hit ? hit.rest : s;
+        var hit2 = orgStripPrefix(rest, [["tmcp", ""], ["thuong mai co phan", ""], ["co phan", ""]]);
+        if (hit2) rest = hit2.rest;
+        return latinUpper(rest || s);
+      }
+      function mapOrgBranch(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var hit = orgStripPrefix(s, [["chi nhanh", ""]]);
+        return translatePlace(hit ? hit.rest : s);
+      }
+      function mapOrgBiz(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var hit = orgStripPrefix(s, [["ho kinh doanh", ""]]);
+        return latinUpper(hit ? hit.rest : s);
+      }
+      var ORG_SCHOOL_FULL = {}, ORG_SCHOOL_BARE = {}, ORG_COMPANY_IDS = {}, ORG_HOSPITAL_IDS = {};
+      ("du-school tp-school cd-school dg-school").split(" ").forEach(function (id) { ORG_SCHOOL_FULL[id] = true; });
+      ("hs-school tc-school hs-examsite hs-hostschool").split(" ").forEach(function (id) { ORG_SCHOOL_BARE[id] = true; });
+      ("em-company cv-s-workplace").split(" ").forEach(function (id) { ORG_COMPANY_IDS[id] = true; });
+      ("hb-hospital hn-facility hl-unit").split(" ").forEach(function (id) { ORG_HOSPITAL_IDS[id] = true; });
+
+      /* Person names in fields that have no katakana companion input */
+      function autoNameText(raw) {
+        if (!raw) return "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        return nameToKatakana(s) + " (" + nameToRomaji(s) + ")";
+      }
+      var AUTO_NAME_IDS = {};
+      ("cv-nickname cv-knownname hl-alias hb-c-planname hn-c-planname em-writer").split(" ").forEach(function (id) { AUTO_NAME_IDS[id] = true; });
+
+      /* ===== Closed vocabularies: subjects, majors, grades, misc ===== */
+      var SUBJECT_MAP = {
+        "toan": "数学", "toan hoc": "数学", "vat ly": "物理", "hoa hoc": "化学",
+        "sinh hoc": "生物", "ngu van": "国語", "van hoc": "文学", "lich su": "歴史", "dia ly": "地理",
+        "tieng anh": "英語", "tieng nhat": "日本語", "tieng trung": "中国語", "tieng phap": "フランス語",
+        "tieng duc": "ドイツ語", "tieng han": "韓国語", "ngoai ngu": "外国語",
+        "giao duc cong dan": "公民", "gdcd": "公民", "cong nghe": "技術", "tin hoc": "情報",
+        "the duc": "体育", "giao duc the chat": "体育", "am nhac": "音楽", "my thuat": "美術",
+        "giai tich": "解析学", "dai so": "代数学", "dai so tuyen tinh": "線形代数学",
+        "xac suat thong ke": "確率統計学", "toan roi rac": "離散数学",
+        "triet hoc": "哲学", "triet hoc mac lenin": "マルクス・レーニン哲学",
+        "kinh te chinh tri": "政治経済学", "chu nghia xa hoi khoa hoc": "科学的社会主義",
+        "tu tuong ho chi minh": "ホーチミン思想", "lich su dang cong san viet nam": "ベトナム共産党史",
+        "phap luat dai cuong": "法学概論", "tin hoc dai cuong": "情報学概論",
+        "vat ly dai cuong": "一般物理学", "hoa hoc dai cuong": "一般化学", "hoa dai cuong": "一般化学",
+        "sinh hoc dai cuong": "一般生物学", "giao duc quoc phong": "国防教育",
+        "giao duc quoc phong an ninh": "国防・安全保障教育",
+        "co hoc": "力学", "nhiet hoc": "熱学", "quang hoc": "光学", "dien tu hoc": "電磁気学",
+        "hoa huu co": "有機化学", "hoa vo co": "無機化学", "hoa phan tich": "分析化学",
+        "giai phau": "解剖学", "sinh ly": "生理学", "hoa sinh": "生化学", "vi sinh": "微生物学",
+        "duoc ly": "薬理学", "noi khoa": "内科学", "ngoai khoa": "外科学",
+        "san khoa": "産科学", "nhi khoa": "小児科学", "ky nang mem": "ソフトスキル"
+      };
+      function mapSubjectText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var hit = mapClosed(SUBJECT_MAP, s);
+        if (hit !== s) return hit;
+        var stripped = s.replace(/\s+\d+\s*$/, "");
+        if (stripped !== s) { var h2 = mapClosed(SUBJECT_MAP, stripped); if (h2 !== stripped) return h2; }
+        return s;
+      }
+      var MAJOR_MAP = {
+        "cong nghe thong tin": "情報工学", "khoa hoc may tinh": "コンピュータ科学",
+        "ky thuat phan mem": "ソフトウェア工学", "he thong thong tin": "情報システム",
+        "ky thuat dien": "電気工学", "ky thuat dien tu": "電子工学", "dien tu vien thong": "電子通信工学",
+        "cong nghe ky thuat dien dien tu": "電気電子工学", "ky thuat co khi": "機械工学",
+        "co dien tu": "メカトロニクス", "tu dong hoa": "自動化", "ky thuat xay dung": "土木工学",
+        "xay dung": "建設工学", "kien truc": "建築学", "ke toan": "会計学",
+        "tai chinh ngan hang": "金融・銀行学", "tai chinh": "金融学", "ngan hang": "銀行学",
+        "quan tri kinh doanh": "経営学", "kinh te": "経済学", "kinh te quoc te": "国際経済学",
+        "thuong mai dien tu": "電子商取引", "marketing": "マーケティング",
+        "luat": "法学", "luat kinh te": "経済法学", "y khoa": "医学", "nganh y": "医学",
+        "rang ham mat": "歯学", "duoc": "薬学", "duoc hoc": "薬学", "dieu duong": "看護学",
+        "y te cong cong": "公衆衛生学", "ky thuat y sinh": "医用工学",
+        "ngon ngu anh": "英語学", "ngon ngu nhat": "日本語学", "ngon ngu trung": "中国語学", "ngon ngu han": "韓国語学",
+        "su pham toan": "数学教育", "su pham": "教育学", "giao duc tieu hoc": "初等教育", "giao duc mam non": "幼児教育",
+        "toan hoc": "数学", "vat ly": "物理学", "vat ly hoc": "物理学", "hoa hoc": "化学", "sinh hoc": "生物学",
+        "cong nghe sinh hoc": "生物工学", "cong nghe thuc pham": "食品工学",
+        "nong hoc": "農学", "thu y": "獣医学", "lam nghiep": "林学", "thuy san": "水産学",
+        "hoa dau": "石油工学", "mo dia chat": "鉱山地質学", "cong nghe may": "縫製工学",
+        "thiet ke do hoa": "グラフィックデザイン", "truyen thong": "メディア学", "bao chi": "ジャーナリズム",
+        "quan he quoc te": "国際関係学", "dong phuong hoc": "東洋学", "viet nam hoc": "ベトナム学",
+        "tam ly hoc": "心理学", "xa hoi hoc": "社会学", "triet hoc": "哲学", "lich su": "歴史学",
+        "van hoc": "文学", "dia ly": "地理学", "du lich": "観光学", "khach san": "ホテル学",
+        "che bien mon an": "調理学", "logistics": "ロジスティクス", "quan ly chuoi cung ung": "サプライチェーン管理"
+      };
+      var MAJOR_IDS = {};
+      ("du-major tp-major cd-major dg-major").split(" ").forEach(function (id) { MAJOR_IDS[id] = true; });
+      var GRADE_MAP = {
+        "xuat sac": "最優秀", "gioi": "優秀", "kha": "良好", "trung binh kha": "やや良好",
+        "trung binh": "普通", "yeu": "不可", "kem": "不可", "tot": "優", "dat": "合格", "khong dat": "不合格"
+      };
+      var MORAL_MAP = { "tot": "優", "kha": "良", "trung binh": "可", "yeu": "不可" };
+      var FORM_MAP = {
+        "chinh quy": "正規", "chinh quy tap trung": "正規", "tai chuc": "在職",
+        "tu xa": "通信", "lien thong": "編入", "he chinh quy": "正規", "he tai chuc": "在職"
+      };
+      var EDU_FORM_IDS = {}, EDU_GRADE_IDS = {}, EDU_MORAL_IDS = {};
+      ("hs-form tp-mode tp-system").split(" ").forEach(function (id) { EDU_FORM_IDS[id] = true; });
+      ("tp-eval hs-score sr-t1-ability sr-t2-ability sr-t3-ability").split(" ").forEach(function (id) { EDU_GRADE_IDS[id] = true; });
+      ("sr-t1-moral sr-t2-moral sr-t3-moral").split(" ").forEach(function (id) { EDU_MORAL_IDS[id] = true; });
+      var EDU_LEVEL_MAP = {
+        "dai hoc": "大学", "sau dai hoc": "大学院", "thac si": "修士", "tien si": "博士",
+        "cao dang": "短期大学", "trung cap": "専門学校", "trung hoc pho thong": "高等学校",
+        "thpt": "高等学校", "trung hoc co so": "中学校", "thcs": "中学校", "tieu hoc": "小学校",
+        "pho thong": "普通教育"
+      };
+      var SR_MAJOR_MAP = {
+        "tu nhien": "自然科学系", "xa hoi": "社会科学系", "ban tu nhien": "自然科学系",
+        "ban xa hoi": "社会科学系", "khoi a": "A系", "khoi b": "B系", "khoi c": "C系", "khoi d": "D系",
+        "a": "A系", "a1": "A1系", "b": "B系", "c": "C系", "d": "D系", "co ban": "基本系", "nang cao": "上級系"
+      };
+      var LAND_PURPOSE_MAP = {
+        "dat o": "宅地", "dat o tai nong thon": "農村宅地", "dat o tai do thi": "都市宅地",
+        "dat o nong thon": "農村宅地", "dat o do thi": "都市宅地",
+        "dat trong lua": "水田", "dat chuyen trong lua": "水田", "dat lua": "水田",
+        "dat trong cay hang nam": "一年作物地", "dat trong cay lau nam": "永年作物地", "dat trong cay": "作物地",
+        "dat rung san xuat": "生産林地", "dat rung phong ho": "防護林地", "dat rung dac dung": "特別林地",
+        "dat nong nghiep": "農地", "dat lam nghiep": "林地", "dat nuoi trong thuy san": "養殖地",
+        "dat thuong mai dich vu": "商業・サービス用地", "dat san xuat kinh doanh": "生産・経営用地",
+        "dat co so san xuat": "生産施設用地", "dat xay dung": "建設用地", "dat giao thong": "交通用地",
+        "dat cong nghiep": "工業用地", "dat vuon": "園地", "dat ao": "池沼地", "dat trong trot": "作物地"
+      };
+      var LAND_PURP_IDS = {};
+      ("ld-purp1 ld-purp2 ld-purp3").split(" ").forEach(function (id) { LAND_PURP_IDS[id] = true; });
+      var LN_TERM_MAP = { "lau dai": "長期", "on dinh lau dai": "長期", "su dung lau dai": "長期", "khong thoi han": "無期限" };
+      var LN_USEFORM_MAP = { "su dung rieng": "単独使用", "rieng": "単独使用", "su dung chung": "共同使用", "chung": "共同使用" };
+      var ASSET_TYPE_MAP = {
+        "nha o rieng le": "独立住宅", "nha o": "住宅", "can ho chung cu": "マンション", "can ho": "マンション",
+        "nha lien ke": "連続住宅", "biet thu": "別荘", "nha cap 4": "平屋住宅", "van phong": "事務所", "cua hang": "店舗"
+      };
+      var COLOR_MAP = {
+        "den": "黒", "trang": "白", "do": "赤", "xanh duong": "青", "xanh la": "緑", "xanh": "青",
+        "xam": "グレー", "bac": "シルバー", "vang": "黄", "nau": "茶", "cam": "オレンジ",
+        "hong": "ピンク", "tim": "紫", "be": "ベージュ", "kem": "クリーム", "xanh ngoc": "エメラルドグリーン"
+      };
+      function mapColorText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var hit = mapClosed(COLOR_MAP, s);
+        if (hit !== s) return hit;
+        var key = normKey(s);
+        var keys = Object.keys(COLOR_MAP).sort(function (a, b) { return b.length - a.length; });
+        for (var i = 0; i < keys.length; i++) if (key.indexOf(keys[i]) === 0) return COLOR_MAP[keys[i]];
+        return s;
+      }
+      var VEHICLE_TYPE_MAP = {
+        "o to con": "乗用車", "xe o to con": "乗用車", "o to": "自動車", "xe ban tai": "ピックアップトラック",
+        "ban tai": "ピックアップトラック", "xe may": "オートバイ", "mo to": "オートバイ", "xe mo to": "オートバイ",
+        "xe tai": "トラック", "o to tai": "トラック", "xe khach": "バス", "o to khach": "バス",
+        "xe dap dien": "電動自転車", "xe dap": "自転車"
+      };
+      var GLASS_MAP = {
+        "kinh can thi": "近視用眼鏡", "kinh can": "近視用眼鏡", "can thi": "近視",
+        "kinh vien thi": "遠視用眼鏡", "kinh vien": "遠視用眼鏡", "vien thi": "遠視",
+        "kinh loan thi": "乱視用眼鏡", "loan thi": "乱視", "kinh": "眼鏡"
+      };
+      var NONE_MAP = { "khong": "無", "khong co": "無" };
+      var LL_RECORD_MAP = { "khong": "無", "khong co an tich": "前科なし", "khong an tich": "前科なし", "chua co an tich": "前科なし", "khong co": "無" };
+      var LL_BAN_MAP = { "khong": "無", "khong bi cam": "禁止なし", "khong bi cam dam nhiem chuc vu": "就任禁止なし", "khong co": "無" };
+      var IDTYPE_MAP = {
+        "can cuoc cong dan": "市民カード", "cccd": "市民カード", "chung minh nhan dan": "身分証明書",
+        "cmnd": "身分証明書", "ho chieu": "旅券", "giay khai sinh": "出生届"
+      };
+      function mapIdTypeText(raw) { return mapClosed(IDTYPE_MAP, raw); }
+      function mapMartyrText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var key = normKey(s);
+        var base = "";
+        if (key.indexOf("con liet si") === 0) base = "戦没者の子";
+        else if (key.indexOf("con thuong binh") === 0 || key.indexOf("con benh binh") === 0) base = "傷病兵の子";
+        else if (key.indexOf("con anh hung") === 0) base = "英雄の子";
+        else return s;
+        var m = key.match(/hang\s*(\d+)/);
+        return m ? base + "（第" + m[1] + "級）" : base;
+      }
+      function mapSrMajorText(raw) {
+        var hit = mapClosed(SR_MAJOR_MAP, raw);
+        if (hit !== raw) return hit;
+        var key = normKey(raw);
+        if (key.indexOf("chuyen ") === 0) {
+          var subj = mapSubjectText(String(raw).trim().split(/\s+/).slice(1).join(" "));
+          if (subj !== String(raw).trim().split(/\s+/).slice(1).join(" ")) return subj + "専門";
+        }
+        var bySubject = mapSubjectText(raw);
+        if (bySubject !== raw) return bySubject;
+        return mapClosed(MAJOR_MAP, raw);
+      }
+      function mapDateText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var dm = s.match(/(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})/);
+        if (dm) return dm[3] + "年" + parseInt(dm[2], 10) + "月" + parseInt(dm[1], 10) + "日";
+        return mapDobWords(s);
+      }
+      function mapGradeLevelText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var m = normKey(s).match(/^cap\s+(.+)$/);
+        if (m) return "第" + latinUpper(m[1]) + "級";
+        return s;
+      }
+      function mapSeatsText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var m = normKey(s).match(/^(\d+)\s*cho/);
+        if (m) return m[1] + "人";
+        return s;
+      }
+      function mapScoreWordsText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s) || /\d/.test(s)) return s;
+        var parts = normKey(s).split(/\s+phay\s+|\s*,\s*/);
+        var whole = parseVnWords(parts[0]);
+        if (whole === null) return s;
+        if (parts.length > 1) {
+          var frac = parseVnWords(parts[1]);
+          if (frac !== null && frac >= 0 && frac <= 9) return whole + "." + frac;
+          return s;
+        }
+        return String(whole);
+      }
+      function mapLangText(raw) {
+        if (!raw) return raw || "";
+        var s = String(raw).trim();
+        if (!s || hasJapanese(s)) return s;
+        var key = normKey(s);
+        var langs = [["tieng anh", "英語"], ["tieng nhat", "日本語"], ["tieng trung", "中国語"], ["tieng han", "韓国語"],
+          ["tieng phap", "フランス語"], ["tieng duc", "ドイツ語"], ["tieng nga", "ロシア語"],
+          ["anh van", "英語"], ["nhat ngu", "日本語"], ["han ngu", "中国語"]];
+        for (var i = 0; i < langs.length; i++) {
+          if (key === langs[i][0]) return langs[i][1];
+          if (key.indexOf(langs[i][0] + " ") === 0) {
+            var rest = s.split(/\s+/).slice(langs[i][0].split(" ").length).join(" ");
+            return langs[i][1] + (rest ? " " + latinUpper(rest) : "");
+          }
+        }
+        return s;
+      }
+
       /* Dynamic member-block classes needing value translation */
       var CLASS_VALUE_MAPS = {
         "hk-birthplace": translatePlace, "hk-hometown": translatePlace, "hk-prev": translatePlace, "hk-dest": translatePlace,
@@ -7674,7 +8319,13 @@ In / Lưu PDF
         "spj-addr": translatePlace, "cvj-addr": translatePlace, "cvj-job": mapJobText,
         "txj1-permaddr": translatePlace, "txj1-curaddr": translatePlace,
         "txj2-bcprovince": translatePlace, "txj2-bcdistrict": translatePlace, "txj2-bccommune": translatePlace,
-        "txj2-bccountry": mapNation
+        "txj2-bccountry": mapNation,
+        "txj1-idplace": mapIssuerText, "txj1-idtype": mapIdTypeText,
+        "txj1-name": autoNameText, "txj2-name": autoNameText,
+        "rsj-name": autoNameText, "spj-name": autoNameText, "cvj-name": autoNameText,
+        "cvj-position": mapTitleText,
+        "srj-school": function (raw) { return mapOrgSchool(raw, false); },
+        "tpj-subject": mapSubjectText, "tpj-p10w": mapScoreWordsText
       };
 
       /* ===== 特徴 (đặc điểm nhận dạng) phrase builder ===== */
@@ -7848,6 +8499,8 @@ if (kana) return esc(kana);
 return esc(romaji);
 }
 function renderName(id, kanaId) { return nameVals(val(id), val(kanaId));}
+/* Name fields that have no katakana companion input: auto-generate it */
+function autoName(id) { var vn = val(id); return vn? nameVals(vn, nameToKatakana(vn)): BLANK; }
 function signBox(role, note, nameHtml) {
 return '<div class="sign-box"><p class="role">' + role + '</p><p class="note">' + note + '</p><p class="nm">' + nameHtml + '</p></div>';
 }
@@ -8059,13 +8712,13 @@ return el? el.value.trim(): "";
 }
 function memberData(block) {
 return {
-relation: q(block, "hk-relation"),
+relation: mapRelation(q(block, "hk-relation")),
 name: q(block, "hk-name"), kana: q(block, "hk-kana"),
-gender: q(block, "hk-gender"), alias: q(block, "hk-alias"),
+gender: q(block, "hk-gender"), alias: autoNameText(q(block, "hk-alias")),
 dob: q(block, "hk-dob"), birthplace: translatePlace(q(block, "hk-birthplace")),
 hometown: translatePlace(q(block, "hk-hometown")), ethnic: q(block, "hk-ethnic"),
 religion: mapReligionText(q(block, "hk-religion")), job: mapJobText(q(block, "hk-job")),
-idno: q(block, "hk-idno"), iddate: q(block, "hk-iddate"), idplace: q(block, "hk-idplace"),
+idno: q(block, "hk-idno"), iddate: q(block, "hk-iddate"), idplace: mapIssuerText(q(block, "hk-idplace")),
 movein: q(block, "hk-movein"), prev: translatePlace(q(block, "hk-prev")), regdate1: q(block, "hk-regdate1"),
 moveout: q(block, "hk-moveout"), dest: translatePlace(q(block, "hk-dest")), regdate2: q(block, "hk-regdate2"),
 passport: q(block, "hk-passport")
@@ -8108,7 +8761,7 @@ h += '</div>';
 return h;
 }
 function renderHousehold() {
-var blocks = document.querySelectorAll("#hk-members.member-block");
+var blocks = document.querySelectorAll("#hk-members .member-block");
 var members = [];
 blocks.forEach(function (b) { members.push(memberData(b));});
 if (val("hk-variant") === "new") return renderHouseholdNew(members);
@@ -8960,7 +9613,7 @@ var scores = [];
 document.querySelectorAll("#sr-scores .member-block").forEach(function (b) {
 var lab = b.querySelector(".srj-subject");
 var subj = "";
-if (lab) subj = (lab.tagName === "INPUT"? lab.value: lab.textContent).trim();
+if (lab) subj = mapSubjectText((lab.tagName === "INPUT"? lab.value: lab.textContent).trim());
 function gv(c) { var el = b.querySelector("." + c); return el? el.value.trim(): ""; }
 scores.push({ subject: subj, s1: gv("srj-s1"), s2: gv("srj-s2"), yr: gv("srj-year"), re: gv("srj-retake") });
 });
@@ -8978,11 +9631,11 @@ h += '<p class="flex-line"><span class="seg">生年月日：' + dv("sr-dob") + '
 '<span class="seg">民族：' + ethOr("sr-ethnic", "キン族") + '</span></p>';
 h += line('戦争犠牲者・傷病兵の子供（ランク）', v("sr-martyr"));
 h += line('現住所', v("sr-addr"));
-h += '<p class="flex-line"><span class="seg">父：' + v("sr-f-name") + '</span>' +
+h += '<p class="flex-line"><span class="seg">父：' + autoName("sr-f-name") + '</span>' +
 '<span class="seg">職業：' + v("sr-f-job") + '</span></p>';
-h += '<p class="flex-line"><span class="seg">母：' + v("sr-m-name") + '</span>' +
+h += '<p class="flex-line"><span class="seg">母：' + autoName("sr-m-name") + '</span>' +
 '<span class="seg">職業：' + v("sr-m-job") + '</span></p>';
-h += '<p class="flex-line"><span class="seg">保護者：' + v("sr-g-name") + '</span>' +
+h += '<p class="flex-line"><span class="seg">保護者：' + autoName("sr-g-name") + '</span>' +
 '<span class="seg">職業：' + v("sr-g-job") + '</span></p>';
 h += '<div class="right-sign"><p class="place-date">' + jpDate("sr-principaldate") + '</p>' +
 '<p class="role">校長</p><p class="note">（署名及び押印）済み</p></div>';
@@ -9302,7 +9955,7 @@ h += '<div class="sign-row">' +
 '<div class="sign-box"><p>' + jpDate("sp-date") + '</p>' +
 '<p class="role">申請者</p><p class="note">（署名、氏名記入）</p>' +
 '<p class="nm">' + renderName("sp-name", "sp-kana") + '</p></div>' +
-signBox('Xác nhận của chính quyền<br />人民委員会主席', '（署名、押印）', renderName("sp-chair-name", "sp-chair-kana")) +
+signBox('政府の確認<br />人民委員会主席', '（署名、押印）', renderName("sp-chair-name", "sp-chair-kana")) +
 '</div>';
 return h + translatorBlock();
 }
@@ -9359,7 +10012,7 @@ var children = dynRows("cv-children", ["cvj-name", "cvj-age", "cvj-job"]);
 var history = dynRows("cv-history", ["cvj-from", "cvj-to", "cvj-job", "cvj-addr", "cvj-position"]);
 function parentLines(tag, p) {
 var h = '<p class="sec-h">' + tag + '</p>';
-h += '<p class="flex-line"><span class="seg">氏名：' + v("cv-" + p + "-name") + '</span>' +
+h += '<p class="flex-line"><span class="seg">氏名：' + autoName("cv-" + p + "-name") + '</span>' +
 '<span class="seg">年齢：' + v("cv-" + p + "-age") + '</span>' +
 '<span class="seg">職業：' + v("cv-" + p + "-job") + '</span></p>';
 h += line('8月革命前', v("cv-" + p + "-h1"));
@@ -9406,7 +10059,7 @@ h += parentLines('父', 'f');
 h += parentLines('母', 'm');
 h += line('兄弟', v("cv-siblings"));
 h += '<p class="sec-h">妻・夫</p>';
-h += '<p class="flex-line"><span class="seg">氏名：' + v("cv-s-name") + '</span>' +
+h += '<p class="flex-line"><span class="seg">氏名：' + autoName("cv-s-name") + '</span>' +
 '<span class="seg">年齢：' + v("cv-s-age") + '</span>' +
 '<span class="seg">職業：' + v("cv-s-job") + '</span></p>';
 h += '<p class="flex-line"><span class="seg">職場：' + v("cv-s-workplace") + '</span>' +
@@ -10094,7 +10747,7 @@ relField +
 '</div>';
 }
 function renumberMembers() {
-var blocks = document.querySelectorAll("#hk-members.member-block");
+var blocks = document.querySelectorAll("#hk-members .member-block");
 blocks.forEach(function (b, i) {
 var t = b.querySelector(".member-head.mt");
 if (t) t.textContent = i === 0? 'Chủ hộ （戸籍筆頭者）': 'Thành viên ' + (i + 1);
@@ -10463,6 +11116,19 @@ fitPaper();
 if (segFormBtn) segFormBtn.addEventListener("click", function () { setMobileView(false); });
 if (segPreviewBtn) segPreviewBtn.addEventListener("click", function () { setMobileView(true); });
 if (btnPrintMobile) btnPrintMobile.addEventListener("click", doPrint);
+
+/* Phone: the fixed bar slides in only after scrolling (or in preview mode),
+   so it never covers the doc-type picker at the top of the page */
+var mobileBarEl = document.querySelector(".mobile-bar");
+function syncMobileBar() {
+if (!mobileBarEl) return;
+if (window.scrollY > 24 || document.body.classList.contains("pv-preview")) mobileBarEl.classList.add("bar-on");
+else mobileBarEl.classList.remove("bar-on");
+}
+window.addEventListener("scroll", syncMobileBar, { passive: true });
+if (segFormBtn) segFormBtn.addEventListener("click", function () { setTimeout(syncMobileBar, 0); });
+if (segPreviewBtn) segPreviewBtn.addEventListener("click", function () { setTimeout(syncMobileBar, 0); });
+syncMobileBar();
 
 $("btnReset").addEventListener("click", function () {
 document.querySelectorAll("form").forEach(function (f) { f.reset();});

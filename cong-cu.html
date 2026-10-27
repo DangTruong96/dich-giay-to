@@ -739,17 +739,22 @@
       @media print {
         body { background: #fff; }
         .no-print { display: none !important; }
-        .layout { display: block; padding: 0; max-width: none; }
-        .preview-wrap { width: 100%; display: block !important; }
-        .paper-scale { height: auto !important; overflow: visible !important; }
+        .layout { display: block; padding: 0; margin: 0; max-width: none; }
+        .preview-wrap { width: 100%; display: block !important; margin: 0; padding: 0; }
+        .paper-scale { height: auto !important; overflow: hidden !important; }
         .paper {
           transform: none !important;
           box-shadow: none;
           border-radius: 0;
           padding: 0;
+          margin: 0;
           min-height: 0;
           font-size: 13.2px;
           width: 100%;
+          /* Giấy 1 trang không được xé sang trang 2 trắng khi in:
+             khối giấy là một khối không tách (nội dung dài thật vẫn ngắt trang bình thường) */
+          break-inside: avoid;
+          page-break-inside: avoid;
         }
         .blank { color: #bbb; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         table.tbl th { background: #f2f2f2 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -1059,7 +1064,7 @@
               </div>
               <div class="field">
                 <label for="bc-f-ethnic">Dân tộc của cha</label>
-                <input type="text" id="bc-f-ethnic" list="ethnic-list" placeholder="Ví dụ: Kinh" />
+                <input type="text" id="bc-f-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
               </div>
             </div>
             <div class="field">
@@ -1087,7 +1092,7 @@
               </div>
               <div class="field">
                 <label for="bc-m-ethnic">Dân tộc của mẹ</label>
-                <input type="text" id="bc-m-ethnic" list="ethnic-list" placeholder="Ví dụ: Kinh" />
+                <input type="text" id="bc-m-ethnic" list="ethnic-list" placeholder="Để trống = キン族" />
               </div>
             </div>
             <div class="field">
@@ -8668,6 +8673,29 @@ function ethOr(id, def) {
 var x = mapEthnic(val(id));
 return x? esc(x): def;
 }
+/* Ngày sinh viết bằng chữ: năm đọc từng chữ số bằng chữ Hán số （一九九三）,
+   tháng/ngày đọc theo số đếm thông thường （四月・二十六日）. Ưu tiên giá trị
+   ô chữ người dùng nhập (đã qua mapDobWords chuẩn hoá); ô chữ trống thì tự
+   suy ra từ chính ô ngày số để hai dòng không bao giờ lệch nhau. */
+var KANJI_DIGITS = "〇一二三四五六七八九";
+function kanjiCount(n) {
+if (n < 10) return KANJI_DIGITS.charAt(n);
+var t = Math.floor(n / 10), o = n % 10;
+return (t > 1 ? KANJI_DIGITS.charAt(t) : "") + "十" + (o ? KANJI_DIGITS.charAt(o) : "");
+}
+function kanjiDate(jp) {
+var m = String(jp || "").match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+if (!m) return "";
+var y = "";
+for (var i = 0; i < 4; i++) y += KANJI_DIGITS.charAt(parseInt(m[1].charAt(i), 10));
+return y + "年" + kanjiCount(parseInt(m[2], 10)) + "月" + kanjiCount(parseInt(m[3], 10)) + "日";
+}
+function dobWordsHtml(wordsId, dobId) {
+var w = val(wordsId);
+if (w) { var kw = kanjiDate(w); return kw ? esc(kw) : cell(w); }
+var kd = kanjiDate(fmtDate(val(dobId)));
+return kd ? esc(kd) : BLANK;
+}
 function natOr(id) {
 var x = val(id);
 return x? esc(mapNation(x)): 'ベトナム';
@@ -8749,7 +8777,7 @@ h += line('個人識別番号', v("bc-idno"));
 h += '<p class="sec-h">親の基礎情報</p>';
 h += '<table class="tbl"><tr><th class="rowh"></th><th>父</th><th>母</th></tr>' +
 prow('氏名', renderName("bc-f-name", "bc-f-kana"), renderName("bc-m-name", "bc-m-kana")) +
-prow('民族', ethOr("bc-f-ethnic", BLANK), ethOr("bc-m-ethnic", BLANK)) +
+prow('民族', ethOr("bc-f-ethnic", "キン族"), ethOr("bc-m-ethnic", "キン族")) +
 prow('生年月日', dv("bc-f-dob"), dv("bc-m-dob")) +
 prow('国籍', 'ベトナム', 'ベトナム') +
 prow('職業', v("bc-f-job"), v("bc-m-job")) +
@@ -9257,7 +9285,7 @@ h += '<p class="right-line">番号：' + v("bm-no") + '</p>';
 h += '<h1 class="doc-title">出生届</h1>';
 h += line('氏名', renderName("bm-name", "bm-kana"));
 h += line('生年月日', dv("bm-dob"));
-h += line('生年月日（字で書く）', v("bm-dobwords"));
+h += line('生年月日（字で書く）', dobWordsHtml("bm-dobwords", "bm-dob"));
 h += '<p class="flex-line"><span class="seg">性別：' + v("bm-gender") + '</span>' +
 '<span class="seg">民族：' + ethOr("bm-ethnic", "キン族") + '</span>' +
 '<span class="seg">国籍：ベトナム</span></p>';
@@ -9304,7 +9332,7 @@ h += '<p class="right-line">' + (val("bx-place")? esc(val("bx-place")): BLANK) +
 h += '<h1 class="doc-title" style="letter-spacing:0.1em;text-indent:0.1em">出生届摘録</h1>';
 h += line('氏名', renderName("bx-name", "bx-kana"));
 h += line('生年月日', dv("bx-dob"));
-h += line('生年月日（字で書く）', v("bx-dobwords"));
+h += line('生年月日（字で書く）', dobWordsHtml("bx-dobwords", "bx-dob"));
 h += '<p class="flex-line"><span class="seg">性別：' + v("bx-gender") + '</span>' +
 '<span class="seg">民族：' + ethOr("bx-ethnic", "キン族") + '</span>' +
 '<span class="seg">国籍：ベトナム</span></p>';
@@ -9394,7 +9422,7 @@ h += '<p class="flex-line"><span class="seg">氏名：' + renderName("ko-name", 
 var dobHtml = dv("ko-dob");
 if (val("ko-birthtime")) dobHtml += '（' + esc(val("ko-birthtime")) + '）';
 h += line('生年月日', dobHtml);
-if (val("ko-dobwords")) h += line('生年月日（字で書く）', v("ko-dobwords"));
+if (val("ko-dobwords") || val("ko-dob")) h += line('生年月日（字で書く）', dobWordsHtml("ko-dobwords", "ko-dob"));
 h += line('出生所', v("ko-birthplace"));
 if (bv === "kstpht2") {
 h += '<p class="flex-line"><span class="seg">民族：' + ethOr("ko-ethnic", "キン族") + '</span>' +
@@ -9404,7 +9432,7 @@ h += '<p class="sec-h">親の基礎情報</p>';
 h += '<table class="tbl"><tr><th class="rowh"></th><th>' + (motherFirst? '母': '父') + '</th><th>' + (motherFirst? '父': '母') + '</th></tr>' +
 prow('氏名', renderName("ko-" + F + "-name", "ko-" + F + "-kana"), renderName("ko-" + M + "-name", "ko-" + M + "-kana")) +
 prow('年齢', v("ko-" + F + "-age"), v("ko-" + M + "-age")) +
-prow('民族', ethOr("ko-" + F + "-ethnic", BLANK), ethOr("ko-" + M + "-ethnic", BLANK)) +
+prow('民族', ethOr("ko-" + F + "-ethnic", "キン族"), ethOr("ko-" + M + "-ethnic", "キン族")) +
 prow('国籍', natOr("ko-" + F + "-nat"), natOr("ko-" + M + "-nat")) +
 prow('職業', v("ko-" + F + "-job"), v("ko-" + M + "-job")) +
 prow('居住地', v("ko-" + F + "-addr"), v("ko-" + M + "-addr")) +
@@ -9466,7 +9494,7 @@ h += '<p class="doc-sub">（' + (isCopy? '写し': '原本') + '）</p>';
 h += '<p class="flex-line"><span class="seg">氏名：' + renderName("kb-name", "kb-kana") + '</span>' +
 '<span class="seg">性別：' + v("kb-gender") + '</span></p>';
 h += line('生年月日', dv("kb-dob"));
-h += line('生年月日（字で書く）', v("kb-dobwords"));
+h += line('生年月日（字で書く）', dobWordsHtml("kb-dobwords", "kb-dob"));
 h += line('出生地', v("kb-birthplace"));
 h += '<p class="flex-line"><span class="seg">民族：' + ethOr("kb-ethnic", "キン族") + '</span>' +
 '<span class="seg">国籍：' + natOr("kb-nat") + '</span></p>';
@@ -9511,7 +9539,7 @@ h += '<p class="flex-line"><span class="seg">番号：' + v("k15-no") + '</span>
 h += '<h1 class="doc-title">出生届</h1>';
 h += line('氏名', renderName("k15-name", "k15-kana"));
 h += line('生年月日', dv("k15-dob"));
-h += line('生年月日（字で書く）', v("k15-dobwords"));
+h += line('生年月日（字で書く）', dobWordsHtml("k15-dobwords", "k15-dob"));
 h += '<p class="flex-line"><span class="seg">性別：' + v("k15-gender") + '</span>' +
 '<span class="seg">民族：' + ethOr("k15-ethnic", "キン族") + '</span>' +
 '<span class="seg">国籍：' + natOr("k15-nat") + '</span></p>';
@@ -9555,7 +9583,7 @@ h += '<p class="right-line">' + (val("ktl-place")? esc(val("ktl-place")): BLANK)
 h += '<h1 class="doc-title" style="letter-spacing:0.1em;text-indent:0.1em">出生届摘録（写し）</h1>';
 h += line('氏名', renderName("ktl-name", "ktl-kana"));
 var dobHtml = dv("ktl-dob");
-if (val("ktl-dobwords")) dobHtml += '（' + esc(val("ktl-dobwords")) + '）';
+if (val("ktl-dobwords")) { var ktlKw = kanjiDate(val("ktl-dobwords")); dobHtml += '（' + (ktlKw ? esc(ktlKw) : esc(val("ktl-dobwords"))) + '）'; }
 h += line('生年月日', dobHtml);
 h += '<p class="flex-line"><span class="seg">性別：' + v("ktl-gender") + '</span>' +
 '<span class="seg">民族：' + ethOr("ktl-ethnic", "キン族") + '</span>' +
@@ -11303,7 +11331,9 @@ if (pendingAction === "pdf") generatePdf();
 else { flushRender(); window.print(); }
 }
 function doPrint() { pendingAction = "print"; smartPrint(); }
-function doDownload() { pendingAction = "pdf"; smartPrint(); }
+/* Chống tải đôi: một lần bấm chỉ tạo đúng một file — khi đang tạo PDF,
+   mọi lần bấm thêm (kể cả bấm nhầm hai nút trên/dưới/di động) đều bị bỏ qua. */
+function doDownload() { if (pdfBusy) return; pendingAction = "pdf"; smartPrint(); }
 $("btnPrintTop").addEventListener("click", doPrint);
 $("btnPrintBottom").addEventListener("click", doPrint);
 var btnDlTop = $("btnDownloadTop"), btnDlBottom = $("btnDownloadBottom");
@@ -11381,6 +11411,45 @@ toast.hidden = false;
 txt.textContent = "Đã tạo file PDF — file đang được tải xuống.";
 scheduleToastHide();
 }
+/* Cắt phần trắng thừa ở cuối ảnh chụp trang: nếu không, vài pixel làm tròn
+   chiều cao cũng đủ tràn sang một trang 2 trắng hoàn toàn. Chỉ cắt vùng
+   trắng thuần ở cuối — nội dung thật dài hơn 1 trang vẫn giữ nguyên. */
+function trimCanvasBottom(canvas) {
+try {
+var w = canvas.width, h = canvas.height;
+if (!w || !h) return canvas;
+var ctx = canvas.getContext("2d");
+var BAND = 48, contentBottom = 0;
+for (var yEnd = h; yEnd > 0; yEnd -= BAND) {
+var yStart = Math.max(0, yEnd - BAND);
+var img = ctx.getImageData(0, yStart, w, yEnd - yStart).data;
+var foundRow = -1;
+for (var i = img.length - 4; i >= 0; i -= 4) {
+if (img[i] < 250 || img[i + 1] < 250 || img[i + 2] < 250) { foundRow = Math.floor(i / 4 / w); break; }
+}
+if (foundRow >= 0) { contentBottom = yStart + foundRow + 1; break; }
+}
+if (!contentBottom || contentBottom >= h) return canvas;
+var keep = Math.min(h, contentBottom + 12);
+if (keep >= h) return canvas;
+var c2 = document.createElement("canvas");
+c2.width = w; c2.height = keep;
+var x2 = c2.getContext("2d");
+x2.fillStyle = "#ffffff"; x2.fillRect(0, 0, w, keep);
+x2.drawImage(canvas, 0, 0, w, keep, 0, 0, w, keep);
+return c2;
+} catch (e) { return canvas; }
+}
+/* Vùng ảnh có hoàn toàn trắng không (để bỏ qua trang cuối trắng khi phân trang) */
+function canvasRegionBlank(cv, y0, hgt) {
+try {
+var d = cv.getContext("2d").getImageData(0, y0, cv.width, hgt).data;
+for (var i = 0; i < d.length; i += 4) {
+if (d[i] < 250 || d[i + 1] < 250 || d[i + 2] < 250) return false;
+}
+return true;
+} catch (e) { return false; }
+}
 function generatePdf() {
 if (pdfBusy) return;
 flushRender();
@@ -11408,6 +11477,7 @@ document.body.appendChild(holder);
 function cleanup() { if (holder.parentNode) holder.parentNode.removeChild(holder); setPdfBusy(false); }
 window.html2canvas(clone, { scale: 2, backgroundColor: "#ffffff", logging: false }).then(function (canvas) {
 try {
+canvas = trimCanvasBottom(canvas);
 var JsPDF = window.jspdf.jsPDF;
 var pdf = new JsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
 var pageW = 210, pageH = 297;
@@ -11416,6 +11486,7 @@ var pagePx = Math.floor(pageH * pxPerMm);
 var rendered = 0, page = 0;
 while (rendered < canvas.height) {
 var chunkH = Math.min(pagePx, canvas.height - rendered);
+if (page > 0 && rendered + chunkH >= canvas.height && canvasRegionBlank(canvas, rendered, chunkH)) break;
 var c2 = document.createElement("canvas");
 c2.width = canvas.width; c2.height = chunkH;
 var ctx2 = c2.getContext("2d");

@@ -7299,7 +7299,10 @@ In / Lưu PDF
           if (raw === "__other__") {
             var o = $(id + "-other");
             var t = o ? o.value.trim() : "";
-            return el.getAttribute("data-kind") === "religion" ? mapReligionText(t) : mapJobText(t);
+            var kind0 = el.getAttribute("data-kind");
+            if (kind0 === "religion") return mapReligionText(t);
+            if (kind0 === "preset") return id === "ic-source" ? mapJobText(t) : t;
+            return mapJobText(t);
           }
           return raw;
         }
@@ -8439,6 +8442,135 @@ In / Lưu PDF
         input.parentNode.replaceChild(sel, input);
         sel.parentNode.insertBefore(other, sel.nextSibling);
       }
+      /* ===== Preset options for common free-text fields (choose VN → fixed JP) ===== */
+      var CAUSE_OPTIONS = [
+        ["", "— Chọn mẫu có sẵn —"],
+        ["病死", "Bệnh tật （病死）"],
+        ["老衰", "Tuổi già （老衰）"],
+        ["心不全", "Suy tim （心不全）"],
+        ["脳卒中・脳出血", "Đột quỵ / xuất huyết não （脳卒中・脳出血）"],
+        ["肺炎", "Viêm phổi （肺炎）"],
+        ["癌", "Ung thư （癌）"],
+        ["心筋梗塞", "Nhồi máu cơ tim （心筋梗塞）"],
+        ["腎不全", "Suy thận （腎不全）"],
+        ["事故", "Tai nạn （事故）"],
+        ["__other__", "Khác — tự nhập （その他）"]
+      ];
+      var PO_CONTENT_OPTIONS = [
+        ["", "— Chọn mẫu có sẵn —"],
+        ["年金・給付金の受領", "Nhận lương hưu / trợ cấp （年金・給付金の受領）"],
+        ["行政手続きの代行", "Làm thủ tục hành chính thay （行政手続きの代行）"],
+        ["書類の受領", "Nhận giấy tờ （書類の受領）"],
+        ["銀行取引", "Giao dịch ngân hàng （銀行取引）"],
+        ["不動産の売買・譲渡", "Mua bán / chuyển nhượng nhà đất （不動産の売買・譲渡）"],
+        ["__other__", "Khác — tự nhập （その他）"]
+      ];
+      var PO_TERM_OPTIONS = [
+        ["", "— Chọn mẫu có sẵn —"],
+        ["6か月", "6 tháng （6か月）"],
+        ["1年", "1 năm （1年）"],
+        ["2年", "2 năm （2年）"],
+        ["3年", "3 năm （3年）"],
+        ["期間の定めなし", "Không thời hạn （期間の定めなし）"],
+        ["__other__", "Khác — tự nhập （その他）"]
+      ];
+      var KB_NOTE_OPTIONS = [
+        ["", "— Chọn mẫu có sẵn —"],
+        ["再登録", "Đăng ký lại （再登録）"],
+        ["期限を過ぎて登録", "Đăng ký quá hạn （期限を過ぎて登録）"],
+        ["__other__", "Khác — tự nhập （その他）"]
+      ];
+      var HL_CONCL_OPTIONS = [
+        ["", "— Chọn mẫu có sẵn —"],
+        ["労働に支障なし", "Đủ sức khoẻ lao động （労働に支障なし）"],
+        ["健康", "Khoẻ mạnh （健康）"],
+        ["要経過観察", "Theo dõi thêm （要経過観察）"],
+        ["要再検査", "Khám lại （要再検査）"],
+        ["__other__", "Khác — tự nhập （その他）"]
+      ];
+      var SR_EVAL_OPTIONS = [
+        ["", "— Chọn mẫu có sẵn —"],
+        ["勤勉", "Chăm chỉ （勤勉）"],
+        ["進歩が見られる", "Có tiến bộ （進歩が見られる）"],
+        ["学習態度が真面目で勤勉", "Thái độ học tập nghiêm túc, chăm chỉ （学習態度が真面目で勤勉）"],
+        ["素直で礼儀正しい", "Ngoan ngoãn, lễ phép （素直で礼儀正しい）"],
+        ["友達と仲良く過ごしている", "Hoà đồng với bạn bè （友達と仲良く過ごしている）"],
+        ["一層の努力が望まれる", "Cần cố gắng hơn （一層の努力が望まれる）"],
+        ["__other__", "Khác — tự nhập （その他）"]
+      ];
+      var LN_ORIGIN_OPTIONS = [
+        ["", "— Chọn mẫu có sẵn —"],
+        ["国家による使用権の割当て", "Nhà nước giao （国家による使用権の割当て）"],
+        ["認定", "Nhà nước công nhận （認定）"],
+        ["相続", "Thừa kế （相続）"],
+        ["譲渡", "Chuyển nhượng （譲渡）"],
+        ["贈与", "Tặng cho （贈与）"],
+        ["__other__", "Khác — tự nhập （その他）"]
+      ];
+      var IC_SOURCE_OPTIONS = [
+        ["", "— Chọn mẫu có sẵn —"],
+        ["給与", "Lương （給与）"],
+        ["年金", "Lương hưu （年金）"],
+        ["事業収入", "Kinh doanh （事業収入）"],
+        ["賃貸収入", "Cho thuê （賃貸収入）"],
+        ["__other__", "Khác — tự nhập （その他）"]
+      ];
+      var LX_RESTRICT_OPTIONS = [
+        ["", "— Chọn mẫu có sẵn —"],
+        ["眼鏡使用", "Đeo kính （眼鏡使用）"],
+        ["コンタクトレンズ使用", "Kính áp tròng （コンタクトレンズ使用）"],
+        ["__other__", "Khác — tự nhập （その他）"]
+      ];
+      var PRESET_FIELD_OPTIONS = {
+        "dt-cause": CAUSE_OPTIONS, "dl-cause": CAUSE_OPTIONS,
+        "po-content": PO_CONTENT_OPTIONS, "po-term": PO_TERM_OPTIONS,
+        "kb-note": KB_NOTE_OPTIONS, "ktl-note": KB_NOTE_OPTIONS,
+        "hl-conclusion": HL_CONCL_OPTIONS,
+        "sr-teacher-eval": SR_EVAL_OPTIONS,
+        "ln-origin": LN_ORIGIN_OPTIONS,
+        "ic-source": IC_SOURCE_OPTIONS,
+        "lx-restrict": LX_RESTRICT_OPTIONS
+      };
+      function convertPresetField(input, options) {
+        if (!input || input.tagName === "SELECT") return;
+        var current = input.value.trim();
+        var wasTextarea = input.tagName === "TEXTAREA";
+        var sel = document.createElement("select");
+        sel.id = input.id;
+        sel.className = "smart-sel";
+        sel.setAttribute("data-kind", "preset");
+        options.forEach(function (o) {
+          var op = document.createElement("option");
+          op.value = o[0]; op.textContent = o[1];
+          sel.appendChild(op);
+        });
+        var other;
+        if (wasTextarea) {
+          other = document.createElement("textarea");
+          other.rows = 3;
+        } else {
+          other = document.createElement("input");
+          other.type = "text";
+        }
+        other.id = input.id + "-other";
+        other.className = "smart-other";
+        other.placeholder = input.getAttribute("placeholder") || "Tự nhập (bản dịch ghi tiếng Nhật như giấy gốc)";
+        other.hidden = true;
+        if (current) {
+          var matched = "";
+          var curKey = stripVN(current).toLowerCase().replace(/\s+/g, " ").trim();
+          for (var i = 0; i < options.length; i++) {
+            if (!options[i][0] || options[i][0] === "__other__") continue;
+            if (options[i][0] === current) { matched = options[i][0]; break; }
+            var vnPart = options[i][1].split(" （")[0];
+            if (stripVN(vnPart).toLowerCase().replace(/\s+/g, " ").trim() === curKey) { matched = options[i][0]; break; }
+          }
+          if (matched) sel.value = matched;
+          else { sel.value = "__other__"; other.value = current; other.hidden = false; }
+        }
+        input.parentNode.replaceChild(sel, input);
+        sel.parentNode.insertBefore(other, sel.nextSibling);
+      }
       function syncSmartOthers() {
         document.querySelectorAll("select.smart-sel").forEach(function (sel) {
           var o = $(sel.id + "-other");
@@ -8449,6 +8581,7 @@ In / Lưu PDF
       function initI18nFields() {
         JOB_FIELD_IDS.forEach(function (id) { convertSmartField($(id), "job", JOB_OPTIONS); });
         RELIGION_FIELD_IDS.forEach(function (id) { convertSmartField($(id), "religion", RELIGION_OPTIONS); });
+        Object.keys(PRESET_FIELD_OPTIONS).forEach(function (id) { convertPresetField($(id), PRESET_FIELD_OPTIONS[id]); });
         ["id-features", "io-features", "idn-features"].forEach(function (id) { buildFeatureBuilder($(id)); });
         syncSmartOthers();
         if (!i18nWired) {
@@ -11479,7 +11612,13 @@ Object.keys(data.f || {}).forEach(function (id) {
 var el = $(id);
 if (!el) return;
 if (el.type === "checkbox") el.checked = data.f[id] === "1";
-else el.value = data.f[id];
+else {
+el.value = data.f[id];
+if (el.tagName === "SELECT" && el.classList && el.classList.contains("smart-sel") && data.f[id] && el.value !== data.f[id]) {
+var oth = $(id + "-other");
+if (oth) { oth.value = data.f[id]; el.value = "__other__"; }
+}
+}
 });
 Object.keys(data.d || {}).forEach(function (cid) {
 var c = $(cid);

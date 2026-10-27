@@ -110,6 +110,40 @@
       }
       .btn-print:hover { background: var(--accent-dark); }
       .btn-print:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+      .btn-download {
+        appearance: none;
+        border: 1.5px solid var(--accent);
+        border-radius: 8px;
+        background: var(--surface);
+        color: var(--accent);
+        font: inherit;
+        font-weight: 600;
+        font-size: 14.5px;
+        padding: 9px 18px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-download:hover { background: var(--accent-soft); }
+      .btn-download:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+      .btn-download[disabled] { opacity: 0.55; cursor: wait; }
+      .pdf-toast {
+        position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
+        z-index: 70; width: min(520px, calc(100vw - 24px));
+        background: var(--surface); color: var(--ink);
+        border: 1.5px solid var(--accent); border-radius: 12px;
+        box-shadow: 0 18px 50px rgba(15, 23, 32, 0.28);
+        padding: 13px 16px; font-size: 14px;
+        display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      }
+      .pdf-toast[hidden] { display: none; }
+      .pdf-toast .pt-text { flex: 1 1 auto; min-width: 180px; }
+      .pdf-toast a {
+        flex: none; font-weight: 700; color: #fff; background: var(--accent);
+        border-radius: 8px; padding: 8px 14px; text-decoration: none;
+      }
+      .pdf-toast a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
       /* ---------- Layout ---------- */
       .layout {
@@ -575,6 +609,9 @@
       .sign-box .role { font-weight: 700; margin: 0 0 2px; }
       .sign-box .note { font-size: 12px; margin: 0 0 26px; }
       .sign-box .nm { margin: 0; }
+      /* Hai khối ký cạnh nhau — không bao giờ rớt xuống xếp dọc, kể cả khi in ở khổ hẹp */
+      .sign-row.cols2 { flex-wrap: nowrap; }
+      .sign-row.cols2 > .sign-box { flex: 1 1 0; min-width: 0; }
       .right-sign { margin: 22px 0 0 auto; width: fit-content; max-width: 100%; text-align: center; }
       .right-sign .role { font-weight: 700; margin: 0 0 2px; }
       .right-sign .note { font-size: 12px; margin: 0 0 26px; }
@@ -719,6 +756,8 @@
         }
         .blank { color: #bbb; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         table.tbl th { background: #f2f2f2 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .sign-row.cols2 { display: flex !important; flex-wrap: nowrap !important; }
+        .sign-row.cols2 > .sign-box { flex: 1 1 0 !important; min-width: 0 !important; }
       }
 
       .doc-sub { text-align: center; font-size: 13px; font-weight: 600; margin: -6px 0 10px; }
@@ -807,6 +846,10 @@
       <button type="button" class="btn-print" id="btnPrintTop">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
         In / Lưu PDF
+      </button>
+      <button type="button" class="btn-download" id="btnDownloadTop">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+        Tải file PDF
       </button>
     </header>
 
@@ -6768,8 +6811,8 @@
 <legend>Ngày làm đơn &amp; xác nhận của UBND</legend>
 <div class="grid2">
 <div class="field">
-<label for="nt-place">Nơi làm đơn</label>
-<input type="text" id="nt-place" placeholder="Ví dụ: xã Lam Sơn" />
+<label for="nt-place">Nơi làm đơn (địa danh — không phải họ tên)</label>
+<input type="text" id="nt-place" placeholder="Ví dụ: xã Lam Sơn" autocomplete="off" />
 </div>
 <div class="field">
 <label for="nt-date">Ngày làm đơn</label>
@@ -6871,9 +6914,13 @@
 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
 In / Lưu PDF
 </button>
+<button type="button" class="btn-download" id="btnDownloadBottom">
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+Tải file PDF
+</button>
 <button type="button" class="btn-ghost" id="btnReset">Xoá toàn bộ thông tin</button>
 </div>
-<p class="hint" style="margin-top:10px">Khi hộp thoại in hiện ra, chọn máy in hoặc “Lưu dưới dạng PDF” (Save as PDF) để xuất file PDF khổ A4.</p>
+<p class="hint" style="margin-top:10px">Nút “In / Lưu PDF” mở hộp thoại in — chọn máy in hoặc “Lưu dưới dạng PDF” (Save as PDF) để xuất file PDF khổ A4. Nếu hộp thoại in không mở được (ví dụ đang xem trong khung xem trước), hãy dùng nút “Tải file PDF”: trang sẽ tự tạo file PDF và tải thẳng về máy, không cần hộp thoại in.</p>
 
 <label class="draft-toggle" for="draftToggle">
 <input type="checkbox" id="draftToggle" />
@@ -6905,10 +6952,11 @@ In / Lưu PDF
 <div class="print-check no-print" id="printCheck" hidden>
   <div class="print-check-card" role="alertdialog" aria-labelledby="pcTitle" aria-describedby="pcSub">
     <p class="pc-title" id="pcTitle">Còn <span id="pcCount">0</span> mục chưa nhập</p>
-    <p class="pc-sub" id="pcSub">Chạm vào tên mục để tới đúng chỗ nhập — hoặc vẫn in nếu mục đó không cần thiết.</p>
+    <p class="pc-sub" id="pcSub">Chạm vào tên mục để tới đúng chỗ nhập — hoặc vẫn tiếp tục nếu mục đó không cần thiết.</p>
     <div class="pc-list" id="pcList"></div>
     <div class="pc-actions">
       <button type="button" class="btn-ghost" id="pcClose">Để tôi kiểm tra lại</button>
+      <button type="button" class="btn-download" id="pcDownloadAnyway">Vẫn tải PDF</button>
       <button type="button" class="btn-print" id="pcPrintAnyway">Vẫn in</button>
     </div>
   </div>
@@ -6923,7 +6971,18 @@ In / Lưu PDF
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
     In / Lưu PDF
   </button>
+  <button type="button" class="btn-download" id="btnDownloadMobile" style="min-height:44px;padding:9px 12px;font-size:13.5px;white-space:nowrap">
+    Tải PDF
+  </button>
 </div>
+
+<div class="pdf-toast no-print" id="pdfToast" hidden>
+  <span class="pt-text" id="pdfToastText">Đang tạo file PDF…</span>
+  <a id="pdfToastLink" href="#" download hidden>Mở file PDF</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
 "use strict";
@@ -10758,8 +10817,15 @@ h += '<tr><td style="text-align:center">' + (i + 1) + '</td>' +
 });
 h += '</table>';
 h += '<p class="doc-note">上記の申告内容はすべて事実であり、虚偽があった場合は全責任を負います。</p>';
-h += '<p class="date-right">' + v("nt-place") + '、' + jpDate("nt-date") + '</p>';
-h += '<div class="sign-row">' +
+/* Dòng nơi + ngày: chỉ lấy từ ô "Nơi làm đơn" (địa danh). Nếu ô này chứa đúng
+   họ tên người làm đơn (gõ nhầm / trình duyệt tự điền) thì để trống — họ tên
+   người làm đơn không bao giờ được in lên dòng ngày. */
+var ntPlaceRaw = ($("nt-place")? $("nt-place").value: "").trim();
+var ntNameRaw = ($("nt-name")? $("nt-name").value: "").trim();
+var ntPlaceIsName = ntPlaceRaw && ntNameRaw &&
+  stripVN(ntPlaceRaw).toLowerCase().replace(/\s+/g, " ") === stripVN(ntNameRaw).toLowerCase().replace(/\s+/g, " ");
+h += '<p class="date-right">' + (ntPlaceIsName? BLANK: v("nt-place")) + '、' + jpDate("nt-date") + '</p>';
+h += '<div class="sign-row cols2">' +
 '<div class="sign-box"><p class="role">人民委員会の確認</p>' +
 '<p>' + esc(val("nt-sign-title") || "委員長") + '</p>' +
 '<p class="note">（署名、氏名・職務明記、押印）</p>' +
@@ -11233,9 +11299,116 @@ document.querySelectorAll("form").forEach(function (f) {
 f.addEventListener("submit", function (ev) { ev.preventDefault();});
 });
 
-function doPrint() { smartPrint(); }
+/* Print (dialog) stays the live-web path; download generates a real PDF file
+   in-page so it also works where window.print() is blocked (preview frames). */
+var pendingAction = "print";
+function runPendingAction() {
+if (pendingAction === "pdf") generatePdf();
+else { flushRender(); window.print(); }
+}
+function doPrint() { pendingAction = "print"; smartPrint(); }
+function doDownload() { pendingAction = "pdf"; smartPrint(); }
 $("btnPrintTop").addEventListener("click", doPrint);
 $("btnPrintBottom").addEventListener("click", doPrint);
+var btnDlTop = $("btnDownloadTop"), btnDlBottom = $("btnDownloadBottom");
+if (btnDlTop) btnDlTop.addEventListener("click", doDownload);
+if (btnDlBottom) btnDlBottom.addEventListener("click", doDownload);
+
+var pdfBusy = false;
+function setPdfBusy(on) {
+pdfBusy = on;
+[btnDlTop, btnDlBottom, $("btnDownloadMobile")].forEach(function (b) { if (b) b.disabled = on; });
+var toast = $("pdfToast"), txt = $("pdfToastText"), link = $("pdfToastLink");
+if (!toast) return;
+if (on) {
+toast.hidden = false;
+txt.textContent = "Đang tạo file PDF…";
+link.hidden = true;
+link.removeAttribute("href");
+} else if (link.hidden) {
+toast.hidden = true;
+}
+}
+function showPdfError(msg) {
+var toast = $("pdfToast"), txt = $("pdfToastText"), link = $("pdfToastLink");
+if (!toast) return;
+toast.hidden = false;
+txt.textContent = msg;
+link.hidden = true;
+link.removeAttribute("href");
+}
+function showPdfDone(url, fname) {
+var toast = $("pdfToast"), txt = $("pdfToastText"), link = $("pdfToastLink");
+if (!toast) return;
+toast.hidden = false;
+txt.textContent = "Đã tạo file PDF — file đang được tải xuống. Nếu máy không tự tải, chạm “Mở file PDF” rồi lưu lại từ trình xem PDF.";
+link.href = url;
+link.setAttribute("download", fname);
+link.hidden = false;
+}
+function generatePdf() {
+if (pdfBusy) return;
+flushRender();
+var paper = $("paper");
+if (!paper) return;
+if (!window.html2canvas || !(window.jspdf && window.jspdf.jsPDF)) {
+/* Thư viện tạo PDF chưa tải được (mất mạng) — báo rõ cho người dùng thay vì im lặng */
+showPdfError("Chưa tải được thư viện tạo PDF — kiểm tra kết nối mạng rồi tải lại trang và thử lại. Hoặc dùng nút “In / Lưu PDF” để xuất qua hộp thoại in.");
+return;
+}
+setPdfBusy(true);
+requestAnimationFrame(function () {
+var holder = document.createElement("div");
+holder.style.cssText = "position:fixed;left:-12000px;top:0;width:794px;background:#ffffff;";
+var clone = paper.cloneNode(true);
+clone.removeAttribute("id");
+clone.style.transform = "none";
+clone.style.width = "794px";
+clone.style.maxWidth = "none";
+clone.style.minHeight = "0";
+clone.style.boxShadow = "none";
+clone.style.borderRadius = "0";
+holder.appendChild(clone);
+document.body.appendChild(holder);
+function cleanup() { if (holder.parentNode) holder.parentNode.removeChild(holder); setPdfBusy(false); }
+window.html2canvas(clone, { scale: 2, backgroundColor: "#ffffff", logging: false }).then(function (canvas) {
+try {
+var JsPDF = window.jspdf.jsPDF;
+var pdf = new JsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
+var pageW = 210, pageH = 297;
+var pxPerMm = canvas.width / pageW;
+var pagePx = Math.floor(pageH * pxPerMm);
+var rendered = 0, page = 0;
+while (rendered < canvas.height) {
+var chunkH = Math.min(pagePx, canvas.height - rendered);
+var c2 = document.createElement("canvas");
+c2.width = canvas.width; c2.height = chunkH;
+var ctx2 = c2.getContext("2d");
+ctx2.fillStyle = "#ffffff"; ctx2.fillRect(0, 0, c2.width, c2.height);
+ctx2.drawImage(canvas, 0, rendered, canvas.width, chunkH, 0, 0, canvas.width, chunkH);
+if (page > 0) pdf.addPage();
+pdf.addImage(c2.toDataURL("image/jpeg", 0.92), "JPEG", 0, 0, pageW, chunkH / pxPerMm);
+rendered += chunkH; page++;
+}
+var fname = "ban-dich-" + currentType + ".pdf";
+var blob = pdf.output("blob");
+var url = URL.createObjectURL(blob);
+var a = document.createElement("a");
+a.href = url; a.download = fname;
+document.body.appendChild(a);
+a.click();
+a.remove();
+showPdfDone(url, fname);
+setTimeout(function () { URL.revokeObjectURL(url); }, 120000);
+} catch (err) {
+cleanup();
+showPdfError("Tạo file PDF thất bại — hãy tải lại trang và thử lại, hoặc dùng nút “In / Lưu PDF”.");
+return;
+}
+cleanup();
+}, function () { cleanup(); showPdfError("Tạo file PDF thất bại — hãy tải lại trang và thử lại, hoặc dùng nút “In / Lưu PDF”."); });
+});
+}
 
 /* Phone: segmented [Nhập thông tin | Xem bản dịch] + sticky bar print */
 var segFormBtn = $("segForm"), segPreviewBtn = $("segPreview"), btnPrintMobile = $("btnPrintMobile");
@@ -11249,6 +11422,8 @@ fitPaper();
 if (segFormBtn) segFormBtn.addEventListener("click", function () { setMobileView(false); });
 if (segPreviewBtn) segPreviewBtn.addEventListener("click", function () { setMobileView(true); });
 if (btnPrintMobile) btnPrintMobile.addEventListener("click", doPrint);
+var btnDownloadMobile = $("btnDownloadMobile");
+if (btnDownloadMobile) btnDownloadMobile.addEventListener("click", doDownload);
 
 /* Phone: the fixed bar slides in only after scrolling (or in preview mode),
    so it never covers the doc-type picker at the top of the page */
@@ -11710,7 +11885,7 @@ var panel = $("printCheck");
 var empties = collectEmptyFields();
 if (!empties.length) {
 if (panel) panel.hidden = true;
-window.print();
+runPendingAction();
 return;
 }
 $("pcCount").textContent = empties.length;
@@ -11764,7 +11939,9 @@ if (zi) zi.addEventListener("click", function () { setZoom(previewZoom + 0.25); 
 if (zf) zf.addEventListener("click", function () { setZoom(1); });
 var pcClose = $("pcClose"), pcAnyway = $("pcPrintAnyway"), pcPanel = $("printCheck");
 if (pcClose) pcClose.addEventListener("click", function () { pcPanel.hidden = true; });
-if (pcAnyway) pcAnyway.addEventListener("click", function () { pcPanel.hidden = true; flushRender(); window.print(); });
+if (pcAnyway) pcAnyway.addEventListener("click", function () { pcPanel.hidden = true; pendingAction = "print"; runPendingAction(); });
+var pcDl = $("pcDownloadAnyway");
+if (pcDl) pcDl.addEventListener("click", function () { pcPanel.hidden = true; pendingAction = "pdf"; runPendingAction(); });
 updateProgress();
 syncVariantSegments();
 syncSmartOthers();

@@ -141,11 +141,6 @@
       .pdf-toast.pt-fading { opacity: 0; }
       .pdf-toast[hidden] { display: none; }
       .pdf-toast .pt-text { flex: 1 1 auto; min-width: 180px; }
-      .pdf-toast a {
-        flex: none; font-weight: 700; color: #fff; background: var(--accent);
-        border-radius: 8px; padding: 8px 14px; text-decoration: none;
-      }
-      .pdf-toast a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
       /* ---------- Layout ---------- */
       .layout {
@@ -6980,7 +6975,6 @@ Tải file PDF
 
 <div class="pdf-toast no-print" id="pdfToast" hidden>
   <span class="pt-text" id="pdfToastText">Đang tạo file PDF…</span>
-  <a id="pdfToastLink" href="#" download hidden>Mở file PDF</a>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -11353,41 +11347,38 @@ toast.addEventListener("mouseleave", function () { if (toastAutoHide && !toast.h
 })();
 
 var pdfBusy = false;
+var toastResultShown = false;
 function setPdfBusy(on) {
 pdfBusy = on;
 [btnDlTop, btnDlBottom, $("btnDownloadMobile")].forEach(function (b) { if (b) b.disabled = on; });
-var toast = $("pdfToast"), txt = $("pdfToastText"), link = $("pdfToastLink");
+var toast = $("pdfToast"), txt = $("pdfToastText");
 if (!toast) return;
 if (on) {
 cancelToastHide();
+toastResultShown = false;
 toast.hidden = false;
 txt.textContent = "Đang tạo file PDF…";
-link.hidden = true;
-link.removeAttribute("href");
-} else if (link.hidden) {
+} else if (!toastResultShown) {
 cancelToastHide();
 toast.hidden = true;
 }
 }
 function showPdfError(msg) {
-var toast = $("pdfToast"), txt = $("pdfToastText"), link = $("pdfToastLink");
+var toast = $("pdfToast"), txt = $("pdfToastText");
 if (!toast) return;
 cancelToastHide();
+toastResultShown = true;
 toast.hidden = false;
 txt.textContent = msg;
-link.hidden = true;
-link.removeAttribute("href");
 scheduleToastHide();
 }
-function showPdfDone(url, fname) {
-var toast = $("pdfToast"), txt = $("pdfToastText"), link = $("pdfToastLink");
+function showPdfDone() {
+var toast = $("pdfToast"), txt = $("pdfToastText");
 if (!toast) return;
 cancelToastHide();
+toastResultShown = true;
 toast.hidden = false;
-txt.textContent = "Đã tạo file PDF — file đang được tải xuống. Nếu máy không tự tải, chạm “Mở file PDF” rồi lưu lại từ trình xem PDF.";
-link.href = url;
-link.setAttribute("download", fname);
-link.hidden = false;
+txt.textContent = "Đã tạo file PDF — file đang được tải xuống.";
 scheduleToastHide();
 }
 function generatePdf() {
@@ -11442,7 +11433,7 @@ a.href = url; a.download = fname;
 document.body.appendChild(a);
 a.click();
 a.remove();
-showPdfDone(url, fname);
+showPdfDone();
 setTimeout(function () { URL.revokeObjectURL(url); }, 120000);
 } catch (err) {
 cleanup();

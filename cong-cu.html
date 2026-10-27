@@ -807,7 +807,7 @@
       <section class="panel no-print" aria-label="Nhập thông tin">
         <div id="pickerArea">
         <h2>Chọn loại giấy tờ</h2>
-        <p class="lede">29 mẫu dịch tiếng Nhật — đã kiểm chứng lại theo mẫu chính thức hiện hành và các biến thể theo thời kỳ của từng loại giấy. Điền thông tin tiếng Việt, bản dịch sẽ tự hiện ở khung bên cạnh.</p>
+        <p class="lede">30 mẫu dịch tiếng Nhật — đã kiểm chứng lại theo mẫu chính thức hiện hành và các biến thể theo thời kỳ của từng loại giấy. Điền thông tin tiếng Việt, bản dịch sẽ tự hiện ở khung bên cạnh.</p>
 
         <div class="search-wrap">
           <input type="search" id="docSearch" placeholder="Tìm loại giấy… (ví dụ: khai sinh, bảng điểm, cư trú)" aria-label="Tìm loại giấy tờ" />
@@ -822,7 +822,7 @@
           <div class="acc open">
             <button type="button" class="acc-head" aria-expanded="true">
               <span class="acc-name">Hộ tịch · Thân nhân · Gia đình</span>
-              <span class="acc-count">10 loại</span>
+              <span class="acc-count">11 loại</span>
               <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </button>
             <div class="acc-body">
@@ -833,6 +833,7 @@
               <button type="button" class="doc-type" data-doctype="criminal" aria-pressed="false"><span class="t">Phiếu lý lịch tư pháp (số 1 / số 2)</span><span class="j">犯罪経歴証明書</span></button>
               <button type="button" class="doc-type" data-doctype="household" aria-pressed="false"><span class="t">Sổ hộ khẩu</span><span class="j">戸籍謄本</span></button>
               <button type="button" class="doc-type" data-doctype="residence" aria-pressed="false"><span class="t">Giấy xác nhận thông tin về cư trú — Mẫu CT07</span><span class="j">住民票</span></button>
+              <button type="button" class="doc-type" data-doctype="identitycert" aria-pressed="false"><span class="t">Giấy chứng nhận nhân thân</span><span class="j">親族関係証明書</span></button>
               <button type="button" class="doc-type" data-doctype="idcard" aria-pressed="false"><span class="t">Căn cước / Chứng minh nhân dân</span><span class="j">身分証明書</span></button>
               <button type="button" class="doc-type" data-doctype="passport" aria-pressed="false"><span class="t">Hộ chiếu</span><span class="j">パスポート（旅券）</span></button>
               <button type="button" class="doc-type" data-doctype="hospitalbirth" aria-pressed="false"><span class="t">Giấy chứng sinh</span><span class="j">出生証明書</span></button>
@@ -6695,6 +6696,94 @@
 </form>
 
 
+<!-- ========== FORM: GIẤY CHỨNG NHẬN NHÂN THÂN ========== -->
+<form id="form-identitycert" autocomplete="off" hidden>
+<p class="hint" style="margin:0 0 4px">Bản kê khai những người có quan hệ nhân thân mà người làm đơn có trách nhiệm nuôi dưỡng, do Ủy ban nhân dân xã/phường xác nhận. Thường dùng để nộp cho công ty/cơ quan thuế tại Nhật khi khai người phụ thuộc ở Việt Nam （扶養控除） trong điều chỉnh thuế cuối năm.</p>
+<fieldset>
+<legend>Kính gửi （宛先）</legend>
+<div class="field">
+<label for="nt-committee">Tên Ủy ban nhân dân xã / phường</label>
+<input type="text" id="nt-committee" placeholder="Ví dụ: xã Lam Sơn, tỉnh Thanh Hóa" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Người làm đơn</legend>
+<div class="field name-pair">
+<label for="nt-name">Tên tôi là — họ và tên</label>
+<input type="text" id="nt-name" class="vn-name" placeholder="Họ và tên đầy đủ" />
+<label class="kana-label" for="nt-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="nt-kana" class="kana" placeholder="カタカナ" />
+</div>
+<div class="grid3">
+<div class="field">
+<label for="nt-gender">Giới tính</label>
+<select id="nt-gender">
+<option value="">— Chưa chọn —</option>
+<option value="男">Nam</option>
+<option value="女">Nữ</option>
+</select>
+</div>
+<div class="field">
+<label for="nt-dob">Sinh ngày</label>
+<input type="date" id="nt-dob" />
+</div>
+<div class="field">
+<label for="nt-nation">Quốc tịch （国籍）</label>
+<input type="text" id="nt-nation" placeholder="Để trống = Việt Nam" />
+</div>
+</div>
+<div class="grid3">
+<div class="field">
+<label for="nt-idno">Số CCCD （市民カード番号）</label>
+<input type="text" id="nt-idno" placeholder="Số căn cước công dân" />
+</div>
+<div class="field">
+<label for="nt-iddate">Cấp ngày （発行日）</label>
+<input type="date" id="nt-iddate" />
+</div>
+<div class="field">
+<label for="nt-idplace">Nơi cấp （発行機関）</label>
+<input type="text" id="nt-idplace" placeholder="Ví dụ: Bộ Công an" />
+</div>
+</div>
+<div class="field">
+<label for="nt-permaddr">Địa chỉ thường trú （常住地）</label>
+<input type="text" id="nt-permaddr" placeholder="Địa chỉ thường trú" />
+</div>
+</fieldset>
+<fieldset>
+<legend>Người có quan hệ nhân thân （親族）</legend>
+<div id="nt-rels"></div>
+<button type="button" class="btn-add" id="btnAddNtRel">+ Thêm người thân</button>
+</fieldset>
+<fieldset>
+<legend>Ngày làm đơn &amp; xác nhận của UBND</legend>
+<div class="grid2">
+<div class="field">
+<label for="nt-place">Nơi làm đơn</label>
+<input type="text" id="nt-place" placeholder="Ví dụ: xã Lam Sơn" />
+</div>
+<div class="field">
+<label for="nt-date">Ngày làm đơn</label>
+<input type="date" id="nt-date" />
+</div>
+</div>
+<div class="field">
+<label for="nt-sign-title">Chức danh người ký xác nhận UBND</label>
+<select id="nt-sign-title">
+<option value="委員長">Chủ tịch （委員長）</option>
+<option value="副委員長">Phó chủ tịch （副委員長）</option>
+</select>
+</div>
+<div class="field name-pair">
+<label for="nt-sign-name">Họ và tên người ký xác nhận</label>
+<input type="text" id="nt-sign-name" class="vn-name" placeholder="Họ và tên chủ tịch / phó chủ tịch ký" />
+<label class="kana-label" for="nt-sign-kana">Phiên âm katakana (tự động tạo — có thể sửa)</label>
+<input type="text" id="nt-sign-kana" class="kana" placeholder="カタカナ" />
+</div>
+</fieldset>
+</form>
+
 <!-- ========== NGƯỜI DỊCH (tuỳ chọn) ========== -->
 <form id="form-translator" autocomplete="off">
 <fieldset>
@@ -7462,7 +7551,8 @@ In / Lưu PDF
        "em-coaddr em-addr em-place sp-addr tx-notify-addr tx-regplace cv-hkreg cv-birthplace cv-hometown cv-s-addr cv-party-place cv-youth-place " +
        "hl-hometown hl-addr hl-place ld-o1-addr ld-o2-addr ld-addr ln-o-addr ln-addr ln-place cp-addr cp-bizaddr cp-province cp-o-hkaddr cp-o-addr cp-r-hkaddr cp-r-addr " +
        "dt-regplace dt-deathplace dt-place dl-lastaddr dl-regplace dl-deathplace ll-birthplace ll-addr po-g-addr po-a-addr po-place " +
-       "tc-birthplace tc-place lx-addr vr-addr cd-place dg-place").split(" ").forEach(function (id) { PLACE_IDS[id] = true; });
+       "tc-birthplace tc-place lx-addr vr-addr cd-place dg-place " +
+       "nt-committee nt-permaddr nt-place").split(" ").forEach(function (id) { PLACE_IDS[id] = true; });
 
       /* Occupations: preset options (value = Japanese) + dictionary for typed Vietnamese */
       var JOB_OPTIONS = [
@@ -9855,6 +9945,44 @@ h += '<div class="right-sign">' +
 return h + translatorBlock();
 }
 
+/* ================= 親族関係証明書（Giấy chứng nhận nhân thân） ================= */
+function renderIdentityCert() {
+var h = '';
+h += headStd('独立 - 自由 - 幸福');
+h += '<h1 class="doc-title" style="letter-spacing:0.12em;text-indent:0.12em">親族関係証明書</h1>';
+h += line('宛先', (val("nt-committee")? esc(val("nt-committee")): BLANK) + '人民委員会');
+h += line('氏名', renderName("nt-name", "nt-kana"));
+h += '<p class="flex-line"><span class="seg">性別：' + v("nt-gender") + '</span>' +
+'<span class="seg">生年月日：' + dv("nt-dob") + '</span>' +
+'<span class="seg">国籍：' + natOr("nt-nation") + '</span></p>';
+h += '<p class="flex-line"><span class="seg">市民カード番号：' + v("nt-idno") + '</span>' +
+'<span class="seg">発行日：' + dv("nt-iddate") + '</span>' +
+'<span class="seg">発行機関：' + v("nt-idplace") + '</span></p>';
+h += line('常住地', v("nt-permaddr"));
+h += '<p class="doc-note">私は、下記の者と親族関係にあり、その扶養に責任を負うことをここに申告します。</p>';
+var rels = dynRows("nt-rels", ["ntj-relation", "ntj-relation-text", "ntj-name", "ntj-kana", "ntj-dob"]);
+h += '<table class="tbl"><tr><th style="width:7%">番号</th><th>申請者との関係</th><th>氏名</th><th>生年月日</th></tr>';
+if (!rels.length) rels = [{}];
+rels.forEach(function (r, i) {
+var rel = r["ntj-relation"] || (r["ntj-relation-text"]? mapRelation(r["ntj-relation-text"]): "");
+h += '<tr><td style="text-align:center">' + (i + 1) + '</td>' +
+'<td>' + cell(rel) + '</td>' +
+'<td>' + nameVals(r["ntj-name"] || "", r["ntj-kana"] || "") + '</td>' +
+'<td>' + cell(fmtDate(r["ntj-dob"] || "")) + '</td></tr>';
+});
+h += '</table>';
+h += '<p class="doc-note">上記の申告内容はすべて事実であり、虚偽があった場合は全責任を負います。</p>';
+h += '<p class="date-right">' + v("nt-place") + '、' + jpDate("nt-date") + '</p>';
+h += '<div class="sign-row">' +
+'<div class="sign-box"><p class="role">人民委員会の確認</p>' +
+'<p>' + esc(val("nt-sign-title") || "委員長") + '</p>' +
+'<p class="note">（署名、氏名・職務明記、押印）</p>' +
+'<p class="nm">' + renderName("nt-sign-name", "nt-sign-kana") + '</p></div>' +
+signBox('申請者', '（署名、氏名明記）', renderName("nt-name", "nt-kana")) +
+'</div>';
+return h + translatorBlock();
+}
+
 /* ================= Dispatch & wiring ================= */
 var RENDERERS = {
 birth: renderBirth, marriage: renderMarriage, uni: renderUni, hs: renderHs,
@@ -9867,12 +9995,13 @@ support: renderSupport, resume: renderResume, health: renderHealth,
 land: renderLand, company: renderCompany,
 death: renderDeath, criminal: renderCriminal, poa: renderPoa,
 thcs: renderThcs, college: renderCollege, grad: renderGrad,
-license: renderLicense, vehiclereg: renderVehicleReg
+license: renderLicense, vehiclereg: renderVehicleReg,
+identitycert: renderIdentityCert
 };
 var TYPES = ["birth", "marriage", "uni", "hs", "household", "business", "idcard", "passport", "bank",
 "transcript", "schoolrecord", "maritalstatus", "hospitalbirth", "residence", "income", "employment",
 "support", "resume", "health", "land", "company",
-"death", "criminal", "poa", "thcs", "college", "grad", "license", "vehiclereg"];
+"death", "criminal", "poa", "thcs", "college", "grad", "license", "vehiclereg", "identitycert"];
 function render() {
 $("paper").innerHTML = RENDERERS[currentType]();
 fitPaper();
@@ -10149,6 +10278,22 @@ return '<div class="member-block">' +
 '</div>' +
 '</div>';
 }
+function ntRelHtml(n) {
+var relOpts = [["", "— Chọn quan hệ —"], ["夫", "Chồng （夫）"], ["妻", "Vợ （妻）"], ["父", "Cha （父）"], ["母", "Mẹ （母）"], ["兄", "Anh trai （兄）"], ["姉", "Chị gái （姉）"], ["弟", "Em trai （弟）"], ["妹", "Em gái （妹）"], ["子", "Con （子）"], ["祖父", "Ông （祖父）"], ["祖母", "Bà （祖母）"]];
+var opts = relOpts.map(function (o) { return '<option value="' + o[0] + '">' + o[1] + '</option>'; }).join("");
+return '<div class="member-block">' +
+'<div class="member-head"><span class="mt">Người thân ' + n + '</span><button type="button" class="btn-small dyn-remove">Xoá người này</button></div>' +
+'<div class="grid2">' +
+'<div class="field"><label>Quan hệ với người làm đơn （申請者との関係）</label><select class="ntj-relation">' + opts + '</select></div>' +
+'<div class="field"><label>Hoặc tự nhập quan hệ khác</label><input type="text" class="ntj-relation-text" placeholder="Ví dụ: Cháu ruột" /></div>' +
+'</div>' +
+'<div class="field name-pair"><label>Họ và tên （氏名）</label>' +
+'<input type="text" class="vn-name ntj-name" placeholder="Họ và tên đầy đủ" />' +
+'<label class="kana-label">Phiên âm katakana (tự động tạo — có thể sửa)</label>' +
+'<input type="text" class="kana ntj-kana" placeholder="カタカナ" /></div>' +
+'<div class="field"><label>Ngày sinh</label><input type="date" class="ntj-dob" /></div>' +
+'</div>';
+}
 function fillDyn(id, htmlFn, count) {
 var wrap = $(id);
 if (!wrap) return;
@@ -10163,6 +10308,7 @@ fillDyn("cv-children", function (n) { return cvChildHtml(n); }, 5);
 fillDyn("cv-history", function () { return cvHistoryHtml(); }, 1);
 fillDyn("tx-deps1", function () { return txDep1Html(); }, 1);
 fillDyn("tx-deps2", function () { return txDep2Html(); }, 1);
+fillDyn("nt-rels", function (n) { return ntRelHtml(n); }, 5);
 var proc = $("sr-process");
 if (proc) {
 proc.innerHTML = "";
@@ -10182,6 +10328,7 @@ if (wrap) wrap.appendChild(dynBlock(html));
 }
 $("btnAddSubject").addEventListener("click", function () { addDyn("tp-subjects", tpSubjectHtml()); render(); });
 $("btnAddRsMember").addEventListener("click", function () { addDyn("rs-members", rsMemberHtml()); render(); });
+$("btnAddNtRel").addEventListener("click", function () { addDyn("nt-rels", ntRelHtml(document.querySelectorAll("#nt-rels .member-block").length + 1)); render(); });
 $("btnAddDep").addEventListener("click", function () {
 if (document.querySelectorAll("#sp-deps .member-block").length >= 7) return;
 addDyn("sp-deps", spDepHtml()); render();
@@ -10628,7 +10775,7 @@ if (numeric) el.setAttribute("inputmode", DEC.test(text)? "decimal": "numeric");
 /* Draft autosave (opt-in, this device only) */
 var DRAFT_KEY = "vnDocDraft.v1";
 var DRAFT_ON_KEY = "vnDocDraftOn.v1";
-var DYN_CONTAINERS = ["hk-members", "tp-subjects", "rs-members", "sp-deps", "cv-history", "tx-deps1", "tx-deps2"];
+var DYN_CONTAINERS = ["hk-members", "tp-subjects", "rs-members", "sp-deps", "cv-history", "tx-deps1", "tx-deps2", "nt-rels"];
 var draftOn = false;
 var saveTimer = 0;
 function collectDraft() {

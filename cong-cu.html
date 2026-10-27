@@ -136,7 +136,9 @@
         box-shadow: 0 18px 50px rgba(15, 23, 32, 0.28);
         padding: 13px 16px; font-size: 14px;
         display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+        transition: opacity 0.4s ease;
       }
+      .pdf-toast.pt-fading { opacity: 0; }
       .pdf-toast[hidden] { display: none; }
       .pdf-toast .pt-text { flex: 1 1 auto; min-width: 180px; }
       .pdf-toast a {
@@ -11314,6 +11316,42 @@ var btnDlTop = $("btnDownloadTop"), btnDlBottom = $("btnDownloadBottom");
 if (btnDlTop) btnDlTop.addEventListener("click", doDownload);
 if (btnDlBottom) btnDlBottom.addEventListener("click", doDownload);
 
+/* Toast tự ẩn: mọi trạng thái cuối (thành công / lỗi) dùng chung một thời
+   lượng rồi mờ dần và ẩn; trạng thái "đang tạo" không tự ẩn. Di chuột lên
+   toast sẽ tạm dừng đếm ngược, rời chuột đếm lại từ đầu. */
+var TOAST_HIDE_MS = 6000;
+var toastHideTimer = null, toastFadeTimer = null, toastAutoHide = false;
+function clearToastTimers() {
+if (toastHideTimer) { clearTimeout(toastHideTimer); toastHideTimer = null; }
+if (toastFadeTimer) { clearTimeout(toastFadeTimer); toastFadeTimer = null; }
+}
+function cancelToastHide() {
+clearToastTimers();
+toastAutoHide = false;
+var toast = $("pdfToast");
+if (toast) toast.classList.remove("pt-fading");
+}
+function scheduleToastHide() {
+clearToastTimers();
+toastAutoHide = true;
+toastHideTimer = setTimeout(function () {
+var toast = $("pdfToast");
+if (!toast || toast.hidden) return;
+toast.classList.add("pt-fading");
+toastFadeTimer = setTimeout(function () {
+toast.hidden = true;
+toast.classList.remove("pt-fading");
+toastAutoHide = false;
+}, 450);
+}, TOAST_HIDE_MS);
+}
+(function () {
+var toast = $("pdfToast");
+if (!toast) return;
+toast.addEventListener("mouseenter", function () { clearToastTimers(); toast.classList.remove("pt-fading"); });
+toast.addEventListener("mouseleave", function () { if (toastAutoHide && !toast.hidden) scheduleToastHide(); });
+})();
+
 var pdfBusy = false;
 function setPdfBusy(on) {
 pdfBusy = on;
@@ -11321,30 +11359,36 @@ pdfBusy = on;
 var toast = $("pdfToast"), txt = $("pdfToastText"), link = $("pdfToastLink");
 if (!toast) return;
 if (on) {
+cancelToastHide();
 toast.hidden = false;
 txt.textContent = "Đang tạo file PDF…";
 link.hidden = true;
 link.removeAttribute("href");
 } else if (link.hidden) {
+cancelToastHide();
 toast.hidden = true;
 }
 }
 function showPdfError(msg) {
 var toast = $("pdfToast"), txt = $("pdfToastText"), link = $("pdfToastLink");
 if (!toast) return;
+cancelToastHide();
 toast.hidden = false;
 txt.textContent = msg;
 link.hidden = true;
 link.removeAttribute("href");
+scheduleToastHide();
 }
 function showPdfDone(url, fname) {
 var toast = $("pdfToast"), txt = $("pdfToastText"), link = $("pdfToastLink");
 if (!toast) return;
+cancelToastHide();
 toast.hidden = false;
 txt.textContent = "Đã tạo file PDF — file đang được tải xuống. Nếu máy không tự tải, chạm “Mở file PDF” rồi lưu lại từ trình xem PDF.";
 link.href = url;
 link.setAttribute("download", fname);
 link.hidden = false;
+scheduleToastHide();
 }
 function generatePdf() {
 if (pdfBusy) return;
